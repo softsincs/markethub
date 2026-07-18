@@ -82,6 +82,9 @@ const IMAGES = {
   lv: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&q=80',
   maison: 'https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?w=600&q=80',
   kilian: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&q=80',
+  trudon: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=600&q=80',
+  lvcase: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=80',
+  diptyque: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80',
 };
 
 // Brand logo display data
@@ -145,9 +148,9 @@ const DEFAULT_LISTINGS: ScentListing[] = [
   { id: 'sc-110', brand: 'Louis Vuitton', name: 'Ombre Nomade EDP', batch: 'LV-ON22', volume: '90% Full', price: 680, custodian: '@paris_vault', image: IMAGES.lv, status: 'Verified', notes: 'Ultra rare Oud-based LV exclusive. Vintage oud accord from Oman sourced directly from LV Paris.' },
   { id: 'sc-111', brand: 'Maison Margiela', name: 'Replica Flower Market', batch: 'MM-FM19', volume: '100% Sealed', price: 175, custodian: '@berlin_niche', image: IMAGES.maison, status: 'Verified', notes: 'Spring floral memory series. Fully sealed limited edition collector bottle. Peony with white musk.' },
   { id: 'sc-112', brand: 'By Kilian', name: 'Black Phantom Memento Mori', batch: 'KL-BP22', volume: '80% Remaining', price: 295, custodian: '@vault_kilian', image: IMAGES.kilian, status: 'Verified', notes: 'Dark rum and coffee signature. Skull bottle refillable coffret. Authentic Paris purchase.' },
-  { id: 'sc-113', brand: 'Cire Trudon', name: 'Feu de Bois Scented Candle (Classic 270g)', batch: 'TD-FDB26', volume: '100% Brand New', price: 115, custodian: '@scentvault', image: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=600&q=80', status: 'Verified', notes: 'Classic 270g candle in hand-blown green glass container. Feu de bois smoky wood signature.' },
-  { id: 'sc-114', brand: 'Louis Vuitton', name: 'Epi Leather Luxury Travel Fragrance Case', batch: 'LV-EPI-2026', volume: 'Pristine Case Only', price: 620, custodian: '@genevacustodian', image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80', status: 'Verified', notes: 'Authentic 100ml flacon travel carrier in rich black Epi leather with gold brass hardware.' },
-  { id: 'sc-115', brand: 'Diptyque', name: 'Baies Room Surround Diffuser (Large 200ml)', batch: 'DQ-B2026', volume: '100% Sealed', price: 195, custodian: '@rareessences', image: 'https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&w=600&q=80', status: 'Verified', notes: 'Sealed Diptyque room diffuser set with rattan reeds. Sweet Bulgarian rose and blackcurrant leaves.' },
+  { id: 'sc-113', brand: 'Cire Trudon', name: 'Feu de Bois Scented Candle (Classic 270g)', batch: 'TD-FDB26', volume: '100% Brand New', price: 115, custodian: '@scentvault', image: IMAGES.trudon, status: 'Verified', notes: 'Classic 270g candle in hand-blown green glass container. Feu de bois smoky wood signature.' },
+  { id: 'sc-114', brand: 'Louis Vuitton', name: 'Epi Leather Luxury Travel Fragrance Case', batch: 'LV-EPI-2026', volume: 'Pristine Case Only', price: 620, custodian: '@genevacustodian', image: IMAGES.lvcase, status: 'Verified', notes: 'Authentic 100ml flacon travel carrier in rich black Epi leather with gold brass hardware.' },
+  { id: 'sc-115', brand: 'Diptyque', name: 'Baies Room Surround Diffuser (Large 200ml)', batch: 'DQ-B2026', volume: '100% Sealed', price: 195, custodian: '@rareessences', image: IMAGES.diptyque, status: 'Verified', notes: 'Sealed Diptyque room diffuser set with rattan reeds. Sweet Bulgarian rose and blackcurrant leaves.' },
 ];
 
 
