@@ -352,6 +352,7 @@ export default function App() {
   const [footerInstagramLink, setFooterInstagramLink] = useState("https://instagram.com/markethub");
   const [footerWhatsAppNumber, setFooterWhatsAppNumber] = useState("+92 300 000 0000");
   const [footerYouTubeLink, setFooterYouTubeLink] = useState("https://youtube.com/markethub");
+  const [footerTwitterLink, setFooterTwitterLink] = useState("https://x.com/markethub");
   const [footerSupportEmail, setFooterSupportEmail] = useState("support@markethub.pk");
   const [footerLegalText, setFooterLegalText] = useState("MarketHub operates as a secure peer-to-peer luxury fragrance marketplace and escrow facilitator. All listings undergo AI-assisted Swiss Olfactory Verification Protocol before going live. Escrow funds are held securely and released only upon buyer confirmation of authenticity.");
   const [footerCopyright, setFooterCopyright] = useState("© 2026 MarketHub. All Rights Reserved.");
