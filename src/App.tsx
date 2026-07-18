@@ -1833,10 +1833,54 @@ export default function App() {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {[
-                    { icon: "ðŸ”¬", label: "Spectral Scans", val: "42,891", sub: "This month", color: "text-cyan-400", border: "border-cyan-800/40" },
-                    { icon: "ðŸ’°", label: "24H Vault Liquidity", val: "CHF 1.8M", sub: "Active escrow", color: "text-[#c5a880]", border: "border-[#c5a880]/30" },
-                    { icon: "ðŸ›¡ï¸", label: "Counterfeit Blocked", val: "0.18%", sub: "Industry lowest", color: "text-emerald-400", border: "border-emerald-800/40" },
-                    { icon: "ðŸŒ", label: "Countries Served", val: "142+", sub: "Global reach", color: "text-blue-400", border: "border-blue-800/40" },
+                    { 
+                      icon: (
+                        <svg className="w-5 h-5 text-cyan-400 animate-pulse" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 10.5h1.5m4-1.5h1.5m4 3h1.5m4-1.5H21m-9-9h.008v.008H12V3zm0 6h.008v.008H12V9zm0 6h.008v.008H12v-.008zm0 6h.008v.008H12V21zm-6-6h.008v.008H6V15zm0 6h.008v.008H6V21zm12-6h.008v.008H18V15zm0 6h.008v.008H18V21z" />
+                        </svg>
+                      ), 
+                      label: "Spectral Scans", 
+                      val: "42,891", 
+                      sub: "This month", 
+                      color: "text-cyan-400", 
+                      border: "border-cyan-850/40 hover:border-cyan-500/50 hover:shadow-[0_0_15px_rgba(34,211,238,0.25)]" 
+                    },
+                    { 
+                      icon: (
+                        <svg className="w-5 h-5 text-[#c5a880] animate-bounce-slow" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879-.659c1.546-1.16 4.316-1.16 5.861 0a3.31 3.31 0 010 4.961 3.31 3.31 0 01-5.862 0m-2.585-7.795l.879-.659c1.546-1.16 4.316-1.16 5.861 0a3.31 3.31 0 010 4.961 3.31 3.31 0 01-5.862 0" />
+                        </svg>
+                      ), 
+                      label: "24H Vault Liquidity", 
+                      val: "CHF 1.8M", 
+                      sub: "Active escrow", 
+                      color: "text-[#c5a880]", 
+                      border: "border-[#c5a880]/30 hover:border-[#c5a880] hover:shadow-[0_0_15px_rgba(197,168,128,0.25)]" 
+                    },
+                    { 
+                      icon: (
+                        <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                        </svg>
+                      ), 
+                      label: "Counterfeit Blocked", 
+                      val: "0.18%", 
+                      sub: "Industry lowest", 
+                      color: "text-emerald-400", 
+                      border: "border-emerald-850/40 hover:border-emerald-500/50 hover:shadow-[0_0_15px_rgba(16,185,129,0.25)]" 
+                    },
+                    { 
+                      icon: (
+                        <svg className="w-5 h-5 text-blue-400 animate-spin-slow" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582" />
+                        </svg>
+                      ), 
+                      label: "Countries Served", 
+                      val: "142+", 
+                      sub: "Global reach", 
+                      color: "text-blue-400", 
+                      border: "border-blue-850/40 hover:border-blue-500/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.25)]" 
+                    },
                   ].map((stat, i) => (
                     <motion.div
                       key={i}
@@ -1844,13 +1888,17 @@ export default function App() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1 }}
-                      whileHover={{ y: -4 }}
-                      className={`bg-[#12100f] border ${stat.border} p-5 rounded-none group transition-all duration-300`}
+                      whileHover={{ y: -6 }}
+                      className={`backdrop-blur-md bg-zinc-900/60 border ${stat.border} p-5 rounded-none group transition-all duration-300 relative overflow-hidden`}
                     >
-                      <div className="text-2xl mb-3">{stat.icon}</div>
-                      <div className={`font-mono text-2xl md:text-3xl font-black ${stat.color}`}>{stat.val}</div>
-                      <div className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest mt-1.5">{stat.label}</div>
-                      <div className="text-[8px] font-mono text-zinc-600 mt-0.5">{stat.sub}</div>
+                      <div className="absolute top-0 right-0 w-8 h-8 opacity-[0.05] bg-current rounded-full translate-x-2 -translate-y-2 group-hover:scale-150 transition-all duration-500" style={{ color: stat.color.replace('text-', '') }} />
+                      <div className="mb-4 flex justify-between items-center">
+                        <div>{stat.icon}</div>
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                      </div>
+                      <div className={`font-mono text-xl md:text-2xl font-black tracking-tight ${stat.color}`}>{stat.val}</div>
+                      <div className="text-[9px] font-mono text-zinc-400 uppercase tracking-widest mt-1.5">{stat.label}</div>
+                      <div className="text-[8px] font-mono text-zinc-500 mt-0.5">{stat.sub}</div>
                     </motion.div>
                   ))}
                 </div>
