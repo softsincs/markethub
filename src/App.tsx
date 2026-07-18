@@ -369,6 +369,7 @@ export default function App() {
   
   // Cart & Purchase flows
   const [checkoutItem, setCheckoutItem] = useState<ScentListing | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<ScentListing | null>(null);
   const [escrowSuccess, setEscrowSuccess] = useState<string | null>(null);
 
   // Authenticate Hub Form states
@@ -1087,7 +1088,10 @@ export default function App() {
                     {/* Corner luxury accent mark */}
                     <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#c5a880]/20 group-hover:border-[#c5a880] transition-colors pointer-events-none rounded-none"></div>
                     
-                    <div className="relative h-56 bg-zinc-50 overflow-hidden flex items-center justify-center border-b border-zinc-100">
+                    <div 
+                      onClick={() => setSelectedProduct(item)}
+                      className="relative h-44 bg-zinc-50 overflow-hidden flex items-center justify-center border-b border-zinc-100 cursor-pointer"
+                    >
                       <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-[1.05] transition-all duration-700" />
                       
                       {/* Gradient tint overlays */}
@@ -1121,7 +1125,12 @@ export default function App() {
                           <p className="text-[9px] font-mono uppercase tracking-widest text-[#8e7355] font-black">{item.brand}</p>
                           <span className="text-[8px] font-mono text-zinc-400 uppercase">Block Verified</span>
                         </div>
-                        <h4 className="font-serif text-sm text-zinc-900 font-bold mt-1 uppercase tracking-wider group-hover:text-[#8e7355] transition-colors">{item.name}</h4>
+                        <h4 
+                          onClick={() => setSelectedProduct(item)}
+                          className="font-serif text-sm text-zinc-900 font-bold mt-1 uppercase tracking-wider group-hover:text-[#8e7355] transition-colors cursor-pointer"
+                        >
+                          {item.name}
+                        </h4>
                         <div className="flex items-center gap-2 mt-1">
                           <span className="text-[10px] text-zinc-500 font-mono">Batch:</span>
                           <span className="text-[9px] font-mono text-[#8e7355] bg-[#c5a880]/10 border border-[#c5a880]/30 px-1.5 py-0.5 rounded-none font-bold uppercase">{item.batch}</span>
@@ -1933,14 +1942,38 @@ export default function App() {
                   <button 
                     onClick={handleSellerSignOut}
                     className="bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white px-4 py-2 border border-zinc-800 rounded-none font-mono text-[10px] uppercase font-bold tracking-wider cursor-pointer transition-all shrink-0 shadow-sm"
-                  >
-                    Logout Terminal
-                  </button>
-                </div>
+                       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8 text-left">
+                  {/* Seller Profile Summary Card */}
+                  <div className="bg-white border border-zinc-200 p-5 rounded-none shadow-sm md:col-span-1 flex flex-col justify-between">
+                    <div>
+                      <span className="text-[8px] font-mono text-[#8e7355] uppercase tracking-widest font-bold">Partner Account</span>
+                      <h4 className="font-serif text-sm font-black text-zinc-950 uppercase mt-1">Collector Tier II</h4>
+                      <p className="text-[10px] font-mono text-zinc-500 mt-2 truncate">{sellerEmailInput || "seller@markethub.com"}</p>
+                      
+                      <div className="mt-4 pt-4 border-t border-zinc-100 space-y-2 font-mono text-[9px]">
+                        <div className="flex justify-between">
+                          <span className="text-zinc-400">ID:</span>
+                          <span className="text-zinc-800 font-bold">SH-8820-PK</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-zinc-400">Joined:</span>
+                          <span className="text-zinc-800 font-bold">June 2025</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-zinc-400">Payout Linked:</span>
+                          <span className="text-emerald-600 font-bold">EasyPaisa (0300***567)</span>
+                        </div>
+                      </div>
+                    </div>
+                    <button 
+                      onClick={() => alert("Payout configuration terminal locked. Contact MarketHub partner desk.")}
+                      className="mt-6 w-full text-center border border-zinc-200 hover:border-zinc-800 py-2 text-[9px] font-mono uppercase tracking-widest font-bold cursor-pointer"
+                    >
+                      Payment Settings
+                    </button>
+                  </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {/* Dashboard performance cards */}
-                  <div className="bg-white border border-zinc-200 p-5 rounded-none flex items-center gap-4 shadow-sm">
+                  <div className="bg-white border border-zinc-200 p-5 rounded-none flex items-center gap-4 shadow-sm text-left">
                     <div className="p-3 bg-[#c5a880]/15 rounded-none border border-[#c5a880]/30 text-[#8e7355]">
                       <User className="w-5 h-5 font-bold" />
                     </div>
@@ -1950,174 +1983,184 @@ export default function App() {
                     </div>
                   </div>
 
-              <div className="bg-white border border-zinc-200 p-5 rounded-none flex items-center gap-4 shadow-sm">
-                <div className="p-3 bg-emerald-50 rounded-none border border-emerald-200 text-emerald-700">
-                  <TrendingUp className="w-5 h-5 font-bold" />
-                </div>
-                <div>
-                  <span className="text-[9px] font-mono uppercase tracking-wider text-zinc-500 font-bold">Hub Trust Rating</span>
-                  <p className="font-mono text-base font-black text-emerald-700">98 / 100 <span className="text-xs text-emerald-500/60 font-medium">Trusted Master</span></p>
-                </div>
-              </div>
-
-              <div className="bg-white border border-zinc-200 p-5 rounded-none flex items-center gap-4 shadow-sm">
-                <div className="p-3 bg-blue-50 rounded-none border border-blue-200 text-blue-700">
-                  <BarChart2 className="w-5 h-5 font-bold" />
-                </div>
-                <div>
-                  <span className="text-[9px] font-mono uppercase tracking-wider text-zinc-500 font-bold">Pending Payouts</span>
-                  <p className="font-mono text-base font-black text-blue-700">CHF 1,840</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              {/* Left Side listing draft form */}
-              <div className="lg:col-span-7">
-                <div className="bg-white border border-zinc-200 rounded-none p-6 shadow-sm">
-                  <div className="border-b border-zinc-200 pb-4 mb-6 flex justify-between items-center">
-                    <div>
-                      <h3 className="font-serif text-lg text-zinc-900 uppercase tracking-widest font-black">AI Listing Assistant</h3>
-                      <p className="text-[11px] text-zinc-500 font-mono mt-1">Submit rare assets. Our computer vision auto-populates note maps and valuations.</p>
+                  <div className="bg-white border border-zinc-200 p-5 rounded-none flex items-center gap-4 shadow-sm text-left">
+                    <div className="p-3 bg-emerald-50 rounded-none border border-emerald-200 text-emerald-700">
+                      <TrendingUp className="w-5 h-5 font-bold" />
                     </div>
-                    <button
-                      type="button"
-                      onClick={handleSellerAIScan}
-                      disabled={!sellerBrand || !sellerModel || isSellerListingGenerating}
-                      className="text-[10px] font-mono uppercase text-[#8e7355] hover:text-[#c5a880] bg-zinc-50 border border-zinc-300 px-3.5 py-1.5 rounded-none disabled:opacity-30 cursor-pointer flex items-center gap-1 font-bold shadow-xs"
-                    >
-                      <Sparkles className="w-3.5 h-3.5 text-[#c5a880]" />
-                      Auto-analyze Listing
-                    </button>
+                    <div>
+                      <span className="text-[9px] font-mono uppercase tracking-wider text-zinc-500 font-bold">Hub Trust Rating</span>
+                      <p className="font-mono text-base font-black text-emerald-700">98 / 100 <span className="text-xs text-emerald-500/60 font-medium">Trusted Master</span></p>
+                    </div>
                   </div>
 
-                  <form onSubmit={handleSellerSubmitListing} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">Brand House *</label>
-                        <input 
-                          type="text" 
-                          required 
-                          placeholder="e.g. Creed" 
-                          value={sellerBrand} 
-                          onChange={(e) => setSellerBrand(e.target.value)}
-                          className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-3.5 py-2.5 text-xs text-zinc-900 focus:bg-white focus:outline-none focus:border-zinc-800 font-mono"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">Model Name *</label>
-                        <input 
-                          type="text" 
-                          required 
-                          placeholder="e.g. Aventus" 
-                          value={sellerModel} 
-                          onChange={(e) => setSellerModel(e.target.value)}
-                          className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-3.5 py-2.5 text-xs text-zinc-900 focus:bg-white focus:outline-none focus:border-zinc-800 font-mono"
-                        />
-                      </div>
+                  <div className="bg-white border border-zinc-200 p-5 rounded-none flex items-center gap-4 shadow-sm text-left">
+                    <div className="p-3 bg-blue-50 rounded-none border border-blue-200 text-blue-700">
+                      <BarChart2 className="w-5 h-5 font-bold" />
                     </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">Suggested Batch</label>
-                        <input 
-                          type="text" 
-                          placeholder="e.g. 19R01" 
-                          value={sellerBatch} 
-                          onChange={(e) => setSellerBatch(e.target.value)}
-                          className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-3.5 py-2.5 text-xs text-zinc-900 focus:bg-white focus:outline-none focus:border-zinc-800 font-mono"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">Listing Price (USD) *</label>
-                        <input 
-                          type="number" 
-                          required 
-                          placeholder="e.g. 350" 
-                          value={sellerPrice} 
-                          onChange={(e) => setSellerPrice(e.target.value)}
-                          className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-3.5 py-2.5 text-xs text-zinc-900 focus:bg-white focus:outline-none focus:border-zinc-800 font-mono"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">Asset Photo</label>
-                        <select 
-                          value={sellerImage} 
-                          onChange={(e) => setSellerImage(e.target.value)}
-                          className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-3.5 py-2.5 text-xs text-zinc-900 focus:bg-white focus:outline-none focus:border-zinc-800 font-mono cursor-pointer"
-                        >
-                          <option value="creed">Creed Flacon (Pristine)</option>
-                          <option value="tomford">Tom Ford Private (Amber)</option>
-                          <option value="xerjoff">Xerjoff Hologram Box</option>
-                          <option value="baccarat">Baccarat Rouge Red</option>
-                        </select>
-                      </div>
-                      <div className="flex items-center">
-                        <span className="text-[10px] text-zinc-500 font-mono leading-tight mt-4">
-                          Note: Photo is parsed via neural networks to extract glass thickness and logo placement.
-                        </span>
-                      </div>
-                    </div>
-
                     <div>
-                      <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">AI Generated Notes Composition</label>
-                      <textarea 
-                        rows={3} 
-                        value={sellerNotes} 
-                        onChange={(e) => setSellerNotes(e.target.value)}
-                        placeholder="Click 'Auto-analyze Listing' to auto populate descriptions or enter custom collector notes..."
-                        className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-3.5 py-2.5 text-xs text-zinc-950 focus:bg-white focus:outline-none focus:border-zinc-800 resize-none font-sans"
-                      />
+                      <span className="text-[9px] font-mono uppercase tracking-wider text-zinc-500 font-bold">Pending Payouts</span>
+                      <p className="font-mono text-base font-black text-blue-700">CHF 1,840</p>
                     </div>
-
-                    {isSellerListingGenerating && (
-                      <div className="p-3 bg-zinc-50 border border-zinc-200 text-zinc-700 rounded-none flex items-center gap-2.5 text-[11px] font-mono animate-pulse">
-                        <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#c5a880]" />
-                        Running Spectroscopic image parsing & pricing recommendation...
-                      </div>
-                    )}
-
-                    <button
-                      type="submit"
-                      className="w-full bg-zinc-950 hover:bg-zinc-800 text-white py-3 rounded-none font-serif text-xs uppercase tracking-widest font-bold shadow-sm transition-all cursor-pointer flex items-center justify-center gap-2"
-                    >
-                      <Plus className="w-4 h-4 text-[#c5a880]" />
-                      Submit Private Listing to Public Vault
-                    </button>
-                  </form>
-                </div>
-              </div>
-
-              {/* Right side Seller inventory */}
-              <div className="lg:col-span-5">
-                <div className="bg-white border border-zinc-200 rounded-none p-6 h-full flex flex-col shadow-sm">
-                  <div className="border-b border-zinc-200 pb-4 mb-4">
-                    <h3 className="font-serif text-lg text-zinc-900 uppercase tracking-widest font-black">Active Inventory</h3>
-                    <p className="text-[11px] text-zinc-500 font-mono uppercase">YOUR LISTED COVETED ASSETS</p>
                   </div>
+                </div>
 
-                  <div className="space-y-3 flex-1 overflow-y-auto max-h-[380px]">
-                    {[
-                      { brand: "Maison Francis Kurkdjian", name: "Baccarat Rouge 540 Extrait", price: "$450", status: "Awaiting Admin Review", badge: "bg-amber-50 text-amber-800 border-amber-200 font-bold" },
-                      { brand: "Roja Parfums", name: "Elysium Pour Homme (Sealed)", price: "$320", status: "Active (Verified)", badge: "bg-emerald-50 text-emerald-800 border-emerald-200 font-bold" },
-                      { brand: "By Kilian", name: "Black Phantom (with Coffret)", price: "$285", status: "Active (Verified)", badge: "bg-emerald-50 text-emerald-800 border-emerald-200 font-bold" }
-                    ].map((inv, i) => (
-                      <div key={i} className="p-3 bg-zinc-50 border border-zinc-200 rounded-none flex justify-between items-center shadow-xs">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 text-left">
+                  {/* Left Side listing draft form */}
+                  <div className="lg:col-span-7">
+                    <div className="bg-white border border-zinc-200 rounded-none p-6 shadow-sm">
+                      <div className="border-b border-zinc-200 pb-4 mb-6 flex justify-between items-center">
                         <div>
-                          <span className="text-[8px] uppercase tracking-wider font-mono text-[#8e7355] font-black">{inv.brand}</span>
-                          <h4 className="font-serif text-xs text-zinc-900 font-bold mt-0.5">{inv.name}</h4>
-                          <span className={`inline-block text-[8px] font-mono uppercase px-1.5 py-0.5 rounded-none border mt-1 ${inv.badge}`}>
-                            {inv.status}
-                          </span>
+                          <h3 className="font-serif text-lg text-zinc-900 uppercase tracking-widest font-black">AI Listing Assistant</h3>
+                          <p className="text-[11px] text-zinc-500 font-mono mt-1">Submit rare assets. Our computer vision auto-populates note maps and valuations.</p>
                         </div>
-                        <div className="text-right">
-                          <span className="font-mono text-xs font-black text-[#8e7355]">{inv.price}</span>
-                        </div>
+                        <button
+                          type="button"
+                          onClick={handleSellerAIScan}
+                          disabled={!sellerBrand || !sellerModel || isSellerListingGenerating}
+                          className="text-[10px] font-mono uppercase text-[#8e7355] hover:text-[#c5a880] bg-zinc-50 border border-zinc-300 px-3.5 py-1.5 rounded-none disabled:opacity-30 cursor-pointer flex items-center gap-1 font-bold shadow-xs animate-pulse"
+                        >
+                          <Sparkles className="w-3.5 h-3.5 text-[#c5a880]" />
+                          Auto-analyze Listing
+                        </button>
                       </div>
-                    ))}
+
+                      <form onSubmit={handleSellerSubmitListing} className="space-y-4">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">Brand House *</label>
+                            <input 
+                              type="text" 
+                              required 
+                              placeholder="e.g. Creed" 
+                              value={sellerBrand} 
+                              onChange={(e) => setSellerBrand(e.target.value)}
+                              className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-3.5 py-2.5 text-xs text-zinc-900 focus:bg-white focus:outline-none focus:border-zinc-800 font-mono"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">Model Name *</label>
+                            <input 
+                              type="text" 
+                              required 
+                              placeholder="e.g. Aventus" 
+                              value={sellerModel} 
+                              onChange={(e) => setSellerModel(e.target.value)}
+                              className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-3.5 py-2.5 text-xs text-zinc-900 focus:bg-white focus:outline-none focus:border-zinc-800 font-mono"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">Suggested Batch</label>
+                            <input 
+                              type="text" 
+                              placeholder="e.g. 19R01" 
+                              value={sellerBatch} 
+                              onChange={(e) => setSellerBatch(e.target.value)}
+                              className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-3.5 py-2.5 text-xs text-zinc-900 focus:bg-white focus:outline-none focus:border-zinc-800 font-mono"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">Listing Price (USD) *</label>
+                            <input 
+                              type="number" 
+                              required 
+                              placeholder="e.g. 350" 
+                              value={sellerPrice} 
+                              onChange={(e) => setSellerPrice(e.target.value)}
+                              className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-3.5 py-2.5 text-xs text-zinc-900 focus:bg-white focus:outline-none focus:border-zinc-800 font-mono"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">Asset Photo</label>
+                            <select 
+                              value={sellerImage} 
+                              onChange={(e) => setSellerImage(e.target.value)}
+                              className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-3.5 py-2.5 text-xs text-zinc-900 focus:bg-white focus:outline-none focus:border-zinc-800 font-mono cursor-pointer"
+                            >
+                              <option value="creed">Creed Flacon (Pristine)</option>
+                              <option value="tomford">Tom Ford Private (Amber)</option>
+                              <option value="xerjoff">Xerjoff Hologram Box</option>
+                              <option value="baccarat">Baccarat Rouge Red</option>
+                            </select>
+                          </div>
+                          <div className="flex items-center">
+                            <span className="text-[10px] text-zinc-500 font-mono leading-tight mt-4">
+                              Note: Photo is parsed via neural networks to extract glass thickness and logo placement.
+                            </span>
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">AI Generated Notes Composition</label>
+                          <textarea 
+                            rows={3} 
+                            value={sellerNotes} 
+                            onChange={(e) => setSellerNotes(e.target.value)}
+                            placeholder="Click 'Auto-analyze Listing' to auto populate descriptions or enter custom collector notes..."
+                            className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-3.5 py-2.5 text-xs text-[#12100f] focus:bg-white focus:outline-none focus:border-zinc-800 resize-none font-sans"
+                          />
+                        </div>
+
+                        {isSellerListingGenerating && (
+                          <div className="p-3 bg-zinc-50 border border-zinc-200 text-zinc-700 rounded-none flex items-center gap-2.5 text-[11px] font-mono animate-pulse">
+                            <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#c5a880]" />
+                            Running Spectroscopic image parsing & pricing recommendation...
+                          </div>
+                        )}
+
+                        <button
+                          type="submit"
+                          className="w-full bg-zinc-950 hover:bg-zinc-800 text-white py-3 rounded-none font-serif text-xs uppercase tracking-widest font-bold shadow-sm transition-all cursor-pointer flex items-center justify-center gap-2"
+                        >
+                          <Plus className="w-4 h-4 text-[#c5a880]" />
+                          Submit Private Listing to Public Vault
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+
+                  {/* Right side Seller inventory */}
+                  <div className="lg:col-span-5">
+                    <div className="bg-white border border-zinc-200 rounded-none p-6 h-full flex flex-col shadow-sm">
+                      <div className="border-b border-zinc-200 pb-4 mb-4">
+                        <h3 className="font-serif text-lg text-zinc-900 uppercase tracking-widest font-black">Active Inventory</h3>
+                        <p className="text-[11px] text-zinc-500 font-mono uppercase">YOUR LISTED COVETED ASSETS</p>
+                      </div>
+
+                      <div className="space-y-3 flex-1 overflow-y-auto max-h-[380px]">
+                        {[
+                          { brand: "Maison Francis Kurkdjian", name: "Baccarat Rouge 540 Extrait", price: "CHF 450", status: "Awaiting Admin Review", badge: "bg-amber-50 text-amber-800 border-amber-200 font-bold" },
+                          { brand: "Roja Parfums", name: "Elysium Pour Homme (Sealed)", price: "CHF 320", status: "Active (Verified)", badge: "bg-emerald-50 text-emerald-800 border-emerald-200 font-bold" },
+                          { brand: "By Kilian", name: "Black Phantom (with Coffret)", price: "CHF 285", status: "Active (Verified)", badge: "bg-emerald-50 text-emerald-800 border-emerald-200 font-bold" }
+                        ].map((inv, i) => (
+                          <div key={i} className="p-3 bg-zinc-50 border border-zinc-200 rounded-none flex justify-between items-center shadow-xs">
+                            <div>
+                              <span className="text-[8px] uppercase tracking-wider font-mono text-[#8e7355] font-black">{inv.brand}</span>
+                              <h4 className="font-serif text-xs text-zinc-900 font-bold mt-0.5">{inv.name}</h4>
+                              <span className={`inline-block text-[8px] font-mono uppercase px-1.5 py-0.5 rounded-none border mt-1 ${inv.badge}`}>
+                                {inv.status}
+                              </span>
+                            </div>
+                            <div className="text-right flex flex-col items-end gap-1">
+                              <span className="font-mono text-xs font-black text-[#8e7355]">{inv.price}</span>
+                              <button 
+                                onClick={() => alert(`Withdraw request submitted for ${inv.brand} ${inv.name}.`)}
+                                className="text-[7px] font-mono text-rose-600 hover:underline uppercase cursor-pointer"
+                              >
+                                Withdraw
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>          ))}
                   </div>
                 </div>
               </div>
@@ -2332,76 +2375,236 @@ export default function App() {
                         >
                           <div>
                             <span className="text-[8px] uppercase tracking-wider font-mono text-[#8e7355] font-black">{feed.brand}</span>
-                            <h5 className="font-serif text-xs text-zinc-900 font-bold uppercase mt-0.5">{feed.name}</h5>
-                            <span className="text-[9px] text-zinc-400 font-mono mt-1 block">Batch: {feed.batch} • Price: ${feed.price}</span>
-                          </div>
-                          <ChevronRight className="w-4 h-4 text-zinc-400" />
+                  <ChevronRight className="w-4 h-4 text-zinc-400" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {adminSubTab === 'kyc' && (
+            <div className="bg-white border border-zinc-200 rounded-none p-6 space-y-4 shadow-sm text-left">
+              <h3 className="font-serif text-lg text-zinc-950 uppercase tracking-widest border-b border-zinc-100 pb-3 font-black">Seller KYC Verification Queue</h3>
+              <p className="text-xs text-zinc-500 leading-relaxed font-sans">
+                Verify seller credentials, CNIC/national identification database checks, and connected wallet services (JazzCash/EasyPaisa) to authorize dispatch vaults.
+              </p>
+              
+              <div className="space-y-4 pt-2">
+                {[
+                  { id: "KYC-8820", name: "Muhammad Ahmed", email: "ahmed.scents@gmail.com", phone: "+92 300 1234567", wallet: "EasyPaisa (0300***567)", status: "Pending Review" },
+                  { id: "KYC-9012", name: "Sarah Khan", email: "sarah.k@vault.pk", phone: "+92 333 9876543", wallet: "JazzCash (0333***543)", status: "Pending Review" }
+                ].map((partner) => (
+                  <div key={partner.id} className="p-4 bg-zinc-50 border border-zinc-200 rounded-none flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[9px] bg-[#c5a880]/15 text-[#8e7355] px-2 py-0.5 rounded border border-[#c5a880]/30 font-mono font-bold">{partner.id}</span>
+                        <h4 className="font-serif text-sm text-zinc-900 font-bold uppercase">{partner.name}</h4>
+                      </div>
+                      <p className="text-[10px] text-zinc-500 font-mono">Email: {partner.email} • Phone: {partner.phone}</p>
+                      <p className="text-[10px] text-[#8e7355] font-mono font-semibold">Connected Payout: {partner.wallet}</p>
+                    </div>
+                    <div className="flex gap-2 w-full sm:w-auto">
+                      <button 
+                        onClick={() => alert(`Partner KYC for ${partner.name} approved. Vault trade capabilities unlocked.`)}
+                        className="flex-1 sm:flex-none bg-zinc-950 hover:bg-zinc-800 text-white text-[9px] uppercase font-mono px-3.5 py-2 rounded-none font-bold transition-all cursor-pointer shadow-sm"
+                      >
+                        Approve KYC
+                      </button>
+                      <button 
+                        onClick={() => alert(`Partner KYC for ${partner.name} flagged. Verification hold applied.`)}
+                        className="flex-1 sm:flex-none bg-white border border-zinc-300 hover:border-rose-600 hover:text-rose-600 text-zinc-700 text-[9px] uppercase font-mono px-3.5 py-2 rounded-none font-bold transition-all cursor-pointer"
+                      >
+                        Flag Account
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {adminSubTab === 'disputes' && (
+            <div className="bg-white border border-zinc-200 rounded-none p-6 space-y-4 shadow-sm text-left">
+              <h3 className="font-serif text-lg text-zinc-950 uppercase tracking-widest border-b border-zinc-100 pb-3 font-black">Active Escrow Dispute Desk</h3>
+              <p className="text-xs text-zinc-500 leading-relaxed font-sans">
+                When buyers submit dispute reports due to suspected tampering or bottle discrepancies, the simple escrow contract goes into a locked "Disputed" state, requiring manual review of lab reports.
+              </p>
+              
+              {/* Fake Dispute row */}
+              <div className="p-4 bg-zinc-50 border border-rose-200 rounded-none space-y-3">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <span className="text-[9px] bg-rose-50 text-rose-700 px-2.5 py-1 rounded-none border border-rose-200 font-mono uppercase font-bold">Dispute ID #disp-99182</span>
+                    <h4 className="font-serif text-sm text-zinc-900 mt-1.5 uppercase font-black">Creed Green Irish Tweed Vintage 2012</h4>
+                    <p className="text-[10px] text-zinc-400 font-mono mt-1">Contract: esc-4482 • Buyer: @zurichCollector • Seller: @lux_fragrances</p>
+                  </div>
+                  <div className="text-right">
+                    <span className="font-mono text-xs font-black text-rose-700">CHF 380 Locked</span>
+                  </div>
+                </div>
+                <p className="text-xs text-zinc-600 italic">
+                  "Buyer claim: atomiser ring features horizontal seam, characteristic of post-2016 counterfeit molds. Requesting liquid chemical analysis report or full refund."
+                </p>
+                <div className="flex gap-2 pt-2">
+                  <button 
+                    onClick={() => alert("Refunded CHF 380 securely back to buyer's verified vault wallet.")}
+                    className="bg-white border border-zinc-200 hover:border-zinc-400 text-zinc-800 text-[10px] uppercase font-mono px-3 py-1.5 rounded-none cursor-pointer transition-colors font-bold shadow-xs">
+                    Authorize Full Refund
+                  </button>
+                  <button 
+                    onClick={() => alert("Funds released to seller after verifying reference database mold exceptions.")}
+                    className="bg-zinc-950 hover:bg-zinc-800 text-white text-[10px] uppercase font-mono px-3 py-1.5 rounded-none font-bold cursor-pointer transition-all">
+                    Reject Dispute &amp; Release
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {adminSubTab === 'analytics' && (
+            <div className="bg-white border border-zinc-200 rounded-none p-6 space-y-6 shadow-sm text-left">
+              <h3 className="font-serif text-lg text-zinc-950 uppercase tracking-widest border-b border-zinc-100 pb-3 font-black">Olfactory Protocol Registry Metrics</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="p-4 bg-zinc-50 border border-zinc-100 rounded-none text-center space-y-1">
+                  <span className="text-[8px] uppercase tracking-widest font-mono text-zinc-400">Spectral Scans Done</span>
+                  <p className="font-mono text-2xl font-black text-zinc-900">42,891</p>
+                </div>
+                <div className="p-4 bg-zinc-50 border border-zinc-100 rounded-none text-center space-y-1">
+                  <span className="text-[8px] uppercase tracking-widest font-mono text-zinc-400">Active Escrow locked</span>
+                  <p className="font-mono text-2xl font-black text-zinc-900">CHF 492K</p>
+                </div>
+                <div className="p-4 bg-zinc-50 border border-zinc-100 rounded-none text-center space-y-1">
+                  <span className="text-[8px] uppercase tracking-widest font-mono text-zinc-400">Counterfeit Block Rate</span>
+                  <p className="font-mono text-2xl font-black text-rose-600">0.18%</p>
+                </div>
+              </div>
+
+              {/* Visual Bar Chart */}
+              <div className="space-y-4 pt-4 border-t border-zinc-100">
+                <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#8e7355] font-black">Monthly Escrow Volume (CHF)</h4>
+                <div className="h-40 flex items-end gap-3 pt-6 relative">
+                  {[
+                    { month: 'Jan', val: 80, label: '80K' },
+                    { month: 'Feb', val: 120, label: '120K' },
+                    { month: 'Mar', val: 160, label: '160K' },
+                    { month: 'Apr', val: 240, label: '240K' },
+                    { month: 'May', val: 380, label: '380K' },
+                    { month: 'Jun', val: 492, label: '492K' },
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                      <span className="text-[8px] font-mono text-zinc-400">{item.label}</span>
+                      <div 
+                        style={{ height: `${(item.val / 500) * 100}%` }}
+                        className="w-full bg-[#c5a880] hover:bg-[#8e7355] transition-all duration-300 relative group"
+                      >
+                        <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-zinc-950 text-white font-mono text-[8px] px-1.5 py-0.5 rounded-none opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none">
+                          CHF {item.val}K
+                        </div>
+                      </div>
+                      <span className="text-[9px] font-mono text-zinc-500 uppercase font-bold">{item.month}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ----------------- 5. BUYER DASHBOARD ----------------- */}
+      {activeTab === 'buyer' && (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8" id="buyer-tab">
+          
+          {/* Left side portfolio and tracking */}
+          <div className="lg:col-span-8 space-y-8">
+            
+            {/* Welcome card */}
+            <div className="bg-white border border-zinc-200 rounded-none p-6 relative overflow-hidden shadow-sm">
+              <span className="text-[9px] uppercase tracking-widest font-mono text-[#8e7355] bg-[#c5a880]/15 border border-[#c5a880]/30 px-2.5 py-1 rounded-none font-bold">Verified Collector Profile</span>
+              <h3 className="font-serif text-xl text-zinc-900 mt-3 uppercase font-black">Welcome back, Collector</h3>
+              <p className="text-xs text-zinc-600 mt-1 max-w-xl font-sans">
+                Your rare portfolio vault is currently valued at <span className="text-zinc-900 font-bold">$14,250 (+4.2% this month)</span>. 2 shipments are locked in transit, and your batch radar is actively scanning for vintage formulations.
+              </p>
+            </div>
+
+            {/* Glowing SVG Chart */}
+            <div className="bg-white border border-zinc-200 rounded-none p-6 space-y-4 shadow-sm">
+              <div className="flex justify-between items-center border-b border-zinc-100 pb-3">
+                <div>
+                  <h4 className="font-serif text-sm text-zinc-900 uppercase tracking-widest font-black">My Vault Valuation Ledger</h4>
+                  <p className="text-[10px] text-zinc-400 font-mono mt-0.5 uppercase font-bold">HISTORICAL PORTFOLIO APPRECIATION</p>
+                </div>
+                <span className="font-mono text-xs text-emerald-600 font-bold">+12.4% YoY</span>
+              </div>
+
+              {/* SVG Graph line chart */}
+              <div className="h-44 relative flex items-end">
+                <svg className="w-full h-full" viewBox="0 0 500 150">
+                  <defs>
+                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#c5a880" stopOpacity="0.15" />
+                      <stop offset="100%" stopColor="#c5a880" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  {/* Grid lines */}
+                  <line x1="0" y1="40" x2="500" y2="40" stroke="#f4f4f5" strokeWidth="1" strokeDasharray="3,3" />
+                  <line x1="0" y1="80" x2="500" y2="80" stroke="#f4f4f5" strokeWidth="1" strokeDasharray="3,3" />
+                  <line x1="0" y1="120" x2="500" y2="120" stroke="#f4f4f5" strokeWidth="1" strokeDasharray="3,3" />
+                  
+                  {/* Filled Area */}
+                  <path d="M 0 130 Q 80 110 160 115 T 320 60 T 450 30 T 500 20 L 500 150 L 0 150 Z" fill="url(#chartGrad)" />
+                  {/* Line */}
+                  <path d="M 0 130 Q 80 110 160 115 T 320 60 T 450 30 T 500 20" fill="none" stroke="#c5a880" strokeWidth="2.5" />
+                  
+                  {/* Glowing dots */}
+                  <circle cx="320" cy="60" r="4" fill="#c5a880" />
+                  <circle cx="500" cy="20" r="4.5" fill="#8e7355" />
+                </svg>
+                
+                {/* Labels */}
+                <div className="absolute inset-x-0 bottom-0 flex justify-between font-mono text-[9px] text-zinc-400 border-t border-zinc-100 pt-2 font-bold">
+                  <span>JAN</span>
+                  <span>FEB</span>
+                  <span>MAR</span>
+                  <span>APR</span>
+                  <span>MAY</span>
+                  <span>JUN</span>
+                  <span>CURRENT (CHF 14,250)</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Swiss Escrow Ledger Timeline */}
+            <SwissLedgerTimeline 
+              ledger={ledger}
+              inspectedTx={inspectedTx}
+              onInspect={setInspectedTx}
+              onRelease={(id) => updateTxStatusOnServer(id, 'Released')}
+              onDispute={(id) => updateTxStatusOnServer(id, 'Disputed')}
+            />
+
+            {/* In-Flight Orders */}
+            <div className="bg-white border border-zinc-200 rounded-none p-6 space-y-4 shadow-sm">
+              <h4 className="font-serif text-sm text-zinc-900 uppercase tracking-widest font-black">In-Flight Escrow Locks</h4>
+              <div className="space-y-4">
+                {buyerOrders.map((order) => (
+                  <div key={order.id} className="p-4 bg-zinc-50 border border-zinc-200 rounded-none space-y-3">
+                    <div className="flex justify-between items-center text-xs">
+                      <div>
+                        <span className="font-mono text-[9px] text-[#8e7355] block font-bold">{order.id} • STATUS: {order.status}</span>
+                        <span className="font-serif font-black text-zinc-950 uppercase tracking-wide text-sm">{order.name}</span>
+                      </div>
+                      <span className="font-mono font-black text-[#8e7355]">${order.price}</span>
+                    </div>
+
+                    {/* Progress Bar steps */}
+                    <div className="grid grid-cols-4 gap-1 pt-1.5">
+                      {['Funded', 'Spectroscopy', 'In Transit', 'Completed'].map((st, i) => (
+                        <div key={i} className="space-y-1">
+                          <div className={`h-1 rounded-none ${i < order.step ? 'bg-[#c5a880]' : i === order.step ? 'bg-zinc-800 animate-pulse' : 'bg-zinc-200'}`}></div>
+                          <span className="text-[8px] font-mono uppercase text-zinc-400 text-center block font-bold">{st}</span>
                         </div>
                       ))}
                     </div>
-                  </div>
-
-                </div>
-              )}
-
-              {adminSubTab === 'disputes' && (
-                <div className="bg-white border border-zinc-200 rounded-none p-6 space-y-4 shadow-sm">
-                  <h3 className="font-serif text-lg text-zinc-950 uppercase tracking-widest border-b border-zinc-100 pb-3 font-black">Active Escrow Dispute Desk</h3>
-                  <p className="text-xs text-zinc-500 leading-relaxed font-sans">
-                    When buyers submit dispute reports due to suspected tampering or bottle discrepancies, the simple escrow contract goes into a locked "Disputed" state, requiring manual review of lab reports.
-                  </p>
-                  
-                  {/* Fake Dispute row */}
-                  <div className="p-4 bg-zinc-50 border border-rose-200 rounded-none space-y-3">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <span className="text-[9px] bg-rose-50 text-rose-700 px-2.5 py-1 rounded-none border border-rose-200 font-mono uppercase font-bold">Dispute ID #disp-99182</span>
-                        <h4 className="font-serif text-sm text-zinc-900 mt-1.5 uppercase font-black">Creed Green Irish Tweed Vintage 2012</h4>
-                        <p className="text-[10px] text-zinc-400 font-mono mt-1">Contract: esc-4482 • Buyer: @zurichCollector • Seller: @lux_fragrances</p>
-                      </div>
-                      <div className="text-right">
-                        <span className="font-mono text-xs font-black text-rose-700">CHF 380 Locked</span>
-                      </div>
-                    </div>
-                    <p className="text-xs text-zinc-600 italic">
-                      "Buyer claim: atomiser ring features horizontal seam, characteristic of post-2016 counterfeit molds. Requesting liquid chemical analysis report or full refund."
-                    </p>
-                    <div className="flex gap-2 pt-2">
-                      <button 
-                        onClick={() => alert("Refunded CHF 380 securely back to buyer's verified vault wallet.")}
-                        className="bg-white border border-zinc-200 hover:border-zinc-400 text-zinc-800 text-[10px] uppercase font-mono px-3 py-1.5 rounded-none cursor-pointer transition-colors font-bold shadow-xs">
-                        Authorize Full Refund
-                      </button>
-                      <button 
-                        onClick={() => alert("Funds released to seller after verifying reference database mold exceptions.")}
-                        className="bg-zinc-950 hover:bg-zinc-800 text-white text-[10px] uppercase font-mono px-3 py-1.5 rounded-none font-bold cursor-pointer transition-all">
-                        Reject Dispute &amp; Release
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {adminSubTab === 'analytics' && (
-                <div className="bg-white border border-zinc-200 rounded-none p-6 space-y-4 shadow-sm">
-                  <h3 className="font-serif text-lg text-zinc-950 uppercase tracking-widest border-b border-zinc-100 pb-3 font-black">Olfactory Protocol Registry Metrics</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div className="p-4 bg-zinc-50 border border-zinc-100 rounded-none text-center space-y-1">
-                      <span className="text-[8px] uppercase tracking-widest font-mono text-zinc-400">Spectral Scans Done</span>
-                      <p className="font-mono text-2xl font-black text-zinc-900 font-black">42,891</p>
-                    </div>
-                    <div className="p-4 bg-zinc-50 border border-zinc-100 rounded-none text-center space-y-1">
-                      <span className="text-[8px] uppercase tracking-widest font-mono text-zinc-400">Active Escrow locked</span>
-                      <p className="font-mono text-2xl font-black text-zinc-900 font-black">CHF 492K</p>
-                    </div>
-                    <div className="p-4 bg-zinc-50 border border-zinc-100 rounded-none text-center space-y-1">
-                      <span className="text-[8px] uppercase tracking-widest font-mono text-zinc-400">Counterfeit Block Rate</span>
-                      <p className="font-mono text-2xl font-black text-rose-600 font-black">0.18%</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
         </>)}
           </div>
@@ -2806,10 +3009,88 @@ export default function App() {
 
       </main>
 
+      {/* Product Detail Modal */}
+      {selectedProduct && (
+        <div className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white border border-[#c5a880]/30 rounded-none max-w-2xl w-full p-8 relative space-y-6 shadow-2xl text-left">
+            <button 
+              onClick={() => setSelectedProduct(null)}
+              className="absolute top-4 right-4 p-1.5 hover:bg-zinc-100 rounded text-zinc-400 hover:text-zinc-800 transition-colors cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="relative aspect-square w-full bg-zinc-50 border border-zinc-200 overflow-hidden flex items-center justify-center">
+                <img src={selectedProduct.image} alt={selectedProduct.name} className="w-full h-full object-cover" />
+                <span className="absolute top-3 left-3 text-[8px] bg-white text-zinc-800 px-2.5 py-1 rounded-none border border-zinc-200 font-mono uppercase tracking-widest font-bold shadow-sm">
+                  {selectedProduct.status}
+                </span>
+              </div>
+              
+              <div className="flex flex-col justify-between space-y-4">
+                <div className="space-y-2">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#8e7355] font-black">{selectedProduct.brand}</span>
+                  <h3 className="font-serif text-2xl text-zinc-950 font-black uppercase leading-tight">{selectedProduct.name}</h3>
+                  
+                  <div className="grid grid-cols-2 gap-3 text-xs font-mono pt-3 border-t border-zinc-100">
+                    <div>
+                      <span className="text-zinc-400 block uppercase text-[8px]">Batch Code</span>
+                      <span className="text-zinc-800 font-bold block mt-0.5 uppercase">{selectedProduct.batch}</span>
+                    </div>
+                    <div>
+                      <span className="text-zinc-400 block uppercase text-[8px]">Volume</span>
+                      <span className="text-zinc-800 font-bold block mt-0.5 uppercase">{selectedProduct.volume}</span>
+                    </div>
+                    <div>
+                      <span className="text-zinc-400 block uppercase text-[8px]">Custodian</span>
+                      <span className="text-zinc-800 font-bold block mt-0.5">{selectedProduct.custodian}</span>
+                    </div>
+                    <div>
+                      <span className="text-zinc-400 block uppercase text-[8px]">Appraised Price</span>
+                      <span className="text-[#8e7355] font-bold block mt-0.5">CHF {selectedProduct.price}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-zinc-100">
+                    <span className="text-zinc-400 block uppercase text-[8px] font-mono mb-1">Collector Notes</span>
+                    <p className="text-xs text-zinc-600 leading-relaxed font-serif italic">"{selectedProduct.notes || 'No description provided.'}"</p>
+                  </div>
+                </div>
+                
+                <div className="pt-4 border-t border-zinc-100 flex gap-3">
+                  <button
+                    onClick={() => {
+                      setCheckoutItem(selectedProduct);
+                      setSelectedProduct(null);
+                    }}
+                    className="flex-1 bg-zinc-950 hover:bg-zinc-800 text-white py-3.5 font-serif text-xs font-bold uppercase tracking-widest transition-all cursor-pointer text-center shadow-md"
+                  >
+                    Buy &amp; Fund Escrow
+                  </button>
+                  <button
+                    onClick={() => {
+                      alert(`Query submitted to Swiss Vault regarding ${selectedProduct.brand} ${selectedProduct.name} batch ${selectedProduct.batch}.`);
+                    }}
+                    className="border border-zinc-350 hover:border-zinc-850 text-zinc-700 hover:bg-zinc-50 px-4 py-3.5 font-serif text-xs uppercase tracking-widest transition-all cursor-pointer text-center"
+                  >
+                    Ask Custodian
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <div className="text-[8px] font-mono text-zinc-400 border-t border-zinc-100 pt-3 text-center uppercase tracking-widest">
+              Geneva Swiss Registry Consortium — Secure Escrow Verified Flacon
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Escrow Checkout Form Popup Modal */}
       {checkoutItem && (
         <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white border border-[#c5a880]/30 rounded-2xl max-w-lg w-full p-6 relative space-y-4 shadow-2xl">
+          <div className="bg-white border border-[#c5a880]/30 rounded-2xl max-w-lg w-full p-6 relative space-y-4 shadow-2xl text-left">
             <button 
               onClick={() => setCheckoutItem(null)}
               className="absolute top-4 right-4 p-1 hover:bg-zinc-100 rounded-full text-zinc-400 hover:text-zinc-800 transition-colors cursor-pointer">
@@ -3009,8 +3290,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* ----------------- SPRAWLING HIGH-FIDELITY LUXURY DMR-STYLE FOOTER ----------------- */}
-      <footer className="bg-white border-t border-zinc-200 mt-28 py-16 text-zinc-800" id="luxury-dmr-footer">
+      {/* ----------------- MARKETHUB LUXURY FOOTER ----------------- */}
+      <footer className="bg-white border-t border-zinc-200 mt-28 py-16 text-zinc-800" id="markethub-footer">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           
           {/* Top Row: Newsletter Signup and Socials */}
@@ -3031,9 +3312,9 @@ export default function App() {
                 <div className="flex flex-wrap gap-2 pt-1">
                   {[
                     { label: "EVERYTHING", icon: "⊞" },
-                    { label: "BRIDAL", icon: "💎" },
-                    { label: "WATCHES", icon: "⌚" },
-                    { label: "JEWELLERY", icon: "✨" }
+                    { label: "FRAGRANCES", icon: "🌹" },
+                    { label: "VERIFICATION", icon: "🔬" },
+                    { label: "ESCROW", icon: "🔐" }
                   ].map((topic) => (
                     <button
                       key={topic.label}
@@ -3051,7 +3332,7 @@ export default function App() {
               <form 
                 onSubmit={(e) => { 
                   e.preventDefault(); 
-                  alert("Subscription successful. You are now part of our premium registry mailing list."); 
+                  alert("Subscription successful. You are now part of the MarketHub premium registry mailing list."); 
                 }} 
                 className="max-w-md pt-2"
               >
@@ -3075,22 +3356,32 @@ export default function App() {
               {/* Social Media Row */}
               <div className="flex items-center gap-5 pt-4">
                 <button 
-                  onClick={() => alert("Redirecting to David M Robinson Luxury Facebook channel...")}
-                  className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:border-zinc-800 text-zinc-500 hover:text-zinc-950 transition-all cursor-pointer text-xs"
+                  onClick={() => alert("MarketHub on Facebook — Coming Soon!")}
+                  className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:border-[#c5a880] text-zinc-500 hover:text-zinc-950 transition-all cursor-pointer text-xs font-bold"
+                  title="Facebook"
                 >
                   f
                 </button>
                 <button 
-                  onClick={() => alert("Redirecting to David M Robinson Luxury Instagram stream...")}
-                  className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:border-zinc-800 text-zinc-500 hover:text-zinc-950 transition-all cursor-pointer text-xs"
+                  onClick={() => alert("MarketHub on Instagram — @markethub.pk")}
+                  className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:border-[#c5a880] text-zinc-500 hover:text-zinc-950 transition-all cursor-pointer text-xs"
+                  title="Instagram"
                 >
                   📷
                 </button>
                 <button 
-                  onClick={() => alert("Redirecting to David M Robinson Luxury Pinterest boards...")}
-                  className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:border-zinc-800 text-zinc-500 hover:text-zinc-950 transition-all cursor-pointer text-xs"
+                  onClick={() => alert("MarketHub on WhatsApp — +92 300 000 0000")}
+                  className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:border-[#c5a880] text-zinc-500 hover:text-zinc-950 transition-all cursor-pointer text-xs"
+                  title="WhatsApp"
                 >
-                  p
+                  💬
+                </button>
+                <button 
+                  onClick={() => alert("MarketHub on YouTube — Subscribe for fragrance reviews")}
+                  className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:border-[#c5a880] text-zinc-500 hover:text-zinc-950 transition-all cursor-pointer text-xs"
+                  title="YouTube"
+                >
+                  ▶
                 </button>
               </div>
 
@@ -3110,11 +3401,12 @@ export default function App() {
                 SHOP
               </h5>
               <ul className="space-y-2.5 text-xs font-serif text-zinc-500 uppercase tracking-wider">
-                <li><button onClick={() => { setSearchQuery(''); setActiveTab('marketplace'); }} className="hover:text-zinc-900 transition-colors">Engagement &amp; Bridal</button></li>
-                <li><button onClick={() => { setSearchQuery('Xerjoff'); setActiveTab('marketplace'); }} className="hover:text-zinc-900 transition-colors">Jewellery</button></li>
-                <li><button onClick={() => { setSearchQuery('Tom Ford'); setActiveTab('marketplace'); }} className="hover:text-zinc-900 transition-colors">Watches</button></li>
-                <li><button onClick={() => alert("Exploring Rolex Master Collection.")} className="hover:text-zinc-900 transition-colors">Rolex</button></li>
-                <li><button onClick={() => alert("Exploring Patek Philippe Master Collection.")} className="hover:text-zinc-900 transition-colors">Patek Philippe</button></li>
+                <li><button onClick={() => { setSearchQuery(''); setActiveTab('marketplace'); }} className="hover:text-zinc-900 transition-colors cursor-pointer">All Fragrances</button></li>
+                <li><button onClick={() => { setSearchQuery('Creed'); setActiveTab('marketplace'); }} className="hover:text-zinc-900 transition-colors cursor-pointer">Rare Vintage Editions</button></li>
+                <li><button onClick={() => { setSearchQuery('Tom Ford'); setActiveTab('marketplace'); }} className="hover:text-zinc-900 transition-colors cursor-pointer">Niche Collections</button></li>
+                <li><button onClick={() => { setSearchQuery('Xerjoff'); setActiveTab('marketplace'); }} className="hover:text-zinc-900 transition-colors cursor-pointer">Niche Houses</button></li>
+                <li><button onClick={() => alert("Exploring Gift Sets & Luxury Vouchers.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Gift Vouchers</button></li>
+                <li><button onClick={() => alert("Exploring Decant & Sample Collections.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Decants &amp; Samples</button></li>
               </ul>
             </div>
 
@@ -3124,12 +3416,12 @@ export default function App() {
                 SERVICES
               </h5>
               <ul className="space-y-2.5 text-xs font-serif text-zinc-500 uppercase tracking-wider">
-                <li><button onClick={() => alert("Booking a private boutique consultant...")} className="hover:text-zinc-900 transition-colors">Book An Appointment</button></li>
-                <li><button onClick={() => alert("Opening Bespoke Jewellery request board...")} className="hover:text-zinc-900 transition-colors">Bespoke</button></li>
-                <li><button onClick={() => alert("Watch servicing request queued...")} className="hover:text-zinc-900 transition-colors">Watch Servicing</button></li>
-                <li><button onClick={() => alert("Initiate private valuation request...")} className="hover:text-zinc-900 transition-colors">Valuations</button></li>
-                <li><button onClick={() => alert("Initiate professional repair request...")} className="hover:text-zinc-900 transition-colors">Jewellery Repair</button></li>
-                <li><button onClick={() => alert("Opening ring size configuration helper...")} className="hover:text-zinc-900 transition-colors">Ring Size Guide</button></li>
+                <li><button onClick={() => setActiveTab('verify')} className="hover:text-zinc-900 transition-colors cursor-pointer">AI Verification Portal</button></li>
+                <li><button onClick={() => setActiveTab('seller')} className="hover:text-zinc-900 transition-colors cursor-pointer">Seller Onboarding</button></li>
+                <li><button onClick={() => alert("Initiating private batch valuation request...")} className="hover:text-zinc-900 transition-colors cursor-pointer">Batch Authentication</button></li>
+                <li><button onClick={() => alert("Escrow protection terms and conditions.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Escrow Protection</button></li>
+                <li><button onClick={() => alert("Initiating professional fragrance valuation...")} className="hover:text-zinc-900 transition-colors cursor-pointer">Valuations</button></li>
+                <li><button onClick={() => alert("White-glove packaging & shipping service.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Premium Shipping</button></li>
               </ul>
             </div>
 
@@ -3139,12 +3431,12 @@ export default function App() {
                 ABOUT
               </h5>
               <ul className="space-y-2.5 text-xs font-serif text-zinc-500 uppercase tracking-wider">
-                <li><button onClick={() => alert("Loading David M Robinson heritage document...")} className="hover:text-zinc-900 transition-colors">DMR Story</button></li>
-                <li><button onClick={() => alert("Opening DMR luxury lifestyle journal...")} className="hover:text-zinc-900 transition-colors">Journal</button></li>
-                <li><button onClick={() => alert("Brochure PDF catalog queued for download.")} className="hover:text-zinc-900 transition-colors">Brochure</button></li>
-                <li><button onClick={() => alert("Initiating luxury concierge desk...")} className="hover:text-zinc-900 transition-colors">Concierge</button></li>
-                <li><button onClick={() => alert("Showroom mapping triggered. Switzerland &amp; UK showrooms.")} className="hover:text-zinc-900 transition-colors">Showrooms</button></li>
-                <li><button onClick={() => alert("Join DMR. 12 vacancies available.")} className="hover:text-zinc-900 transition-colors">Careers</button></li>
+                <li><button onClick={() => alert("MarketHub — Pakistan's premier luxury fragrance marketplace.")} className="hover:text-zinc-900 transition-colors cursor-pointer">MarketHub Story</button></li>
+                <li><button onClick={() => alert("Opening MarketHub fragrance blog & journal...")} className="hover:text-zinc-900 transition-colors cursor-pointer">Journal &amp; Blog</button></li>
+                <li><button onClick={() => alert("Brochure PDF catalog queued for download.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Brochure</button></li>
+                <li><button onClick={() => alert("Initiating luxury concierge desk — WhatsApp: +92 300 000 0000")} className="hover:text-zinc-900 transition-colors cursor-pointer">Concierge</button></li>
+                <li><button onClick={() => alert("Showrooms: Karachi Defence, Lahore Gulberg, Islamabad F-7.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Showrooms</button></li>
+                <li><button onClick={() => alert("Join MarketHub. Positions available in Karachi & Lahore.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Careers</button></li>
               </ul>
             </div>
 
@@ -3154,53 +3446,54 @@ export default function App() {
                 INFO
               </h5>
               <ul className="space-y-2.5 text-xs font-serif text-zinc-500 uppercase tracking-wider">
-                <li><button onClick={() => alert("Private support hotline: Swiss desk")} className="hover:text-zinc-900 transition-colors">Contact Us</button></li>
-                <li><button onClick={() => alert("Showing billing &amp; escrow payment details.")} className="hover:text-zinc-900 transition-colors">Orders &amp; Payment</button></li>
-                <li><button onClick={() => alert("Showing 14-day escrow cancellation conditions.")} className="hover:text-zinc-900 transition-colors">Returns &amp; Refunds</button></li>
-                <li><button onClick={() => alert("Showing fully-insured secure priority shipping details.")} className="hover:text-zinc-900 transition-colors">Delivery Information</button></li>
-                <li><button onClick={() => alert("Pick up available at Zurich &amp; Geneva vaults.")} className="hover:text-zinc-900 transition-colors">Click &amp; Collect</button></li>
-                <li><button onClick={() => alert("Interest free luxury payment layouts up to 36 months.")} className="hover:text-zinc-900 transition-colors">Interest Free</button></li>
-                <li><button onClick={() => alert("Hallmarking assurance check guaranteed.")} className="hover:text-zinc-900 transition-colors">Hallmarking Guarantee</button></li>
-                <li><button onClick={() => alert("Modern Slavery and ethical sourcing compliance sheet.")} className="hover:text-zinc-900 transition-colors">Modern Slavery Statement</button></li>
-                <li><button onClick={() => setShowCookieSettings(true)} className="hover:text-zinc-900 transition-colors">Privacy Policy</button></li>
-                <li><button onClick={() => alert("Viewing DMR terms of registry...")} className="hover:text-zinc-900 transition-colors">Terms &amp; Conditions</button></li>
+                <li><button onClick={() => alert("Support: support@markethub.pk | WhatsApp: +92 300 000 0000")} className="hover:text-zinc-900 transition-colors cursor-pointer">Contact Us</button></li>
+                <li><button onClick={() => alert("Showing billing & escrow payment details.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Orders &amp; Payment</button></li>
+                <li><button onClick={() => alert("14-day escrow cancellation policy. Full refund guaranteed.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Returns &amp; Refunds</button></li>
+                <li><button onClick={() => alert("TCS, Leopard & Pakistan Post — fully insured shipping.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Delivery Information</button></li>
+                <li><button onClick={() => alert("Pick up available at Karachi & Lahore vaults.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Click &amp; Collect</button></li>
+                <li><button onClick={() => alert("0% interest payment plans via Jazz Cash & EasyPaisa.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Interest Free</button></li>
+                <li><button onClick={() => alert("AI Authenticity assurance on every verified listing.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Authenticity Guarantee</button></li>
+                <li><button onClick={() => alert("MarketHub ethical sourcing & trade compliance policy.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Ethical Sourcing</button></li>
+                <li><button onClick={() => setShowCookieSettings(true)} className="hover:text-zinc-900 transition-colors cursor-pointer">Privacy Policy</button></li>
+                <li><button onClick={() => alert("Viewing MarketHub Terms of Registry...")} className="hover:text-zinc-900 transition-colors cursor-pointer">Terms &amp; Conditions</button></li>
               </ul>
             </div>
 
           </div>
 
-          {/* Bottom Row: Payment Badges & Regulatory Text */}
+          {/* Bottom Row: Payment Badges & Legal Text */}
           <div className="pt-8 border-t border-zinc-150 space-y-6">
             
-            {/* Payment Icons Grid */}
+            {/* Payment Icons — Pakistan Relevant */}
             <div className="flex flex-wrap items-center gap-3">
               {[
-                { name: "AMEX", bg: "bg-blue-800 text-white font-black" },
-                { name: "Apple Pay", bg: "bg-black text-white font-semibold" },
-                { name: "G Pay", bg: "bg-zinc-100 text-zinc-800 border border-zinc-300 font-bold" },
+                { name: "Jazz Cash", bg: "bg-red-600 text-white font-black" },
+                { name: "EasyPaisa", bg: "bg-emerald-600 text-white font-black" },
+                { name: "Visa", bg: "bg-blue-800 text-white font-bold" },
                 { name: "Mastercard", bg: "bg-amber-600 text-white font-bold" },
                 { name: "PayPal", bg: "bg-blue-600 text-white font-black" },
-                { name: "Shop Pay", bg: "bg-indigo-600 text-white font-bold" },
-                { name: "Visa", bg: "bg-blue-900 text-white font-bold" }
+                { name: "Bank Transfer", bg: "bg-zinc-800 text-white font-bold" },
+                { name: "HBL Pay", bg: "bg-green-800 text-white font-bold" },
+                { name: "Meezan", bg: "bg-teal-700 text-white font-bold" },
               ].map((badge) => (
                 <span 
                   key={badge.name} 
-                  className={`px-3 py-1 text-[9px] uppercase tracking-widest font-mono select-none rounded-none ${badge.bg}`}
+                  className={`px-3 py-1.5 text-[9px] uppercase tracking-widest font-mono select-none rounded-none cursor-default ${badge.bg}`}
                 >
                   {badge.name}
                 </span>
               ))}
             </div>
 
-            {/* Credit Broker Legal Text */}
+            {/* Legal Text — MarketHub */}
             <p className="text-[10px] text-zinc-400 font-serif leading-relaxed text-left max-w-5xl">
-              David M. Robinson Limited acts as a credit broker and not the lender, offering credit products from Secure Trust Bank PLC trading as V12 Retail Finance limited. David M. Robinson Limited is authorised and regulated by the Financial Conduct Authority, registration number 720857. Credit subject to age and status, minimum spend and terms &amp; conditions apply. Company number: 00958819. Registered address: 14 Railway Street, Altrincham, Cheshire, WA14 2RE. V12 Retail Finance Limited. Registered in England and Wales 4585692. Authorised and regulated by the Financial Conduct Authority. Registered office: Yorke House, Arleston Way, Solihull, B90 4LH.
+              MarketHub operates as a secure peer-to-peer luxury fragrance marketplace and escrow facilitator. All listings undergo AI-assisted Swiss Olfactory Verification Protocol before going live. Escrow funds are held securely and released only upon buyer confirmation of authenticity. MarketHub is not a financial institution or lender. Payment processing powered by Jazz Cash, EasyPaisa, and international card networks (Visa, Mastercard, PayPal). All prices in CHF are indicative; PKR equivalent shown at checkout. By using MarketHub you agree to our Terms &amp; Conditions and Privacy Policy.
             </p>
 
             {/* Final Copyright */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pt-2 text-[9px] font-mono uppercase tracking-widest text-zinc-400">
-              <span>© {new Date().getFullYear()} David M Robinson Ltd / Market Hub Consortium. All rights reserved.</span>
-              <span className="text-[#8e7355] font-bold">Basel &amp; Geneva SECURE PLATFORM v3.5</span>
+              <span>© {new Date().getFullYear()} MarketHub. All Rights Reserved.</span>
+              <span className="text-[#8e7355] font-bold">Basel &amp; Geneva Secure Platform v3.5</span>
             </div>
 
           </div>
