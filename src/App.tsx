@@ -905,47 +905,135 @@ export default function App() {
         {activeTab === 'marketplace' && (
           <div className="space-y-10" id="marketplace-tab">
             
-            {/* Elegant Hero */}
-            <section className="relative border border-zinc-200 bg-white p-8 md:p-12 flex flex-col md:flex-row justify-between items-center gap-8 shadow-sm rounded-none">
-              <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#8e7355] via-[#c5a880] to-[#8e7355]"></div>
-              <div className="space-y-4 max-w-xl text-center md:text-left">
-                <span className="text-[10px] tracking-widest font-mono uppercase text-[#8e7355] border border-[#c5a880]/30 bg-[#c5a880]/5 px-3 py-1 rounded-full font-bold">
-                  The Absolute Provenance of Rare Perfumery
-                </span>
-                <h2 className="font-serif text-3xl md:text-5xl text-zinc-950 font-black leading-tight uppercase">
-                  Market Hub: The Future of Fragrance Authentication
-                </h2>
-                <p className="text-xs text-zinc-500 leading-relaxed font-sans">
-                  Where olfactory artistry meets scientific precision. Trade, analyze, and secure the world's most coveted flacons and discontinued formulations with fully integrated Swiss-escrow protection.
-                </p>
-                <div className="flex gap-4 justify-center md:justify-start pt-2">
-                  <button 
+            {/* ===== VIDEO HERO SECTION ===== */}
+            <section className="relative w-full overflow-hidden rounded-none shadow-2xl" style={{ minHeight: '85vh' }}>
+              
+              {/* Background Video */}
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ zIndex: 0 }}
+              >
+                <source src="/MarketHub.mp4" type="video/mp4" />
+              </video>
+
+              {/* Dark cinematic overlay with gold gradient */}
+              <div className="absolute inset-0" style={{ zIndex: 1, background: 'linear-gradient(135deg, rgba(0,0,0,0.78) 0%, rgba(30,20,10,0.65) 50%, rgba(0,0,0,0.80) 100%)' }}></div>
+              
+              {/* Gold shimmer line top */}
+              <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#8e7355] via-[#c5a880] to-[#8e7355]" style={{ zIndex: 2 }}></div>
+              {/* Gold shimmer line bottom */}
+              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#c5a880] to-transparent" style={{ zIndex: 2 }}></div>
+
+              {/* Noise texture overlay */}
+              <div className="absolute inset-0 opacity-[0.03]" style={{ zIndex: 2, backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")' }}></div>
+
+              {/* Hero Content */}
+              <div className="relative flex flex-col items-center justify-center text-center px-6 py-24 md:py-36" style={{ zIndex: 3, minHeight: '85vh' }}>
+                
+                {/* Eyebrow label */}
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  <span className="inline-flex items-center gap-2 text-[10px] tracking-[0.3em] font-mono uppercase text-[#c5a880] border border-[#c5a880]/40 bg-[#c5a880]/10 px-4 py-1.5 rounded-none font-bold backdrop-blur-sm">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#c5a880] animate-pulse"></span>
+                    Swiss Luxury Fragrance Vault — Est. 2026
+                  </span>
+                </motion.div>
+
+                {/* MAIN BRAND NAME */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 1, delay: 0.4, ease: 'easeOut' }}
+                  className="mt-6 font-serif font-black uppercase leading-none tracking-[0.12em]"
+                  style={{
+                    fontSize: 'clamp(3.5rem, 10vw, 9rem)',
+                    background: 'linear-gradient(135deg, #fff 0%, #e8d5b0 40%, #c5a880 60%, #fff 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    textShadow: 'none',
+                    filter: 'drop-shadow(0 4px 32px rgba(197,168,128,0.35))',
+                  }}
+                >
+                  MarketHub
+                </motion.h1>
+
+                {/* Tagline */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.7 }}
+                  className="mt-4 max-w-2xl text-sm md:text-base text-zinc-300 font-sans leading-relaxed"
+                  style={{ letterSpacing: '0.05em' }}
+                >
+                  Where olfactory artistry meets scientific precision. Trade, analyze, and secure the world's most coveted flacons with fully integrated Swiss-escrow protection.
+                </motion.p>
+
+                {/* Stats row */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.9 }}
+                  className="mt-8 flex items-center gap-8 md:gap-12"
+                >
+                  {[
+                    { value: '2,400+', label: 'Verified Flacons' },
+                    { value: 'CHF 1.8M', label: '24H Liquidity' },
+                    { value: '99.2%', label: 'Authentic Rate' },
+                  ].map((stat, i) => (
+                    <div key={i} className="text-center">
+                      <div className="font-mono font-black text-[#c5a880] text-lg md:text-2xl">{stat.value}</div>
+                      <div className="text-[9px] font-mono uppercase tracking-widest text-zinc-400 mt-0.5">{stat.label}</div>
+                    </div>
+                  ))}
+                </motion.div>
+
+                {/* CTA Buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.1 }}
+                  className="mt-10 flex flex-wrap gap-4 justify-center"
+                >
+                  <button
                     onClick={() => setActiveTab('verify')}
-                    className="bg-black hover:bg-zinc-800 text-white px-6 py-3.5 rounded-none font-serif text-xs font-bold uppercase tracking-widest transition-all cursor-pointer">
+                    className="bg-[#c5a880] hover:bg-[#b8976d] text-zinc-950 px-8 py-4 rounded-none font-serif text-sm font-black uppercase tracking-widest transition-all cursor-pointer shadow-lg hover:shadow-[0_0_30px_rgba(197,168,128,0.4)]"
+                  >
                     AI Intake Portal
                   </button>
-                  <button 
+                  <button
                     onClick={() => {
                       const element = document.getElementById('offerings');
                       element?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="border border-zinc-300 hover:border-zinc-800 hover:bg-zinc-50 px-6 py-3.5 rounded-none font-serif text-xs text-zinc-700 uppercase tracking-widest transition-all cursor-pointer">
+                    className="border border-white/30 hover:border-[#c5a880] hover:bg-white/5 text-white px-8 py-4 rounded-none font-serif text-sm uppercase tracking-widest transition-all cursor-pointer backdrop-blur-sm"
+                  >
                     Explore Vault
                   </button>
-                </div>
-              </div>
+                </motion.div>
 
-              {/* Decorative Holographic Scanning Graphic */}
-              <div className="relative w-64 h-64 border border-zinc-200 rounded-none bg-zinc-100 overflow-hidden flex items-center justify-center group shadow-sm shrink-0">
-                <img src={IMAGES.dior} alt="Dior" className="w-full h-full object-cover opacity-90" />
-                <div className="absolute top-0 left-0 w-full h-0.5 bg-[#c5a880] shadow-[0_1px_6px_rgba(197,168,128,0.5)] animate-bounce mt-10"></div>
-                <div className="absolute inset-x-4 bottom-4 p-3 bg-white/95 border border-zinc-200 rounded-none text-left shadow-sm">
-                  <span className="text-[9px] font-mono text-[#8e7355] uppercase block">Dior Homme Vintage</span>
-                  <div className="flex justify-between items-center mt-1">
-                    <span className="font-mono text-[10px] text-emerald-700 font-bold">98.4% Authentic</span>
-                    <span className="font-mono text-[10px] text-[#8e7355] font-black">$385</span>
-                  </div>
-                </div>
+                {/* Scroll indicator */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 1.5 }}
+                  className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-[9px] font-mono text-zinc-400 tracking-widest uppercase"
+                >
+                  <span>Scroll</span>
+                  <motion.div
+                    animate={{ y: [0, 6, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="w-px h-6 bg-gradient-to-b from-[#c5a880] to-transparent"
+                  ></motion.div>
+                </motion.div>
+
               </div>
             </section>
 
