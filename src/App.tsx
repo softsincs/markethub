@@ -98,6 +98,8 @@ const BRAND_LOGOS: Record<string, { text: string; subtext: string; color: string
   'Louis Vuitton': { text: 'LV', subtext: 'Louis Vuitton', color: '#8b6914' },
   'Maison Margiela': { text: 'MM', subtext: 'Margiela', color: '#3a3a3a' },
   'By Kilian': { text: 'KILIAN', subtext: 'Paris', color: '#1a2744' },
+  'Cire Trudon': { text: 'TRUDON', subtext: 'Maison Fondée en 1643', color: '#1d3557' },
+  'Diptyque': { text: 'DIPTYQUE', subtext: 'Paris', color: '#2b2b2b' },
 };
 
 // Trending products for homepage
@@ -143,6 +145,9 @@ const DEFAULT_LISTINGS: ScentListing[] = [
   { id: 'sc-110', brand: 'Louis Vuitton', name: 'Ombre Nomade EDP', batch: 'LV-ON22', volume: '90% Full', price: 680, custodian: '@paris_vault', image: IMAGES.lv, status: 'Verified', notes: 'Ultra rare Oud-based LV exclusive. Vintage oud accord from Oman sourced directly from LV Paris.' },
   { id: 'sc-111', brand: 'Maison Margiela', name: 'Replica Flower Market', batch: 'MM-FM19', volume: '100% Sealed', price: 175, custodian: '@berlin_niche', image: IMAGES.maison, status: 'Verified', notes: 'Spring floral memory series. Fully sealed limited edition collector bottle. Peony with white musk.' },
   { id: 'sc-112', brand: 'By Kilian', name: 'Black Phantom Memento Mori', batch: 'KL-BP22', volume: '80% Remaining', price: 295, custodian: '@vault_kilian', image: IMAGES.kilian, status: 'Verified', notes: 'Dark rum and coffee signature. Skull bottle refillable coffret. Authentic Paris purchase.' },
+  { id: 'sc-113', brand: 'Cire Trudon', name: 'Feu de Bois Scented Candle (Classic 270g)', batch: 'TD-FDB26', volume: '100% Brand New', price: 115, custodian: '@scentvault', image: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=600&q=80', status: 'Verified', notes: 'Classic 270g candle in hand-blown green glass container. Feu de bois smoky wood signature.' },
+  { id: 'sc-114', brand: 'Louis Vuitton', name: 'Epi Leather Luxury Travel Fragrance Case', batch: 'LV-EPI-2026', volume: 'Pristine Case Only', price: 620, custodian: '@genevacustodian', image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80', status: 'Verified', notes: 'Authentic 100ml flacon travel carrier in rich black Epi leather with gold brass hardware.' },
+  { id: 'sc-115', brand: 'Diptyque', name: 'Baies Room Surround Diffuser (Large 200ml)', batch: 'DQ-B2026', volume: '100% Sealed', price: 195, custodian: '@rareessences', image: 'https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&w=600&q=80', status: 'Verified', notes: 'Sealed Diptyque room diffuser set with rattan reeds. Sweet Bulgarian rose and blackcurrant leaves.' },
 ];
 
 
@@ -757,7 +762,7 @@ export default function App() {
 
   // Seller Dashboard: Generate listing AI description, price and batch from inputs and upload
   const handleSellerAIScan = async () => {
-    if (!sellerBrand || !sellerModel) return;
+    if (!sellerUploadedImage && (!sellerBrand || !sellerModel)) return;
     setIsSellerListingGenerating(true);
     try {
       const response = await fetch('/api/analyze-listing', {
@@ -776,14 +781,20 @@ export default function App() {
       }
 
       const data = await response.json();
+      if (data.brand) setSellerBrand(data.brand);
+      if (data.model) setSellerModel(data.model);
       if (data.notes) setSellerNotes(data.notes);
       if (data.price) setSellerPrice(String(data.price));
       if (data.batch) setSellerBatch(data.batch);
     } catch (err) {
       console.warn("AI listing assistant warning, falling back to simulated generation:", err);
+      const fallBrand = sellerBrand || "Roja Parfums";
+      const fallModel = sellerModel || "Elysium";
+      setSellerBrand(fallBrand);
+      setSellerModel(fallModel);
       setSellerBatch("B" + Math.floor(100 + Math.random() * 900) + "S" + Math.floor(10 + Math.random() * 90));
       setSellerPrice(String(Math.floor(250 + Math.random() * 300)));
-      setSellerNotes(`AI analysis fallback: Authenticated ${sellerBrand} ${sellerModel} vintage formulation. Liquid composition contains absolute wood accords. Pristine bottle.`);
+      setSellerNotes(`AI analysis fallback: Authenticated ${fallBrand} ${fallModel} vintage formulation. Liquid composition contains absolute wood accords. Pristine bottle.`);
     } finally {
       setIsSellerListingGenerating(false);
     }
@@ -1394,7 +1405,13 @@ export default function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
                   {
-                    icon: '🔬',
+                    icon: (
+                      <svg className="w-8 h-8 text-[#c5a880] animate-pulse" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 9h6v6H9V9z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6M9 12h6" />
+                      </svg>
+                    ),
                     title: 'AI Spectroscopy',
                     desc: 'Swiss-grade chromatographic analysis examines molecular composition to verify authenticity at a scientific level.',
                     color: 'from-amber-50 to-white',
@@ -1402,43 +1419,63 @@ export default function App() {
                     accent: '#c5a880'
                   },
                   {
-                    icon: '🔐',
+                    icon: (
+                      <svg className="w-8 h-8 text-emerald-650 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                      </svg>
+                    ),
                     title: 'Escrow Protection',
                     desc: 'Funds are locked securely until you confirm receipt. No risk, no scams — just safe peer-to-peer luxury trading.',
                     color: 'from-emerald-50 to-white',
-                    border: 'border-emerald-200',
+                    border: 'border-emerald-250',
                     accent: '#10b981'
                   },
                   {
-                    icon: '🌍',
+                    icon: (
+                      <svg className="w-8 h-8 text-blue-600 animate-spin-slow" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253" />
+                      </svg>
+                    ),
                     title: 'Global Vault Network',
                     desc: 'Registered vaults in Geneva, Zurich, Dubai, London & Karachi. Your luxury assets stored in climate-controlled facilities.',
                     color: 'from-blue-50 to-white',
-                    border: 'border-blue-200',
+                    border: 'border-blue-250',
                     accent: '#3b82f6'
                   },
                   {
-                    icon: '📦',
+                    icon: (
+                      <svg className="w-8 h-8 text-purple-650 transition-transform group-hover:rotate-12" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                      </svg>
+                    ),
                     title: 'Batch Verification',
                     desc: 'Every batch code cross-referenced against the Geneva Registry Consortium master database of 500,000+ flacons.',
                     color: 'from-purple-50 to-white',
-                    border: 'border-purple-200',
+                    border: 'border-purple-250',
                     accent: '#8b5cf6'
                   },
                   {
-                    icon: '⭐',
+                    icon: (
+                      <svg className="w-8 h-8 text-rose-550 transition-all group-hover:scale-110" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499c.15-.461.808-.461.959 0l1.83 5.626a.513.513 0 00.488.342h5.922c.489 0 .692.624.294.922l-4.79 3.535a.513.513 0 00-.18.558l1.83 5.625c.15.461-.38 1.01-.79 1.01a.512.512 0 00-.488-.342l-4.79-3.535a.513.513 0 00-.59 0l-4.79 3.535a.513.513 0 00-.59 0l-4.79-3.535a.512.512 0 00-.18-.558l1.83-5.625a.512.512 0 00-.18-.558l-4.79-3.535c-.398-.298-.195-.922.294-.922h5.922a.513.513 0 00.488-.342l1.83-5.626z" />
+                      </svg>
+                    ),
                     title: 'Trusted Community',
                     desc: '12,000+ verified buyers and sellers. Every participant rated, KYC-verified, and scored for reliability.',
                     color: 'from-rose-50 to-white',
-                    border: 'border-rose-200',
+                    border: 'border-rose-250',
                     accent: '#f43f5e'
                   },
                   {
-                    icon: '💬',
+                    icon: (
+                      <svg className="w-8 h-8 text-teal-650 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 18l-.94 2.27c-.227.548-.828.795-1.373.553a1.117 1.117 0 01-.655-1.02l.1-2.424C3.218 16.29 2.25 14.26 2.25 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                      </svg>
+                    ),
                     title: 'Real-Time Chat',
                     desc: 'Communicate directly with custodians via encrypted in-app messaging. Ask questions before committing to escrow.',
                     color: 'from-teal-50 to-white',
-                    border: 'border-teal-200',
+                    border: 'border-teal-250',
                     accent: '#14b8a6'
                   },
                 ].map((feat, i) => (
@@ -1452,7 +1489,7 @@ export default function App() {
                     className={`bg-gradient-to-br ${feat.color} border ${feat.border} rounded-none p-6 relative overflow-hidden group cursor-default transition-all duration-300`}
                   >
                     <div className="absolute top-0 left-0 w-1 h-full" style={{ background: feat.accent }} />
-                    <div className="text-3xl mb-4">{feat.icon}</div>
+                    <div className="mb-4">{feat.icon}</div>
                     <h3 className="font-serif text-sm font-black uppercase tracking-widest text-zinc-900 mb-2">{feat.title}</h3>
                     <p className="text-xs text-zinc-600 font-sans leading-relaxed">{feat.desc}</p>
                     <div className="absolute bottom-0 right-0 w-16 h-16 opacity-5 rounded-full" style={{ background: feat.accent, transform: 'translate(30%, 30%)' }} />
@@ -2289,7 +2326,7 @@ export default function App() {
                         <button
                           type="button"
                           onClick={handleSellerAIScan}
-                          disabled={!sellerBrand || !sellerModel || isSellerListingGenerating}
+                          disabled={(!sellerUploadedImage && (!sellerBrand || !sellerModel)) || isSellerListingGenerating}
                           className="text-[10px] font-mono uppercase text-[#8e7355] hover:text-[#c5a880] bg-zinc-50 border border-zinc-300 px-3.5 py-1.5 rounded-none disabled:opacity-30 cursor-pointer flex items-center gap-1 font-bold shadow-xs animate-pulse"
                         >
                           <Sparkles className="w-3.5 h-3.5 text-[#c5a880]" />

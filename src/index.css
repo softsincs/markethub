@@ -13,6 +13,23 @@
   --color-obsidian-card: #151312;
   --color-obsidian-border: #262321;
   --color-cream: #f5f2f0;
+
+  --animate-spin-slow: spin-slow 25s linear infinite;
+  --animate-float: float 5s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
+
+  @keyframes spin-slow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(197, 168, 128, 0.2)); }
+    50% { filter: drop-shadow(0 0 12px rgba(197, 168, 128, 0.5)); }
+  }
 }
 
 @layer utilities {

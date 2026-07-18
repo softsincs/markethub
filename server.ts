@@ -280,8 +280,8 @@ Analyze the following luxury fragrance:
     try {
       const { brand, model, image, imageMimeType } = req.body;
 
-      if (!brand || !model) {
-        res.status(400).json({ error: "Brand and model are required." });
+      if (!image && (!brand || !model)) {
+        res.status(400).json({ error: "Either brand/model or an image is required." });
         return;
       }
 
@@ -291,15 +291,19 @@ Analyze the following luxury fragrance:
 
       const promptParts: any[] = [];
       let textPrompt = `You are the Market Hub AI assistant.
-Analyze this luxury fragrance:
-Brand: ${brand}
-Model: ${model}
+Analyze this luxury fragrance.
+Provided Brand: ${brand || 'Not provided - identify from image'}
+Provided Model: ${model || 'Not provided - identify from image'}
 
-Generate a premium collector description, an estimated price (USD) based on market rates, and a verified batch code.
+If an image is attached, identify the fragrance brand house and model name from the bottle or packaging.
+Generate a premium collector description, an estimated retail price (USD) based on market value, and a realistic batch code.
+
 Format your output as a JSON object with:
-1. notes (detailed collector description of the fragrance, visual state from the image if provided, smell accords)
-2. price (number representing suggested price in USD)
-3. batch (a realistic batch code, e.g. "19R01" or "4V01")`;
+1. brand (detected or confirmed brand name, e.g. "Creed", "Tom Ford")
+2. model (detected or confirmed model name, e.g. "Aventus", "Oud Wood")
+3. notes (detailed collector description of the fragrance, visual state from the image if provided, olfactory notes)
+4. price (number representing suggested price in USD)
+5. batch (a realistic batch code, e.g. "19R01" or "4V01")`;
 
       if (image) {
         promptParts.push({
@@ -320,11 +324,13 @@ Format your output as a JSON object with:
           responseSchema: {
             type: Type.OBJECT,
             properties: {
+              brand: { type: Type.STRING },
+              model: { type: Type.STRING },
               notes: { type: Type.STRING },
               price: { type: Type.INTEGER },
               batch: { type: Type.STRING }
             },
-            required: ['notes', 'price', 'batch']
+            required: ['brand', 'model', 'notes', 'price', 'batch']
           }
         }
       });
@@ -334,8 +340,12 @@ Format your output as a JSON object with:
     } catch (error) {
       console.warn("AI generation warning (analyze-listing), using dynamic fallback:", error.message);
       // Dynamic fallback for demo simulation
+      const fallBrand = req.body.brand || "Creed";
+      const fallModel = req.body.model || "Aventus Premium";
       res.json({
-        notes: `Authenticated ${req.body.brand} ${req.body.model} flacon. The visual inspection shows a pristine bottle. Formulation contains high quality olfactory oils of bergamot, patchouli, and absolute wood fixatives. Rare vintage batch.`,
+        brand: fallBrand,
+        model: fallModel,
+        notes: `Authenticated ${fallBrand} ${fallModel} flacon. The visual inspection shows a pristine bottle. Formulation contains high quality olfactory oils of bergamot, patchouli, and absolute wood fixatives. Rare vintage batch.`,
         price: Math.floor(220 + Math.random() * 250),
         batch: "B" + Math.floor(100 + Math.random() * 900) + "S" + Math.floor(10 + Math.random() * 90)
       });
