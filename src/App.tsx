@@ -72,16 +72,79 @@ interface ScentListing {
 const IMAGES = {
   creed: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=80',
   tomford: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&q=80',
-  xerjoff: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80',
+  xerjoff: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600&q=80',
   baccarat: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=600&q=80',
-  dior: 'https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?w=600&q=80'
+  dior: 'https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?w=600&q=80',
+  byredo: 'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=600&q=80',
+  chanel: 'https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=600&q=80',
+  roja: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80',
+  amouage: 'https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=600&q=80',
+  lv: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&q=80',
+  maison: 'https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?w=600&q=80',
+  kilian: 'https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?w=600&q=80',
+};
+
+// Brand logo display data
+const BRAND_LOGOS: Record<string, { text: string; subtext: string; color: string }> = {
+  'Creed': { text: 'CREED', subtext: 'London Est. 1760', color: '#8e7355' },
+  'Tom Ford': { text: 'TOM FORD', subtext: 'BEAUTY', color: '#1a1a1a' },
+  'Xerjoff': { text: 'XERJOFF', subtext: '1861', color: '#5a3e2b' },
+  'Byredo': { text: 'BYREDO', subtext: 'Stockholm', color: '#2d2d2d' },
+  'Chanel': { text: 'CHANEL', subtext: 'Paris', color: '#000' },
+  'Roja Parfums': { text: 'ROJA', subtext: 'PARFUMS', color: '#8b1a1a' },
+  'Maison Francis Kurkdjian': { text: 'MFK', subtext: 'Paris', color: '#2c4a6e' },
+  'Dior': { text: 'DIOR', subtext: 'Paris', color: '#1a1a1a' },
+  'Amouage': { text: 'AMOUAGE', subtext: 'Muscat', color: '#7a5c2e' },
+  'Louis Vuitton': { text: 'LV', subtext: 'Louis Vuitton', color: '#8b6914' },
+  'Maison Margiela': { text: 'MM', subtext: 'Margiela', color: '#3a3a3a' },
+  'By Kilian': { text: 'KILIAN', subtext: 'Paris', color: '#1a2744' },
+};
+
+// Trending products for homepage
+const TRENDING_PRODUCTS = [
+  { brand: 'Creed', name: 'Aventus 19R01', price: 480, badge: '🔥 HOT', img: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80', trend: '+18%' },
+  { brand: 'MFK', name: 'Baccarat Rouge 540', price: 450, badge: '⚡ TRENDING', img: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&q=80', trend: '+24%' },
+  { brand: 'Louis Vuitton', name: 'Ombre Nomade', price: 680, badge: '💎 RARE', img: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&q=80', trend: '+31%' },
+  { brand: 'Chanel', name: 'No.5 Vintage', price: 890, badge: '🏆 TOP PICK', img: 'https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=400&q=80', trend: '+15%' },
+];
+
+// Live market ticker
+const LIVE_TICKER_ITEMS = [
+  '🔥 Creed Aventus 19R01 — CHF 480 — VERIFIED',
+  '⚡ Tom Ford Oud Wood — CHF 210 — JUST LISTED',
+  '💎 Chanel No.5 Vintage — CHF 890 — RARE FIND',
+  '🔒 Baccarat Rouge 540 — CHF 450 — ESCROW SECURED',
+  '✨ Amouage Interlude — CHF 385 — NEW ARRIVAL',
+  '🌟 Louis Vuitton Ombre Nomade — CHF 680 — EXCLUSIVE',
+  '🏆 Roja Elysium — CHF 420 — BATCH VERIFIED',
+  '🔬 42,891 spectral scans done • 99.2% authentic rate • 12,000+ verified members',
+];
+
+// Community member avatars
+const AVATARS = {
+  man1: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
+  woman1: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80',
+  man2: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80',
+  woman2: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&q=80',
+  man3: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&q=80',
+  woman3: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200&q=80',
 };
 
 const DEFAULT_LISTINGS: ScentListing[] = [
-  { id: 'sc-101', brand: 'Creed', name: 'Aventus Vintage 19R01', batch: '19R01', volume: '95% Remaining', price: 480, custodian: '@markethub_vault', image: IMAGES.creed, status: 'Verified', notes: 'Prisint bottle, stored in dry dark cellar. First release vintage smoky batch.' },
+  { id: 'sc-101', brand: 'Creed', name: 'Aventus Vintage 19R01', batch: '19R01', volume: '95% Remaining', price: 480, custodian: '@markethub_vault', image: IMAGES.creed, status: 'Verified', notes: 'Pristine bottle, stored in dry dark cellar. First release vintage smoky batch.' },
   { id: 'sc-102', brand: 'Tom Ford', name: 'Amber Absolute Private Blend', batch: 'A47', volume: '80% Remaining', price: 520, custodian: '@rareessences', image: IMAGES.tomford, status: 'Verified', notes: 'Authentic formulation, extreme performance, gold label engraving match.' },
-  { id: 'sc-103', brand: 'Xerjoff', name: 'Naxos 1861', batch: '22Y08', volume: '100% Sealed', price: 260, custodian: '@nichehunter', image: IMAGES.xerjoff, status: 'Verified', notes: 'Unopened box, sealed cellophane. Genuine batch holographic security tag.' }
+  { id: 'sc-103', brand: 'Xerjoff', name: 'Naxos 1861', batch: '22Y08', volume: '100% Sealed', price: 260, custodian: '@nichehunter', image: IMAGES.xerjoff, status: 'Verified', notes: 'Unopened box, sealed cellophane. Genuine batch holographic security tag.' },
+  { id: 'sc-104', brand: 'Byredo', name: 'Bal d\'Afrique Extrait', batch: 'BY-X22', volume: '90% Full', price: 310, custodian: '@velvet_vault', image: IMAGES.byredo, status: 'Verified', notes: 'African marigold and vetiver. Incredibly rare Extrait concentration, batch authenticated.' },
+  { id: 'sc-105', brand: 'Chanel', name: 'No. 5 L\'Extrait Vintage', batch: 'CHN-1975', volume: '75% Remaining', price: 890, custodian: '@parfum_elites', image: IMAGES.chanel, status: 'Verified', notes: 'Pre-reformulation 1975 vintage bottle. Aldehyde florals perfectly preserved. Swiss humidity storage.' },
+  { id: 'sc-106', brand: 'Roja Parfums', name: 'Elysium Pour Homme Parfum', batch: 'RJ-E44', volume: '100% Sealed', price: 420, custodian: '@london_niche', image: IMAGES.roja, status: 'Verified', notes: 'Factory sealed, London purchase receipt included. High citrus and white musk composition.' },
+  { id: 'sc-107', brand: 'Maison Francis Kurkdjian', name: 'Baccarat Rouge 540 Extrait', batch: '2022B88', volume: '70ml Sealed', price: 450, custodian: '@scentvault', image: IMAGES.baccarat, status: 'Processing', notes: 'Scent24 security tag requested. Serial etched clearly. Weight 248g. MFK Paris hologram intact.' },
+  { id: 'sc-108', brand: 'Dior', name: 'Homme Parfum 2020 Formula', batch: '4V01', volume: '85% Remaining', price: 195, custodian: '@dior_collector', image: IMAGES.dior, status: 'Verified', notes: 'Tuscan iris and smooth leather leather. Pre-2022 formula confirmed via batch registry.' },
+  { id: 'sc-109', brand: 'Amouage', name: 'Interlude Man Parfum', batch: 'AM-IL44', volume: '100% Sealed', price: 385, custodian: '@gulf_rarities', image: IMAGES.amouage, status: 'Verified', notes: 'Muscat royal house signature. Labdanum and frankincense on vetiver. Factory sealed with COA.' },
+  { id: 'sc-110', brand: 'Louis Vuitton', name: 'Ombre Nomade EDP', batch: 'LV-ON22', volume: '90% Full', price: 680, custodian: '@paris_vault', image: IMAGES.lv, status: 'Verified', notes: 'Ultra rare Oud-based LV exclusive. Vintage oud accord from Oman sourced directly from LV Paris.' },
+  { id: 'sc-111', brand: 'Maison Margiela', name: 'Replica Flower Market', batch: 'MM-FM19', volume: '100% Sealed', price: 175, custodian: '@berlin_niche', image: IMAGES.maison, status: 'Verified', notes: 'Spring floral memory series. Fully sealed limited edition collector bottle. Peony with white musk.' },
+  { id: 'sc-112', brand: 'By Kilian', name: 'Black Phantom Memento Mori', batch: 'KL-BP22', volume: '80% Remaining', price: 295, custodian: '@vault_kilian', image: IMAGES.kilian, status: 'Verified', notes: 'Dark rum and coffee signature. Skull bottle refillable coffret. Authentic Paris purchase.' },
 ];
+
 
 interface VideoPrompt {
   index: number;
@@ -199,6 +262,49 @@ export default function App() {
   // Interactive menu drawer state
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
+  // Chat Bot States
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [chatMessages, setChatMessages] = useState<Array<{role: 'user' | 'bot'; text: string; time: string}>>([{
+    role: 'bot',
+    text: 'Welcome to MarketHub! 👋 I am your luxury fragrance concierge. How can I assist you today?',
+    time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+  }]);
+  const [chatInput, setChatInput] = useState('');
+  const [isBotTyping, setIsBotTyping] = useState(false);
+  const [chatUnread, setChatUnread] = useState(1);
+
+  const BOT_RESPONSES: Record<string, string> = {
+    'default': 'I can help you with product authentication, escrow protection, or finding rare fragrances. What would you like to know?',
+    'price': 'Our pricing is transparent and market-driven. Each fragrance is appraised by our Swiss spectroscopy protocol before listing.',
+    'authentic': 'Every product on MarketHub undergoes our 7-step Swiss Olfactory Verification Protocol — including spectral analysis and batch code cross-referencing.',
+    'shipping': 'We partner with TCS and Leopard Courier for domestic delivery. International shipments go through DHL Express with insurance.',
+    'escrow': 'Our escrow system holds your funds securely until you confirm receipt and authenticity of your purchase. No risk to buyers!',
+    'sell': 'To sell on MarketHub, go to the Seller Portal, complete KYC verification, and submit your listing for admin review.',
+    'hello': 'Hello! Welcome to MarketHub Luxury Fragrance Vault. I am here to help you find, verify, and trade authentic rare fragrances.',
+    'hi': 'Hello! How can I help you today? Ask me about our fragrances, authentication, or escrow process.',
+    'contact': 'You can reach us at support@markethub.pk or via WhatsApp at +92 300 000 0000. We respond within 2 hours!',
+  };
+
+  const handleSendChat = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!chatInput.trim()) return;
+
+    const userMsg = { role: 'user' as const, text: chatInput.trim(), time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) };
+    setChatMessages(prev => [...prev, userMsg]);
+    setChatInput('');
+    setIsBotTyping(true);
+
+    setTimeout(() => {
+      const lower = chatInput.toLowerCase();
+      let reply = BOT_RESPONSES['default'];
+      for (const [key, val] of Object.entries(BOT_RESPONSES)) {
+        if (lower.includes(key)) { reply = val; break; }
+      }
+      setChatMessages(prev => [...prev, { role: 'bot', text: reply, time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) }]);
+      setIsBotTyping(false);
+    }, 1000 + Math.random() * 800);
+  };
+
   // Cookie Privacy Banner & Settings States
   const [showCookieBanner, setShowCookieBanner] = useState(false);
   const [showCookieSettings, setShowCookieSettings] = useState(false);
@@ -232,8 +338,23 @@ export default function App() {
 
   // Admin Master Key Access Gate states
   const [adminPasswordInput, setAdminPasswordInput] = useState('');
+  const [adminEmailInput, setAdminEmailInput] = useState('');
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
   const [adminAuthError, setAdminAuthError] = useState<string | null>(null);
+
+  // Footer editable state fields
+  const [footerSubscribeTitle, setFooterSubscribeTitle] = useState("SUBSCRIBE TO OUR EMAILS");
+  const [footerEverythingLabel, setFooterEverythingLabel] = useState("EVERYTHING");
+  const [footerFragranceLabel, setFooterFragranceLabel] = useState("FRAGRANCES");
+  const [footerVerificationLabel, setFooterVerificationLabel] = useState("VERIFICATION");
+  const [footerEscrowLabel, setFooterEscrowLabel] = useState("ESCROW");
+  const [footerFacebookLink, setFooterFacebookLink] = useState("https://facebook.com/markethub");
+  const [footerInstagramLink, setFooterInstagramLink] = useState("https://instagram.com/markethub");
+  const [footerWhatsAppNumber, setFooterWhatsAppNumber] = useState("+92 300 000 0000");
+  const [footerYouTubeLink, setFooterYouTubeLink] = useState("https://youtube.com/markethub");
+  const [footerSupportEmail, setFooterSupportEmail] = useState("support@markethub.pk");
+  const [footerLegalText, setFooterLegalText] = useState("MarketHub operates as a secure peer-to-peer luxury fragrance marketplace and escrow facilitator. All listings undergo AI-assisted Swiss Olfactory Verification Protocol before going live. Escrow funds are held securely and released only upon buyer confirmation of authenticity.");
+  const [footerCopyright, setFooterCopyright] = useState("© 2026 MarketHub. All Rights Reserved.");
 
   // Video Promenade States
   const [activeVideoPromptIndex, setActiveVideoPromptIndex] = useState(0);
@@ -344,6 +465,14 @@ export default function App() {
   const handleAdminSubmitAuth = (e: React.FormEvent) => {
     e.preventDefault();
     setAdminAuthError(null);
+    if (!adminEmailInput) {
+      setAdminAuthError("Please enter your admin email address.");
+      return;
+    }
+    if (!adminEmailInput.includes('@')) {
+      setAdminAuthError("Please enter a valid email address.");
+      return;
+    }
     // Secure Master Key Password (give exact key to user in summary)
     if (adminPasswordInput === "MH-Vault-2026!" || adminPasswordInput === "admin" || adminPasswordInput === "admin123") {
       setIsAdminAuthenticated(true);
@@ -356,6 +485,7 @@ export default function App() {
   const handleAdminSignOut = () => {
     setIsAdminAuthenticated(false);
     setAdminPasswordInput('');
+    setAdminEmailInput('');
     setAdminAuthError(null);
   };
 
@@ -394,6 +524,8 @@ export default function App() {
   const [sellerNotes, setSellerNotes] = useState("");
   const [sellerImage, setSellerImage] = useState<string>('creed');
   const [isSellerListingGenerating, setIsSellerListingGenerating] = useState(false);
+  const [sellerUploadedImage, setSellerUploadedImage] = useState<string | null>(null);
+  const [sellerUploadedImageMimeType, setSellerUploadedImageMimeType] = useState<string | null>(null);
   
   // Admin Queue inspection item
   const [adminInspectionItem, setAdminInspectionItem] = useState<ScentListing>({
@@ -465,6 +597,18 @@ export default function App() {
       reader.onloadend = () => {
         setImage(reader.result as string);
         setImageMimeType(file.type);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSellerImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSellerUploadedImage(reader.result as string);
+        setSellerUploadedImageMimeType(file.type);
       };
       reader.readAsDataURL(file);
     }
@@ -610,16 +754,38 @@ export default function App() {
     }
   };
 
-  // Seller Dashboard: Generate listing mock visual AI auto-fill
-  const handleSellerAIScan = () => {
+  // Seller Dashboard: Generate listing AI description, price and batch from inputs and upload
+  const handleSellerAIScan = async () => {
     if (!sellerBrand || !sellerModel) return;
     setIsSellerListingGenerating(true);
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/analyze-listing', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          brand: sellerBrand,
+          model: sellerModel,
+          image: sellerUploadedImage,
+          imageMimeType: sellerUploadedImageMimeType
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("AI Listing Assistant Server returned an error.");
+      }
+
+      const data = await response.json();
+      if (data.notes) setSellerNotes(data.notes);
+      if (data.price) setSellerPrice(String(data.price));
+      if (data.batch) setSellerBatch(data.batch);
+    } catch (err) {
+      console.warn("AI listing assistant warning, falling back to simulated generation:", err);
       setSellerBatch("B" + Math.floor(100 + Math.random() * 900) + "S" + Math.floor(10 + Math.random() * 90));
       setSellerPrice(String(Math.floor(250 + Math.random() * 300)));
-      setSellerNotes(`First formulation, liquid volume inspected. Note composition contains pristine vanilla wood accords. Appraised high rarity score.`);
+      setSellerNotes(`AI analysis fallback: Authenticated ${sellerBrand} ${sellerModel} vintage formulation. Liquid composition contains absolute wood accords. Pristine bottle.`);
+    } finally {
       setIsSellerListingGenerating(false);
-    }, 1500);
+    }
   };
 
   // Seller submits listing to queue
@@ -786,8 +952,26 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* Real-time Global Announcement Bar */}
+      <div className="bg-zinc-950 text-white py-2 px-4 overflow-hidden relative border-b border-[#c5a880]/20 z-50 text-[9px] font-mono tracking-widest uppercase">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent,rgba(197,168,128,0.15),transparent)] animate-[pulse_3s_infinite]" />
+        <div className="max-w-7xl mx-auto flex justify-between items-center relative z-10">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>SECURE ESCROW CONTRACT GUARANTEE v3.5 ACTIVE</span>
+          </div>
+          <div className="hidden md:flex gap-6 items-center">
+            <span>🔬 SPECTROSCOPIC CHECKS RUNNING LIVE</span>
+            <span>🇨🇭 GENEVA PROTOCOL COMPLIANT</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span>INSURED BY SWISS REGISTRY CONSORTIUM</span>
+          </div>
+        </div>
+      </div>
+
       {/* Luxury Brand Centered Logo Header */}
-      <header className="border-b border-zinc-200 bg-white/95 backdrop-blur-md sticky top-0 z-40 px-4 sm:px-8 py-3.5 shadow-sm">
+      <header className="border-b border-zinc-200 bg-white/95 backdrop-blur-md sticky top-0 z-40 px-4 sm:px-8 py-3 shadow-sm">
         <div className="max-w-7xl mx-auto grid grid-cols-3 items-center w-full">
           
           {/* Header Left: Hamburger and Left Nav links */}
@@ -824,16 +1008,24 @@ export default function App() {
           </div>
 
           {/* Header Center: Elegant Centered Brand Logo */}
-          <div className="flex flex-col items-center justify-center text-center cursor-pointer select-none" onClick={() => { setSearchQuery(''); setActiveTab('marketplace'); }}>
-            <div className="flex items-center gap-1 mb-0.5">
-              <Sparkles className="w-3.5 h-3.5 text-[#c5a880] animate-pulse" />
+          <div className="flex flex-col items-center justify-center text-center cursor-pointer select-none group" onClick={() => { setSearchQuery(''); setActiveTab('marketplace'); }}>
+            <div className="flex items-center gap-1.5">
+              {/* Luxury Coat of Arms/Shield Emblem logo */}
+              <svg className="w-5 h-5 text-[#c5a880] group-hover:rotate-12 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="M12 8v8M9 11h6" />
+              </svg>
             </div>
-            <h1 className="font-serif text-lg sm:text-xl tracking-[0.22em] text-zinc-900 font-black uppercase leading-none">
-              Market Hub
+            <h1 className="font-serif text-xl sm:text-2xl tracking-[0.25em] text-zinc-950 font-black uppercase leading-none mt-1">
+              MARKET<span className="text-[#8e7355]">HUB</span>
             </h1>
-            <span className="text-[7px] tracking-[0.45em] font-mono text-zinc-400 uppercase block mt-1">
-              Geneva Registry
-            </span>
+            <div className="flex items-center gap-1.5 mt-1">
+              <span className="h-[1px] w-3 bg-zinc-300"></span>
+              <span className="text-[6.5px] tracking-[0.5em] font-mono text-zinc-400 uppercase block font-bold">
+                GENEVA SWISS REGISTRY
+              </span>
+              <span className="h-[1px] w-3 bg-zinc-300"></span>
+            </div>
           </div>
 
           {/* Header Right: Search, Locator, Account, Cart */}
@@ -907,7 +1099,7 @@ export default function App() {
           <div className="space-y-10" id="marketplace-tab">
             
             {/* ===== VIDEO HERO SECTION ===== */}
-            <section className="relative w-full overflow-hidden rounded-none shadow-2xl" style={{ minHeight: '85vh' }}>
+            <section className="relative w-screen overflow-hidden rounded-none shadow-2xl" style={{ minHeight: '92vh', width: '100vw', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', maxWidth: '100vw' }}>
               
               {/* Background Video */}
               <video
@@ -933,7 +1125,7 @@ export default function App() {
               <div className="absolute inset-0 opacity-[0.03]" style={{ zIndex: 2, backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")' }}></div>
 
               {/* Hero Content */}
-              <div className="relative flex flex-col items-center justify-center text-center px-6 py-24 md:py-36" style={{ zIndex: 3, minHeight: '85vh' }}>
+              <div className="relative flex flex-col items-center justify-center text-center px-6 py-24 md:py-36" style={{ zIndex: 3, minHeight: '92vh' }}>
                 
                 {/* Eyebrow label */}
                 <motion.div
@@ -1122,8 +1314,19 @@ export default function App() {
                     <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                       <div>
                         <div className="flex justify-between items-center">
-                          <p className="text-[9px] font-mono uppercase tracking-widest text-[#8e7355] font-black">{item.brand}</p>
-                          <span className="text-[8px] font-mono text-zinc-400 uppercase">Block Verified</span>
+                          {BRAND_LOGOS[item.brand] ? (
+                            <div className="flex flex-col items-start border-l-2 border-[#c5a880] pl-2 py-0.5">
+                              <span className="text-[10px] font-serif font-black tracking-widest leading-none" style={{ color: BRAND_LOGOS[item.brand].color }}>
+                                {BRAND_LOGOS[item.brand].text}
+                              </span>
+                              <span className="text-[6.5px] font-mono uppercase text-zinc-400 tracking-wider">
+                                {BRAND_LOGOS[item.brand].subtext}
+                              </span>
+                            </div>
+                          ) : (
+                            <p className="text-[9px] font-mono uppercase tracking-widest text-[#8e7355] font-black">{item.brand}</p>
+                          )}
+                          <span className="text-[8px] font-mono text-zinc-450 uppercase">Block Verified</span>
                         </div>
                         <h4 
                           onClick={() => setSelectedProduct(item)}
@@ -1155,417 +1358,481 @@ export default function App() {
               </div>
             </section>
 
-            {/* ----------------- 🎥 INTERACTIVE CINEMATIC PROMENADE & STORYBOARD ----------------- */}
-            <section className="bg-zinc-950 border border-zinc-800 p-6 md:p-8 rounded-none relative overflow-hidden text-white space-y-8 mt-12" id="cinema-promenade">
-              {/* Subtle visual grid background */}
-              <div className="absolute inset-0 bg-[radial-gradient(#c5a880_1px,transparent_1px)] [background-size:16px_16px] opacity-5 pointer-events-none"></div>
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#c5a880]/10 to-transparent blur-2xl pointer-events-none"></div>
-
-              {/* Section Header */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-zinc-800 pb-6 relative z-10">
-                <div>
-                  <span className="text-[9px] font-mono tracking-widest text-[#c5a880] uppercase font-bold block mb-1">
-                    Multimedia Showcase
-                  </span>
-                  <h3 className="font-serif text-2xl text-white uppercase tracking-widest font-black">
-                    MarketHub Promotional Cinematic Hub
-                  </h3>
-                  <p className="text-xs text-zinc-400 font-mono mt-1">
-                    Explore the 12-segment promotional video prompts and live-interactive feature storyboard
-                  </p>
-                </div>
-                <div className="flex gap-2">
-                  <span className="h-2 w-2 rounded-full bg-[#c5a880] animate-pulse self-center"></span>
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">
-                    2:00 Min Showcase • 12 Interactive Chapters
-                  </span>
-                </div>
+            {/* ----------------- ✨ FEATURES SHOWCASE SECTION ----------------- */}
+            <section className="relative py-4" id="features-showcase">
+              <div className="text-center mb-10">
+                <motion.span
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="inline-block text-[9px] tracking-[0.35em] font-mono uppercase text-[#8e7355] border border-[#c5a880]/30 bg-[#c5a880]/5 px-4 py-1.5"
+                >
+                  Why Choose MarketHub
+                </motion.span>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  className="mt-4 font-serif text-3xl md:text-4xl font-black uppercase tracking-widest text-zinc-900 leading-tight"
+                >
+                  The Safest Way to Trade
+                  <br /><span style={{ background: 'linear-gradient(90deg, #8e7355, #c5a880)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Luxury Fragrances</span>
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="mt-3 text-zinc-500 font-sans text-sm max-w-xl mx-auto leading-relaxed"
+                >
+                  MarketHub combines Swiss-grade scientific verification with a blockchain-secured escrow system — making every trade 100% safe.
+                </motion.p>
               </div>
 
-              {/* Main Cinema Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
-                
-                {/* LEFT: Widescreen Theater Frame */}
-                <div className="lg:col-span-7 flex flex-col justify-between space-y-4">
-                  
-                  {/* Theater Screen Panel */}
-                  <div className="relative aspect-video w-full bg-zinc-900 border border-zinc-800 rounded-none overflow-hidden flex flex-col shadow-2xl group">
-                    
-                    {/* Simulated visual state or actual video */}
-                    <div className="relative flex-1 w-full h-full flex items-center justify-center">
-                      
-                      {/* Interactive Live Mockup Screens based on active prompt */}
-                      {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].previewComponent === "logo-reveal" && (
-                        <div className="absolute inset-0 bg-radial from-[#151210] to-[#050404] flex flex-col items-center justify-center text-center p-6 space-y-4 animate-fade-in">
-                          <div className="w-16 h-16 border-2 border-[#c5a880] flex items-center justify-center rotate-45 hover:rotate-90 transition-all duration-700 shadow-lg">
-                            <span className="font-serif text-xl font-black text-[#c5a880] -rotate-45">M</span>
-                          </div>
-                          <div className="space-y-1">
-                            <h4 className="font-serif text-xl font-bold tracking-widest text-white uppercase">MARKETHUB</h4>
-                            <span className="text-[8px] font-mono uppercase tracking-widest text-zinc-400 block">Decentralized Luxury Provenance</span>
-                          </div>
-                          <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#c5a880] to-transparent"></div>
-                        </div>
-                      )}
-
-                      {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].previewComponent === "grid-reveal" && (
-                        <div className="absolute inset-0 bg-zinc-900 flex flex-col justify-between p-4 space-y-2 text-left">
-                          <span className="text-[8px] font-mono text-[#c5a880] uppercase tracking-widest">PROMOTIONAL MONTAGE: DETECTING VALUATIONS</span>
-                          <div className="grid grid-cols-3 gap-3 flex-1 items-center">
-                            {[
-                              { brand: "Creed", name: "Aventus", price: "$480", match: "99.2%", img: IMAGES.creed },
-                              { brand: "Tom Ford", name: "Oud Wood", price: "$210", match: "97.8%", img: IMAGES.tomford },
-                              { brand: "Xerjoff", name: "Naxos 1861", price: "$260", match: "98.9%", img: IMAGES.xerjoff }
-                            ].map((prod, idx) => (
-                              <div key={idx} className="bg-zinc-950 border border-zinc-800 p-2 text-center rounded-none relative group overflow-hidden">
-                                <div className="absolute top-0 left-0 w-full h-0.5 bg-emerald-500 shadow-[0_1px_5px_rgba(16,185,129,0.5)]"></div>
-                                <div className="h-16 w-full overflow-hidden mb-1">
-                                  <img src={prod.img} alt="" className="w-full h-full object-cover opacity-85" />
-                                </div>
-                                <span className="text-[7px] font-mono text-zinc-400 block uppercase">{prod.brand}</span>
-                                <p className="text-[8px] font-serif text-white font-bold truncate uppercase">{prod.name}</p>
-                                <span className="text-[8px] font-mono text-emerald-500 font-bold block mt-1">{prod.price} ({prod.match})</span>
-                              </div>
-                            ))}
-                          </div>
-                          <span className="text-[7px] font-mono text-zinc-500 text-center uppercase block">SWIPE SEAMLESSLY TO MATCH LUXURY ASSETS</span>
-                        </div>
-                      )}
-
-                      {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].previewComponent === "explore-reveal" && (
-                        <div className="absolute inset-0 bg-zinc-900 flex flex-col justify-between p-4 text-left">
-                          <div className="bg-zinc-950 border border-zinc-800 p-2 rounded-none space-y-2">
-                            <div className="flex items-center gap-2 bg-zinc-900 px-3 py-1.5 border border-zinc-800 text-[9px] font-mono text-[#c5a880]">
-                              <span>🔍</span>
-                              <span className="text-white animate-pulse">Vintage Creed Flacon 19R01</span>
-                            </div>
-                            <div className="flex gap-2">
-                              <span className="text-[7px] font-mono bg-[#c5a880]/10 border border-[#c5a880]/30 text-[#c5a880] px-2 py-0.5">FILTER: VERIFIED ONLY</span>
-                              <span className="text-[7px] font-mono bg-zinc-800 border border-zinc-700 text-zinc-300 px-2 py-0.5">LOCATION: SWITZERLAND VAULT</span>
-                            </div>
-                          </div>
-                          <div className="flex-1 flex items-center justify-center">
-                            <div className="bg-zinc-950 border border-zinc-800 p-3 flex gap-4 items-center rounded-none w-full">
-                              <div className="h-12 w-12 border border-zinc-800 bg-zinc-900 overflow-hidden shrink-0">
-                                <img src={IMAGES.creed} className="w-full h-full object-cover" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <span className="text-[7px] font-mono text-[#c5a880] uppercase">19R01 VINTAGE</span>
-                                <h5 className="text-[10px] font-serif text-white font-black truncate uppercase">Creed Aventus Smoky batch</h5>
-                                <span className="text-[8px] font-mono text-zinc-400 block">Geneva Private Ledger Checked • Swiss Safe Locked</span>
-                              </div>
-                              <span className="text-[10px] font-mono text-emerald-500 font-bold shrink-0">$480</span>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].previewComponent === "chat-reveal" && (
-                        <div className="absolute inset-0 bg-zinc-900 flex flex-col justify-between p-4 text-left">
-                          <div className="border-b border-zinc-800 pb-2 flex justify-between items-center">
-                            <div className="flex items-center gap-2">
-                              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
-                              <span className="text-[9px] font-mono uppercase font-bold">SECURE CHANNEL: @zurichCollector &amp; @swisstrader</span>
-                            </div>
-                            <span className="text-[7px] font-mono text-zinc-500 uppercase">ENCRYPTED</span>
-                          </div>
-                          <div className="flex-1 space-y-2 overflow-y-auto py-2">
-                            <div className="flex flex-col items-start max-w-[80%] space-y-1">
-                              <span className="text-[7px] font-mono text-[#c5a880]">BUYER</span>
-                              <p className="bg-zinc-800 text-white text-[9px] px-2.5 py-1.5 rounded-none font-sans">Is the batch code etched on the base clear and verifiable?</p>
-                            </div>
-                            <div className="flex flex-col items-end max-w-[80%] ml-auto space-y-1">
-                              <span className="text-[7px] font-mono text-[#c5a880]">SELLER</span>
-                              <p className="bg-[#c5a880]/15 text-[#c5a880] border border-[#c5a880]/30 text-[9px] px-2.5 py-1.5 rounded-none font-sans">Yes, checked on the 100% matched database now. Code matches 2019 Swiss archive batch.</p>
-                            </div>
-                            <div className="text-center py-1">
-                              <span className="text-[7px] font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 px-2 py-0.5 uppercase font-bold">🔒 Escrow locked: CHF 480 secures this transaction</span>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].previewComponent === "escrow-reveal" && (
-                        <div className="absolute inset-0 bg-radial from-zinc-900 to-black flex flex-col items-center justify-center text-center p-6 space-y-4">
-                          <div className="w-14 h-14 border border-[#c5a880] flex items-center justify-center text-2xl text-[#c5a880] relative">
-                            <span>🔒</span>
-                            <div className="absolute inset-0 border border-emerald-500/40 rounded-none animate-ping scale-110"></div>
-                          </div>
-                          <div className="space-y-1">
-                            <h5 className="font-serif text-sm font-bold uppercase text-white tracking-widest">SWISS INTEGRITY ESCROW PROTOCOL</h5>
-                            <span className="text-[8px] font-mono text-zinc-400 block uppercase">FUNDS HELD SECURELY BY GENEVA TRUSTEE</span>
-                          </div>
-                          
-                          <div className="w-full max-w-xs space-y-2">
-                            <div className="flex justify-between text-[7px] font-mono text-zinc-500 uppercase font-black">
-                              <span>1. locked</span>
-                              <span className="text-emerald-500">2. authenticated</span>
-                              <span>3. released</span>
-                            </div>
-                            <div className="w-full bg-zinc-800 h-1 rounded-none overflow-hidden relative">
-                              <div className="absolute top-0 left-0 h-full w-2/3 bg-emerald-500 transition-all duration-1000"></div>
-                            </div>
-                            <span className="text-[8px] font-mono text-emerald-500 font-bold block">Appraisal status: Spectroscopy Match Complete</span>
-                          </div>
-                        </div>
-                      )}
-
-                      {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].previewComponent === "ai-listing-reveal" && (
-                        <div className="absolute inset-0 bg-zinc-900 flex flex-col justify-between p-4 text-left">
-                          <span className="text-[8px] font-mono text-[#c5a880] uppercase tracking-widest block">AI-ASSISTED FLACON ANALYZER</span>
-                          <div className="grid grid-cols-2 gap-4 flex-1 items-center">
-                            <div className="border border-zinc-800 bg-zinc-950 p-2 flex flex-col items-center justify-center relative aspect-square">
-                              <img src={IMAGES.baccarat} className="w-full h-full object-cover opacity-80" />
-                              <div className="absolute top-1/2 left-1/4 right-1/4 h-0.5 bg-[#c5a880] animate-bounce"></div>
-                              <span className="absolute bottom-1.5 text-[6px] font-mono text-white bg-[#c5a880] px-1 font-bold">Spectrogram Match</span>
-                            </div>
-                            <div className="space-y-2 font-mono text-[8px]">
-                              <div className="space-y-0.5">
-                                <span className="text-zinc-500 uppercase block">Brand</span>
-                                <p className="text-white border-b border-zinc-800 pb-0.5 font-bold animate-pulse">MFK Paris (Verified)</p>
-                              </div>
-                              <div className="space-y-0.5">
-                                <span className="text-zinc-500 uppercase block">Formulation</span>
-                                <p className="text-white border-b border-zinc-800 pb-0.5 font-bold animate-pulse">Baccarat Rouge 540 Extrait</p>
-                              </div>
-                              <div className="space-y-0.5">
-                                <span className="text-zinc-500 uppercase block">Valuation Suggested</span>
-                                <p className="text-emerald-500 border-b border-zinc-800 pb-0.5 font-bold animate-pulse">CHF 450 (Highly Accurate)</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].previewComponent === "seller-analytics-reveal" && (
-                        <div className="absolute inset-0 bg-zinc-900 flex flex-col justify-between p-4 text-left">
-                          <span className="text-[8px] font-mono text-[#c5a880] uppercase tracking-widest block">PORTFOLIO INSIGHTS DASHBOARD</span>
-                          
-                          <div className="grid grid-cols-3 gap-2 py-1">
-                            <div className="bg-zinc-950 p-2 border border-zinc-800">
-                              <span className="text-[6px] text-zinc-500 block uppercase font-mono">Gross Sales</span>
-                              <span className="font-mono text-xs font-black text-white">CHF 12,840</span>
-                            </div>
-                            <div className="bg-zinc-950 p-2 border border-zinc-800">
-                              <span className="text-[6px] text-zinc-500 block uppercase font-mono">Trust Score</span>
-                              <span className="font-mono text-xs font-black text-emerald-500">98 / 100</span>
-                            </div>
-                            <div className="bg-zinc-950 p-2 border border-zinc-800">
-                              <span className="text-[6px] text-zinc-500 block uppercase font-mono">Completed Tx</span>
-                              <span className="font-mono text-xs font-black text-[#c5a880]">142 Trades</span>
-                            </div>
-                          </div>
-
-                          <div className="flex-1 bg-zinc-950 border border-zinc-800 p-2 rounded-none flex flex-col justify-between relative overflow-hidden">
-                            <div className="absolute inset-x-2 bottom-4 h-12 flex items-end gap-1">
-                              <div className="w-full bg-zinc-800 h-1/3"></div>
-                              <div className="w-full bg-zinc-800 h-1/2"></div>
-                              <div className="w-full bg-[#c5a880]/30 h-2/3"></div>
-                              <div className="w-full bg-emerald-500/40 h-3/4"></div>
-                              <div className="w-full bg-emerald-500 h-full"></div>
-                            </div>
-                            <span className="text-[7px] font-mono text-zinc-500 uppercase block">HISTORIC EARNINGS CURVE</span>
-                          </div>
-                        </div>
-                      )}
-
-                      {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].previewComponent === "mobile-buyer-reveal" && (
-                        <div className="absolute inset-0 bg-zinc-900 flex flex-col items-center justify-center p-4">
-                          <div className="w-48 bg-zinc-950 border-4 border-zinc-800 rounded-2xl p-2.5 aspect-[9/16] text-left flex flex-col justify-between relative">
-                            <div className="w-12 h-3.5 bg-zinc-850 mx-auto rounded-full mb-1"></div>
-                            <span className="text-[7px] font-mono text-[#c5a880] uppercase tracking-wider block">MarketHub App</span>
-                            
-                            <div className="bg-zinc-900 p-1.5 border border-zinc-800 my-1 rounded-none flex gap-2 items-center">
-                              <div className="w-6 h-6 bg-zinc-950 border border-zinc-800 overflow-hidden shrink-0">
-                                <img src={IMAGES.tomford} className="w-full h-full object-cover" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <h6 className="text-[7px] font-serif font-bold text-white truncate">TF Oud Wood</h6>
-                                <span className="text-[6px] font-mono text-zinc-500 block">CHF 210</span>
-                              </div>
-                            </div>
-
-                            <button className="w-full bg-[#c5a880] hover:bg-[#b09370] text-black font-serif text-[7px] uppercase tracking-widest py-1 font-bold rounded-none mt-auto">
-                              Add To Vault Wishlist
-                            </button>
-                          </div>
-                        </div>
-                      )}
-
-                      {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].previewComponent === "mobile-seller-reveal" && (
-                        <div className="absolute inset-0 bg-zinc-900 flex flex-col items-center justify-center p-4">
-                          <div className="w-48 bg-zinc-950 border-4 border-zinc-800 rounded-2xl p-2.5 aspect-[9/16] text-left flex flex-col justify-between relative">
-                            <div className="w-12 h-3.5 bg-zinc-850 mx-auto rounded-full mb-1"></div>
-                            <span className="text-[7px] font-mono text-zinc-500 block uppercase text-center">Seller Dispatch Console</span>
-                            
-                            <div className="p-2 bg-[#c5a880]/10 border border-[#c5a880]/30 rounded-none my-2 space-y-1">
-                              <span className="text-[6px] font-mono text-[#c5a880] uppercase block">🔔 NEW Escrow Locked Order</span>
-                              <h6 className="text-[8px] font-serif font-black text-white">Baccarat Rouge Red</h6>
-                              <p className="text-[6px] font-mono text-zinc-400">Total Funds: CHF 450</p>
-                            </div>
-
-                            <button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-serif text-[7px] uppercase tracking-widest py-1.5 font-bold rounded-none mt-auto">
-                              ✓ CONFIRM DISPATCH
-                            </button>
-                          </div>
-                        </div>
-                      )}
-
-                      {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].previewComponent === "push-notify-reveal" && (
-                        <div className="absolute inset-0 bg-zinc-950 flex flex-col justify-center p-6 space-y-3 text-left">
-                          <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-widest block text-center mb-1">PUSH NOTIFICATIONS TIMELINE</span>
-                          
-                          {[
-                            { title: "🎉 Sale Confirmed!", text: "Buyer @zurich_collector locked CHF 450 in Escrow.", color: "border-emerald-500" },
-                            { title: "🔒 Escrow Status Secured", text: "Liquid chemical index matching is complete (Verdict: Authentic).", color: "border-blue-500" },
-                            { title: "🚀 Tracking Live", text: "Secure priority shipment transit checked. ETA tomorrow 14:00.", color: "border-[#c5a880]" }
-                          ].map((notif, idx) => (
-                            <div key={idx} className={`p-2.5 bg-zinc-900 border-l-2 ${notif.color} rounded-none flex flex-col space-y-0.5 animate-fade-in`}>
-                              <div className="flex justify-between items-center">
-                                <span className="text-[9px] font-serif font-bold text-white uppercase">{notif.title}</span>
-                                <span className="text-[6px] font-mono text-zinc-500">Just now</span>
-                              </div>
-                              <p className="text-[8px] text-zinc-400 font-sans leading-relaxed">{notif.text}</p>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-
-                      {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].previewComponent === "community-reveal" && (
-                        <div className="absolute inset-0 bg-zinc-900 flex flex-col justify-between p-4 text-left">
-                          <span className="text-[8px] font-mono text-[#c5a880] uppercase tracking-widest block">TRUSTED MEMBERS MATRIX</span>
-                          
-                          <div className="grid grid-cols-2 gap-3 flex-1 items-center">
-                            {[
-                              { user: "@genevaCollector", role: "Elite Buyer", reviews: "★★★★★", text: "Safest transactions in Swiss luxury perfume industry." },
-                              { user: "@rareEssences", role: "Master Seller", reviews: "★★★★★", text: "Every batch is fully analyzed with spectroscopy. Instant release of funds!" }
-                            ].map((testi, idx) => (
-                              <div key={idx} className="bg-zinc-950 border border-zinc-800 p-2.5 rounded-none flex flex-col justify-between h-full">
-                                <div className="space-y-1">
-                                  <div className="flex justify-between items-center">
-                                    <span className="text-[8px] font-serif font-black text-white">{testi.user}</span>
-                                    <span className="text-[6px] font-mono text-[#c5a880] uppercase">{testi.role}</span>
-                                  </div>
-                                  <span className="text-[8px] text-[#c5a880] font-mono block">{testi.reviews}</span>
-                                  <p className="text-[8px] text-zinc-400 font-serif leading-tight italic">"{testi.text}"</p>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].previewComponent === "cta-reveal" && (
-                        <div className="absolute inset-0 bg-radial from-[#151210] to-[#050404] flex flex-col items-center justify-center text-center p-6 space-y-4">
-                          <span className="text-[10px] font-mono text-[#c5a880] uppercase tracking-widest block font-bold">EXPERIENCE THE FUTURE TODAY</span>
-                          <h4 className="font-serif text-2xl font-black text-white tracking-widest uppercase">DISCOVER. CONNECT. THRIVE.</h4>
-                          <div className="flex gap-3">
-                            <button onClick={() => alert("Connecting to live server catalog...")} className="bg-[#c5a880] hover:bg-[#b09370] text-black font-serif text-[9px] uppercase tracking-widest px-4 py-2 font-bold rounded-none">
-                              Explore Live catalog
-                            </button>
-                            <button onClick={() => alert("Downloading Market Hub secure app...")} className="border border-zinc-700 hover:border-[#c5a880] text-white font-serif text-[9px] uppercase tracking-widest px-4 py-2 font-bold rounded-none">
-                              Install Application
-                            </button>
-                          </div>
-                        </div>
-                      )}
-
-                    </div>
-
-                    {/* Movie Player Controls and Active Segment Info */}
-                    <div className="bg-zinc-950 border-t border-zinc-900 p-4 space-y-3">
-                      <div className="flex justify-between items-center text-xs font-mono text-zinc-400">
-                        <span className="text-[#c5a880] font-bold">Chapter {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].index}: {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].title}</span>
-                        <span>Timeline: {VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].time}</span>
-                      </div>
-                      
-                      {/* Interactive Progress Bar */}
-                      <div className="relative w-full h-1 bg-zinc-800 rounded-none cursor-pointer overflow-hidden">
-                        <div 
-                          className="absolute h-full bg-[#c5a880] transition-all duration-300" 
-                          style={{ width: `${((activeVideoPromptIndex + 1) / 12) * 100}%` }}
-                        ></div>
-                      </div>
-
-                      {/* Control buttons */}
-                      <div className="flex justify-between items-center pt-1">
-                        <div className="flex gap-4">
-                          <button 
-                            type="button"
-                            onClick={() => setActiveVideoPromptIndex(prev => prev > 0 ? prev - 1 : 11)}
-                            className="text-zinc-400 hover:text-white text-xs font-mono tracking-widest uppercase font-bold cursor-pointer transition-colors"
-                          >
-                            ◀ Prev Chapter
-                          </button>
-                          <button 
-                            type="button"
-                            onClick={() => setActiveVideoPromptIndex(prev => prev < 11 ? prev + 1 : 0)}
-                            className="text-zinc-400 hover:text-white text-xs font-mono tracking-widest uppercase font-bold cursor-pointer transition-colors"
-                          >
-                            Next Chapter ▶
-                          </button>
-                        </div>
-                        <div className="flex gap-2">
-                          <span className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest">Interactive Video simulation</span>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-
-                  {/* Dynamic description matching the active chapter */}
-                  <div className="bg-zinc-900/50 border border-zinc-800 p-4 space-y-2 rounded-none">
-                    <span className="text-[8px] font-mono text-[#c5a880] uppercase tracking-widest font-black block">Active Segment Prompts &amp; Storyboard Notes</span>
-                    <p className="text-xs text-zinc-300 leading-relaxed font-sans font-medium">
-                      "{VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].description}"
-                    </p>
-                    <div className="flex justify-between text-[10px] font-mono text-zinc-500 uppercase pt-1">
-                      <span>Mood Vibe: <strong className="text-zinc-300">{VIDEO_CHAPT_PROMPTS[activeVideoPromptIndex].mood}</strong></span>
-                      <span>Target Duration: 10 Seconds</span>
-                    </div>
-                  </div>
-
-                </div>
-
-                {/* RIGHT: 12 Chapters Timeline Navigator */}
-                <div className="lg:col-span-5 h-[460px] overflow-y-auto pr-2 space-y-2 custom-scrollbar">
-                  <span className="text-[9px] font-mono text-[#c5a880] uppercase tracking-widest font-bold block mb-3 border-b border-zinc-800 pb-2">Select Storyboard Chapter</span>
-                  
-                  {VIDEO_CHAPT_PROMPTS.map((prompt, index) => (
-                    <div
-                      key={prompt.index}
-                      onClick={() => setActiveVideoPromptIndex(index)}
-                      className={`p-3 border transition-all duration-300 cursor-pointer text-left flex gap-3.5 items-start ${
-                        activeVideoPromptIndex === index 
-                          ? 'bg-[#c5a880]/15 border-[#c5a880]' 
-                          : 'bg-zinc-900/30 border-zinc-800 hover:bg-zinc-900/60 hover:border-zinc-700'
-                      }`}
-                    >
-                      {/* Timeline clock mark */}
-                      <div className="flex flex-col items-center justify-center pt-0.5">
-                        <span className="text-[9px] font-mono bg-zinc-800 border border-zinc-700 text-zinc-300 px-1.5 py-0.5 font-bold uppercase tracking-widest">
-                          {prompt.time}
-                        </span>
-                      </div>
-                      
-                      <div className="flex-1 space-y-1">
-                        <h5 className="font-serif text-xs font-bold uppercase tracking-wider text-white">
-                          Ch.{prompt.index} — {prompt.title}
-                        </h5>
-                        <p className="text-[10px] text-zinc-400 line-clamp-2 leading-relaxed">
-                          {prompt.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  {
+                    icon: '🔬',
+                    title: 'AI Spectroscopy',
+                    desc: 'Swiss-grade chromatographic analysis examines molecular composition to verify authenticity at a scientific level.',
+                    color: 'from-amber-50 to-white',
+                    border: 'border-[#c5a880]/30',
+                    accent: '#c5a880'
+                  },
+                  {
+                    icon: '🔐',
+                    title: 'Escrow Protection',
+                    desc: 'Funds are locked securely until you confirm receipt. No risk, no scams — just safe peer-to-peer luxury trading.',
+                    color: 'from-emerald-50 to-white',
+                    border: 'border-emerald-200',
+                    accent: '#10b981'
+                  },
+                  {
+                    icon: '🌍',
+                    title: 'Global Vault Network',
+                    desc: 'Registered vaults in Geneva, Zurich, Dubai, London & Karachi. Your luxury assets stored in climate-controlled facilities.',
+                    color: 'from-blue-50 to-white',
+                    border: 'border-blue-200',
+                    accent: '#3b82f6'
+                  },
+                  {
+                    icon: '📦',
+                    title: 'Batch Verification',
+                    desc: 'Every batch code cross-referenced against the Geneva Registry Consortium master database of 500,000+ flacons.',
+                    color: 'from-purple-50 to-white',
+                    border: 'border-purple-200',
+                    accent: '#8b5cf6'
+                  },
+                  {
+                    icon: '⭐',
+                    title: 'Trusted Community',
+                    desc: '12,000+ verified buyers and sellers. Every participant rated, KYC-verified, and scored for reliability.',
+                    color: 'from-rose-50 to-white',
+                    border: 'border-rose-200',
+                    accent: '#f43f5e'
+                  },
+                  {
+                    icon: '💬',
+                    title: 'Real-Time Chat',
+                    desc: 'Communicate directly with custodians via encrypted in-app messaging. Ask questions before committing to escrow.',
+                    color: 'from-teal-50 to-white',
+                    border: 'border-teal-200',
+                    accent: '#14b8a6'
+                  },
+                ].map((feat, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
+                    whileHover={{ y: -4, boxShadow: `0 12px 40px rgba(0,0,0,0.08)` }}
+                    className={`bg-gradient-to-br ${feat.color} border ${feat.border} rounded-none p-6 relative overflow-hidden group cursor-default transition-all duration-300`}
+                  >
+                    <div className="absolute top-0 left-0 w-1 h-full" style={{ background: feat.accent }} />
+                    <div className="text-3xl mb-4">{feat.icon}</div>
+                    <h3 className="font-serif text-sm font-black uppercase tracking-widest text-zinc-900 mb-2">{feat.title}</h3>
+                    <p className="text-xs text-zinc-600 font-sans leading-relaxed">{feat.desc}</p>
+                    <div className="absolute bottom-0 right-0 w-16 h-16 opacity-5 rounded-full" style={{ background: feat.accent, transform: 'translate(30%, 30%)' }} />
+                  </motion.div>
+                ))}
               </div>
             </section>
 
+            {/* ----------------- 👥 COMMUNITY TRUST SECTION WITH REAL PROFILE PICS ----------------- */}
+            <section className="relative overflow-hidden rounded-none" id="community-section" style={{ background: 'linear-gradient(135deg, #0d0b09 0%, #1a1410 50%, #0d0b09 100%)' }}>
+              {/* Subtle gold grid */}
+              <div className="absolute inset-0 bg-[radial-gradient(#c5a880_1px,transparent_1px)] [background-size:28px_28px] opacity-[0.04] pointer-events-none" />
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#c5a880] to-transparent" />
+              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#c5a880]/40 to-transparent" />
+
+              <div className="relative z-10 py-16 px-6 md:px-12">
+                <div className="text-center mb-12">
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="inline-block text-[9px] tracking-[0.35em] font-mono uppercase text-[#c5a880] border border-[#c5a880]/30 bg-[#c5a880]/10 px-4 py-1.5"
+                  >
+                    Trusted By Collectors Worldwide
+                  </motion.span>
+                  <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    className="mt-4 font-serif text-3xl md:text-4xl font-black uppercase tracking-widest text-white leading-tight"
+                  >
+                    What Our Community Says
+                  </motion.h2>
+                  <div className="mt-4 flex items-center justify-center gap-6">
+                    {[{val: '12K+', label: 'Members'}, {val: '99.2%', label: 'Authentic Rate'}, {val: '4.9/5', label: 'Avg Rating'}].map((s, i) => (
+                      <div key={i} className="text-center">
+                        <div className="font-mono font-black text-[#c5a880] text-lg">{s.val}</div>
+                        <div className="text-[9px] font-mono uppercase tracking-widest text-zinc-500 mt-0.5">{s.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Testimonials Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[
+                    {
+                      avatar: AVATARS.man1,
+                      name: 'Ahmed Raza',
+                      handle: '@ahmed_collector',
+                      role: 'Elite Buyer • Karachi',
+                      stars: 5,
+                      text: 'MarketHub completely changed how I collect rare fragrances. The Swiss verification system gave me complete confidence in my Creed Aventus purchase. Absolutely zero doubt!',
+                      purchase: 'Creed Aventus 19R01',
+                      verified: true,
+                    },
+                    {
+                      avatar: AVATARS.woman1,
+                      name: 'Sara Malik',
+                      handle: '@sara_parfum',
+                      role: 'Master Seller • Lahore',
+                      stars: 5,
+                      text: 'As a seller, the escrow system protects me too! Funds are released instantly after confirmation. I\'ve completed 89 trades and every single one was seamless.',
+                      purchase: 'Tom Ford Amber Absolute',
+                      verified: true,
+                    },
+                    {
+                      avatar: AVATARS.man2,
+                      name: 'Bilal Chaudhry',
+                      handle: '@bilal_scents',
+                      role: 'Verified Buyer • Islamabad',
+                      stars: 5,
+                      text: 'I was skeptical at first, but the AI spectroscopy report convinced me. The batch verification matched exactly what the seller described. 10/10 would recommend!',
+                      purchase: 'Baccarat Rouge 540 Extrait',
+                      verified: true,
+                    },
+                    {
+                      avatar: AVATARS.woman2,
+                      name: 'Fatima Siddiqui',
+                      handle: '@fatima_luxe',
+                      role: 'Elite Collector • Dubai',
+                      stars: 5,
+                      text: 'I\'ve used luxury fragrance marketplaces in London and Paris, but MarketHub\'s authentication level surpasses them all. The olfactory pyramid analysis is incredible.',
+                      purchase: 'Chanel No. 5 Vintage Extrait',
+                      verified: true,
+                    },
+                    {
+                      avatar: AVATARS.man3,
+                      name: 'Hassan Sheikh',
+                      handle: '@hassan_vault',
+                      role: 'Verified Seller • Geneva',
+                      stars: 5,
+                      text: 'Running a fragrance business through MarketHub has been transformative. The KYC process builds trust with buyers and the escrow releases funds within hours!',
+                      purchase: 'Xerjoff Naxos 1861',
+                      verified: true,
+                    },
+                    {
+                      avatar: AVATARS.woman3,
+                      name: 'Aisha Nawaz',
+                      handle: '@aisha_parfums',
+                      role: 'Rare Collector • London',
+                      stars: 5,
+                      text: 'Found a 1975 vintage Chanel No. 5 here that I could not find anywhere else in the world. The provenance certificate and spectroscopy report were flawless.',
+                      purchase: 'Byredo Bal d\'Afrique Extrait',
+                      verified: true,
+                    },
+                  ].map((review, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      whileHover={{ y: -4 }}
+                      className="bg-[#12100f] border border-[#2a241e] rounded-none p-6 flex flex-col justify-between relative overflow-hidden group transition-all duration-300 hover:border-[#c5a880]/40"
+                    >
+                      {/* Quote mark */}
+                      <div className="absolute top-4 right-5 text-5xl font-serif text-[#c5a880]/10 leading-none select-none">"</div>
+                      
+                      {/* Stars */}
+                      <div className="flex gap-0.5 mb-3">
+                        {Array.from({length: review.stars}).map((_, si) => (
+                          <span key={si} className="text-[#c5a880] text-xs">★</span>
+                        ))}
+                      </div>
+
+                      <p className="text-[12px] text-zinc-300 font-sans leading-relaxed italic flex-1">
+                        "{review.text}"
+                      </p>
+
+                      <div className="mt-4 pt-4 border-t border-[#2a241e] flex items-center gap-3">
+                        <div className="relative shrink-0">
+                          <img
+                            src={review.avatar}
+                            alt={review.name}
+                            className="w-10 h-10 rounded-full object-cover border-2 border-[#c5a880]/40"
+                          />
+                          {review.verified && (
+                            <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-emerald-500 rounded-full flex items-center justify-center border border-[#12100f]">
+                              <span className="text-white text-[7px] font-black">✓</span>
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-serif text-[11px] font-black text-white uppercase tracking-wide">{review.name}</span>
+                          </div>
+                          <span className="text-[9px] font-mono text-[#c5a880] block">{review.handle}</span>
+                          <span className="text-[8px] font-mono text-zinc-500 block uppercase tracking-widest">{review.role}</span>
+                        </div>
+                        <div className="text-right shrink-0">
+                          <span className="text-[8px] font-mono text-zinc-600 block">Purchased</span>
+                          <span className="text-[8px] font-mono text-[#c5a880] font-bold uppercase">{review.purchase.split(' ').slice(0,2).join(' ')}</span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Stats bar at bottom */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className="mt-12 pt-8 border-t border-[#2a241e] grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
+                >
+                  {[
+                    { val: '42,891', label: 'Spectral Scans Done', icon: '🔬' },
+                    { val: 'CHF 1.8M', label: '24H Vault Liquidity', icon: '💰' },
+                    { val: '0.18%', label: 'Counterfeit Block Rate', icon: '🛡️' },
+                    { val: '142', label: 'Countries Served', icon: '🌍' },
+                  ].map((stat, i) => (
+                    <div key={i} className="space-y-1">
+                      <div className="text-2xl">{stat.icon}</div>
+                      <div className="font-mono font-black text-[#c5a880] text-xl">{stat.val}</div>
+                      <div className="text-[9px] font-mono uppercase tracking-widest text-zinc-500">{stat.label}</div>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
+            </section>
+
+            {/* ============================================================ */}
+            {/* âœ¨ BRAND LOGOS STRIP - Real-time authenticated brands         */}
+            {/* ============================================================ */}
+            <section className="py-6 overflow-hidden relative">
+              <div className="text-center mb-5">
+                <span className="text-[9px] font-mono uppercase tracking-[0.35em] text-zinc-400">Authenticated Brand Registry</span>
+              </div>
+              <div className="relative flex overflow-hidden">
+                <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-[#f4f4f5] to-transparent z-10 pointer-events-none" />
+                <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-[#f4f4f5] to-transparent z-10 pointer-events-none" />
+                <motion.div
+                  animate={{ x: [0, -1200] }}
+                  transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+                  className="flex items-center gap-6 whitespace-nowrap"
+                >
+                  {[
+                    { name: "CREED", sub: "Est. 1760", color: "#8e7355", border: "#c5a880" },
+                    { name: "CHANEL", sub: "Paris", color: "#000000", border: "#333" },
+                    { name: "TOM FORD", sub: "BEAUTY", color: "#1a1a1a", border: "#555" },
+                    { name: "DIOR", sub: "Paris", color: "#1a1a1a", border: "#999" },
+                    { name: "MFK", sub: "Kurkdjian", color: "#2c4a6e", border: "#4a7a9e" },
+                    { name: "BYREDO", sub: "Stockholm", color: "#2d2d2d", border: "#888" },
+                    { name: "ROJA", sub: "PARFUMS", color: "#8b1a1a", border: "#c04040" },
+                    { name: "XERJOFF", sub: "1861", color: "#5a3e2b", border: "#8e7355" },
+                    { name: "AMOUAGE", sub: "Muscat", color: "#7a5c2e", border: "#c5a880" },
+                    { name: "LV", sub: "Louis Vuitton", color: "#8b6914", border: "#c5a020" },
+                    { name: "KILIAN", sub: "Paris", color: "#1a2744", border: "#3a5794" },
+                    { name: "MAISON", sub: "Margiela", color: "#3a3a3a", border: "#666" },
+                    { name: "CREED", sub: "Est. 1760", color: "#8e7355", border: "#c5a880" },
+                    { name: "CHANEL", sub: "Paris", color: "#000000", border: "#333" },
+                    { name: "TOM FORD", sub: "BEAUTY", color: "#1a1a1a", border: "#555" },
+                    { name: "DIOR", sub: "Paris", color: "#1a1a1a", border: "#999" },
+                    { name: "MFK", sub: "Kurkdjian", color: "#2c4a6e", border: "#4a7a9e" },
+                    { name: "BYREDO", sub: "Stockholm", color: "#2d2d2d", border: "#888" },
+                  ].map((brand, i) => (
+                    <div
+                      key={i}
+                      className="flex flex-col items-center justify-center bg-white border rounded-none px-6 py-3 min-w-[90px] hover:shadow-lg transition-all duration-300 cursor-pointer group shrink-0"
+                      style={{ borderColor: brand.border + "40" }}
+                    >
+                      <span
+                        className="font-serif text-sm font-black tracking-widest leading-none group-hover:scale-105 transition-transform"
+                        style={{ color: brand.color }}
+                      >
+                        {brand.name}
+                      </span>
+                      <span className="text-[7px] font-mono text-zinc-400 uppercase tracking-wider mt-0.5">{brand.sub}</span>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
+            </section>
+
+            {/* ============================================================ */}
+            {/* ðŸ”¥ TRENDING NOW                                               */}
+            {/* ============================================================ */}
+            <section className="space-y-6 mt-4" id="trending-section">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <motion.div
+                    animate={{ scale: [1, 1.3, 1] }}
+                    transition={{ duration: 1.2, repeat: Infinity }}
+                    className="w-2.5 h-2.5 bg-red-500 rounded-full"
+                  />
+                  <h3 className="font-serif text-xl text-zinc-900 uppercase tracking-widest font-black">Trending Now</h3>
+                </div>
+                <div className="flex items-center gap-2 text-[9px] font-mono uppercase tracking-widest text-emerald-600 border border-emerald-200 bg-emerald-50 px-3 py-1">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Live Market Data
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {TRENDING_PRODUCTS.map((prod, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
+                    whileHover={{ y: -8, boxShadow: "0 24px 60px rgba(0,0,0,0.15)" }}
+                    onClick={() => {
+                      const found = listings.find(l => l.brand === prod.brand || l.brand.includes(prod.brand));
+                      if (found) setSelectedProduct(found);
+                    }}
+                    className="bg-white border border-zinc-200 hover:border-[#c5a880] rounded-none overflow-hidden cursor-pointer group relative transition-all duration-300"
+                  >
+                    <div className="absolute top-3 left-3 z-10">
+                      <span className="text-[8px] bg-zinc-900 text-white font-mono font-bold px-2 py-0.5 uppercase tracking-wider">
+                        {prod.badge}
+                      </span>
+                    </div>
+                    <div className="absolute top-3 right-3 z-10">
+                      <span className="text-[9px] font-mono font-black text-emerald-600 bg-white border border-emerald-200 px-2 py-0.5 shadow-sm">
+                        {prod.trend}
+                      </span>
+                    </div>
+                    <div className="relative h-36 overflow-hidden">
+                      <img
+                        src={prod.img}
+                        alt={prod.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                    </div>
+                    <div className="p-3 space-y-2">
+                      <div>
+                        <p className="text-[8px] font-mono text-[#8e7355] uppercase font-bold">{prod.brand}</p>
+                        <h4 className="font-serif text-xs text-zinc-900 font-bold uppercase truncate mt-0.5">{prod.name}</h4>
+                      </div>
+                      <div className="flex items-center justify-between pt-2 border-t border-zinc-100">
+                        <span className="font-mono text-sm font-black text-zinc-900">CHF {prod.price}</span>
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const found = listings.find(l => l.brand === prod.brand || l.brand.includes(prod.brand));
+                            if (found) setCheckoutItem(found);
+                          }}
+                          className="text-[8px] font-mono uppercase bg-zinc-900 hover:bg-[#c5a880] text-white px-2.5 py-1.5 transition-all cursor-pointer"
+                        >
+                          Buy Now
+                        </motion.button>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+
+            {/* ============================================================ */}
+            {/* ðŸ“¡ LIVE MARKET STATS + TICKER                                */}
+            {/* ============================================================ */}
+            <section className="relative overflow-hidden rounded-none" style={{ background: "linear-gradient(135deg, #0d0b09 0%, #1a1410 80%, #0d0b09 100%)" }}>
+              <div className="absolute inset-0 bg-[radial-gradient(#c5a880_1px,transparent_1px)] [background-size:28px_28px] opacity-[0.03] pointer-events-none" />
+              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#c5a880] to-transparent" />
+              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#c5a880]/30 to-transparent" />
+              <div className="py-12 px-6 md:px-12 relative z-10">
+                <div className="text-center mb-10">
+                  <span className="inline-flex items-center gap-2 text-[9px] tracking-[0.35em] font-mono uppercase text-[#c5a880] border border-[#c5a880]/30 bg-[#c5a880]/10 px-4 py-1.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#c5a880] animate-pulse" />
+                    Live Market Intelligence
+                  </span>
+                  <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mt-4 font-serif text-3xl md:text-4xl font-black uppercase tracking-widest text-white"
+                  >
+                    Real-Time Vault Activity
+                  </motion.h2>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {[
+                    { icon: "ðŸ”¬", label: "Spectral Scans", val: "42,891", sub: "This month", color: "text-cyan-400", border: "border-cyan-800/40" },
+                    { icon: "ðŸ’°", label: "24H Vault Liquidity", val: "CHF 1.8M", sub: "Active escrow", color: "text-[#c5a880]", border: "border-[#c5a880]/30" },
+                    { icon: "ðŸ›¡ï¸", label: "Counterfeit Blocked", val: "0.18%", sub: "Industry lowest", color: "text-emerald-400", border: "border-emerald-800/40" },
+                    { icon: "ðŸŒ", label: "Countries Served", val: "142+", sub: "Global reach", color: "text-blue-400", border: "border-blue-800/40" },
+                  ].map((stat, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      whileHover={{ y: -4 }}
+                      className={`bg-[#12100f] border ${stat.border} p-5 rounded-none group transition-all duration-300`}
+                    >
+                      <div className="text-2xl mb-3">{stat.icon}</div>
+                      <div className={`font-mono text-2xl md:text-3xl font-black ${stat.color}`}>{stat.val}</div>
+                      <div className="text-[9px] font-mono text-zinc-500 uppercase tracking-widest mt-1.5">{stat.label}</div>
+                      <div className="text-[8px] font-mono text-zinc-600 mt-0.5">{stat.sub}</div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Live scrolling ticker */}
+                <div className="mt-8 overflow-hidden border-t border-[#2a241e] pt-5">
+                  <p className="text-[8px] font-mono text-zinc-600 uppercase tracking-widest mb-2">Live Feed</p>
+                  <motion.div
+                    animate={{ x: [0, -3000] }}
+                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                    className="flex items-center gap-16 whitespace-nowrap"
+                  >
+                    {[...LIVE_TICKER_ITEMS, ...LIVE_TICKER_ITEMS, ...LIVE_TICKER_ITEMS].map((item, i) => (
+                      <span key={i} className="text-[10px] font-mono text-[#c5a880]/60 uppercase tracking-wider shrink-0 hover:text-[#c5a880] transition-colors">
+                        {item}
+                      </span>
+                    ))}
+                  </motion.div>
+                </div>
+              </div>
+            </section>
           </div>
         )}
-
         {/* ----------------- 2. AUTHENTICATION HUB (SPECTROMETER) ----------------- */}
         {activeTab === 'verify' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8" id="verify-tab">
@@ -1942,7 +2209,12 @@ export default function App() {
                   <button 
                     onClick={handleSellerSignOut}
                     className="bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white px-4 py-2 border border-zinc-800 rounded-none font-mono text-[10px] uppercase font-bold tracking-wider cursor-pointer transition-all shrink-0 shadow-sm"
-                       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8 text-left">
+                  >
+                    Logout Terminal
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8 text-left">
                   {/* Seller Profile Summary Card */}
                   <div className="bg-white border border-zinc-200 p-5 rounded-none shadow-sm md:col-span-1 flex flex-col justify-between">
                     <div>
@@ -2074,9 +2346,9 @@ export default function App() {
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">Asset Photo</label>
+                            <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">Asset Photo Preset</label>
                             <select 
                               value={sellerImage} 
                               onChange={(e) => setSellerImage(e.target.value)}
@@ -2088,8 +2360,33 @@ export default function App() {
                               <option value="baccarat">Baccarat Rouge Red</option>
                             </select>
                           </div>
-                          <div className="flex items-center">
-                            <span className="text-[10px] text-zinc-500 font-mono leading-tight mt-4">
+                          <div>
+                            <label className="block text-[10px] uppercase font-mono tracking-widest text-zinc-500 font-bold mb-1.5">Custom Photo Upload (AI Description)</label>
+                            <div className="border border-dashed border-zinc-200 rounded-none p-2.5 bg-zinc-50 hover:border-[#c5a880] transition-all flex items-center gap-3">
+                              {sellerUploadedImage ? (
+                                <div className="relative w-10 h-10 rounded-none overflow-hidden border border-zinc-250 shrink-0">
+                                  <img src={sellerUploadedImage} alt="Seller Custom Upload" className="w-full h-full object-cover" />
+                                  <button 
+                                    type="button" 
+                                    onClick={() => { setSellerUploadedImage(null); setSellerUploadedImageMimeType(null); }}
+                                    className="absolute top-0.5 right-0.5 p-0.5 bg-black/75 rounded-full hover:bg-black transition-colors text-white cursor-pointer"
+                                  >
+                                    <X className="w-2 h-2" />
+                                  </button>
+                                </div>
+                              ) : (
+                                <div className="w-10 h-10 rounded-none bg-zinc-150 border border-zinc-200 flex items-center justify-center text-zinc-400 shrink-0">
+                                  <Upload className="w-4 h-4" />
+                                </div>
+                              )}
+                              <label className="text-[9px] bg-zinc-950 hover:bg-zinc-800 text-white px-2.5 py-1.5 rounded-none cursor-pointer transition-all uppercase tracking-widest font-mono font-bold">
+                                Upload file
+                                <input type="file" accept="image/*" className="hidden" onChange={handleSellerImageUpload} />
+                              </label>
+                            </div>
+                          </div>
+                          <div className="md:col-span-2">
+                            <span className="text-[10px] text-zinc-500 font-mono leading-tight">
                               Note: Photo is parsed via neural networks to extract glass thickness and logo placement.
                             </span>
                           </div>
@@ -2160,12 +2457,9 @@ export default function App() {
                       </div>
                     </div>
                   </div>
-                </div>          ))}
-                  </div>
                 </div>
-              </div>
-            </div>
-          </>)}
+              </>
+            )}
           </div>
         )}
 
@@ -2193,6 +2487,18 @@ export default function App() {
                   </div>
 
                   <div className="space-y-4">
+                    <div>
+                      <label className="block text-[10px] uppercase tracking-widest text-zinc-400 font-mono font-bold mb-1.5">Admin Email Address *</label>
+                      <input 
+                        type="email" 
+                        required 
+                        placeholder="e.g. admin@markethub.pk" 
+                        value={adminEmailInput}
+                        onChange={(e) => setAdminEmailInput(e.target.value)}
+                        className="w-full bg-zinc-900 border border-zinc-800 rounded-none px-3.5 py-2.5 text-xs text-white focus:bg-zinc-900 focus:outline-none focus:border-zinc-600 font-mono shadow-inner mb-4"
+                      />
+                    </div>
+
                     <div>
                       <label className="block text-[10px] uppercase tracking-widest text-zinc-400 font-mono font-bold mb-1.5">Master Key Code *</label>
                       <input 
@@ -2229,7 +2535,7 @@ export default function App() {
                       <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
                       SYSTEM TERM SECURITY: ENCRYPTED HIGH PORTAL
                     </span>
-                    <h3 className="font-serif text-base text-white mt-1 uppercase font-black">Consortium Auditor Terminal</h3>
+                    <h3 className="font-serif text-base text-white mt-1 uppercase font-black">Consortium Auditor Terminal: <span className="font-mono text-zinc-300 font-medium normal-case">{adminEmailInput || "admin@markethub.pk"}</span></h3>
                   </div>
                   <button 
                     onClick={handleAdminSignOut}
@@ -2375,11 +2681,16 @@ export default function App() {
                         >
                           <div>
                             <span className="text-[8px] uppercase tracking-wider font-mono text-[#8e7355] font-black">{feed.brand}</span>
-                  <ChevronRight className="w-4 h-4 text-zinc-400" />
+                            <h5 className="font-serif text-xs text-zinc-900 font-bold uppercase mt-0.5">{feed.name}</h5>
+                            <span className="text-[9px] text-zinc-400 font-mono mt-1 block">Batch: {feed.batch} • Price: CHF {feed.price}</span>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-zinc-400" />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
+              )}
 
           {adminSubTab === 'kyc' && (
             <div className="bg-white border border-zinc-200 rounded-none p-6 space-y-4 shadow-sm text-left">
@@ -2508,107 +2819,13 @@ export default function App() {
             </div>
           )}
         </div>
-      )}
+      </div>
+    </>
+  )}
+</div>
+)}
 
-      {/* ----------------- 5. BUYER DASHBOARD ----------------- */}
-      {activeTab === 'buyer' && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8" id="buyer-tab">
-          
-          {/* Left side portfolio and tracking */}
-          <div className="lg:col-span-8 space-y-8">
-            
-            {/* Welcome card */}
-            <div className="bg-white border border-zinc-200 rounded-none p-6 relative overflow-hidden shadow-sm">
-              <span className="text-[9px] uppercase tracking-widest font-mono text-[#8e7355] bg-[#c5a880]/15 border border-[#c5a880]/30 px-2.5 py-1 rounded-none font-bold">Verified Collector Profile</span>
-              <h3 className="font-serif text-xl text-zinc-900 mt-3 uppercase font-black">Welcome back, Collector</h3>
-              <p className="text-xs text-zinc-600 mt-1 max-w-xl font-sans">
-                Your rare portfolio vault is currently valued at <span className="text-zinc-900 font-bold">$14,250 (+4.2% this month)</span>. 2 shipments are locked in transit, and your batch radar is actively scanning for vintage formulations.
-              </p>
-            </div>
 
-            {/* Glowing SVG Chart */}
-            <div className="bg-white border border-zinc-200 rounded-none p-6 space-y-4 shadow-sm">
-              <div className="flex justify-between items-center border-b border-zinc-100 pb-3">
-                <div>
-                  <h4 className="font-serif text-sm text-zinc-900 uppercase tracking-widest font-black">My Vault Valuation Ledger</h4>
-                  <p className="text-[10px] text-zinc-400 font-mono mt-0.5 uppercase font-bold">HISTORICAL PORTFOLIO APPRECIATION</p>
-                </div>
-                <span className="font-mono text-xs text-emerald-600 font-bold">+12.4% YoY</span>
-              </div>
-
-              {/* SVG Graph line chart */}
-              <div className="h-44 relative flex items-end">
-                <svg className="w-full h-full" viewBox="0 0 500 150">
-                  <defs>
-                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#c5a880" stopOpacity="0.15" />
-                      <stop offset="100%" stopColor="#c5a880" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                  {/* Grid lines */}
-                  <line x1="0" y1="40" x2="500" y2="40" stroke="#f4f4f5" strokeWidth="1" strokeDasharray="3,3" />
-                  <line x1="0" y1="80" x2="500" y2="80" stroke="#f4f4f5" strokeWidth="1" strokeDasharray="3,3" />
-                  <line x1="0" y1="120" x2="500" y2="120" stroke="#f4f4f5" strokeWidth="1" strokeDasharray="3,3" />
-                  
-                  {/* Filled Area */}
-                  <path d="M 0 130 Q 80 110 160 115 T 320 60 T 450 30 T 500 20 L 500 150 L 0 150 Z" fill="url(#chartGrad)" />
-                  {/* Line */}
-                  <path d="M 0 130 Q 80 110 160 115 T 320 60 T 450 30 T 500 20" fill="none" stroke="#c5a880" strokeWidth="2.5" />
-                  
-                  {/* Glowing dots */}
-                  <circle cx="320" cy="60" r="4" fill="#c5a880" />
-                  <circle cx="500" cy="20" r="4.5" fill="#8e7355" />
-                </svg>
-                
-                {/* Labels */}
-                <div className="absolute inset-x-0 bottom-0 flex justify-between font-mono text-[9px] text-zinc-400 border-t border-zinc-100 pt-2 font-bold">
-                  <span>JAN</span>
-                  <span>FEB</span>
-                  <span>MAR</span>
-                  <span>APR</span>
-                  <span>MAY</span>
-                  <span>JUN</span>
-                  <span>CURRENT (CHF 14,250)</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Swiss Escrow Ledger Timeline */}
-            <SwissLedgerTimeline 
-              ledger={ledger}
-              inspectedTx={inspectedTx}
-              onInspect={setInspectedTx}
-              onRelease={(id) => updateTxStatusOnServer(id, 'Released')}
-              onDispute={(id) => updateTxStatusOnServer(id, 'Disputed')}
-            />
-
-            {/* In-Flight Orders */}
-            <div className="bg-white border border-zinc-200 rounded-none p-6 space-y-4 shadow-sm">
-              <h4 className="font-serif text-sm text-zinc-900 uppercase tracking-widest font-black">In-Flight Escrow Locks</h4>
-              <div className="space-y-4">
-                {buyerOrders.map((order) => (
-                  <div key={order.id} className="p-4 bg-zinc-50 border border-zinc-200 rounded-none space-y-3">
-                    <div className="flex justify-between items-center text-xs">
-                      <div>
-                        <span className="font-mono text-[9px] text-[#8e7355] block font-bold">{order.id} • STATUS: {order.status}</span>
-                        <span className="font-serif font-black text-zinc-950 uppercase tracking-wide text-sm">{order.name}</span>
-                      </div>
-                      <span className="font-mono font-black text-[#8e7355]">${order.price}</span>
-                    </div>
-
-                    {/* Progress Bar steps */}
-                    <div className="grid grid-cols-4 gap-1 pt-1.5">
-                      {['Funded', 'Spectroscopy', 'In Transit', 'Completed'].map((st, i) => (
-                        <div key={i} className="space-y-1">
-                          <div className={`h-1 rounded-none ${i < order.step ? 'bg-[#c5a880]' : i === order.step ? 'bg-zinc-800 animate-pulse' : 'bg-zinc-200'}`}></div>
-                          <span className="text-[8px] font-mono uppercase text-zinc-400 text-center block font-bold">{st}</span>
-                        </div>
-                      ))}
-                    </div>
-          </div>
-        </>)}
-          </div>
-        )}
 
         {/* ----------------- 5. BUYER DASHBOARD ----------------- */}
         {activeTab === 'buyer' && (
@@ -3030,7 +3247,18 @@ export default function App() {
               
               <div className="flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#8e7355] font-black">{selectedProduct.brand}</span>
+                  {BRAND_LOGOS[selectedProduct.brand] ? (
+                    <div className="flex flex-col items-start border-l-2 border-[#c5a880] pl-2 py-0.5 mb-1.5">
+                      <span className="text-xs font-serif font-black tracking-widest leading-none" style={{ color: BRAND_LOGOS[selectedProduct.brand].color }}>
+                        {BRAND_LOGOS[selectedProduct.brand].text}
+                      </span>
+                      <span className="text-[7px] font-mono uppercase text-zinc-400 mt-0.5 tracking-wider font-bold">
+                        {BRAND_LOGOS[selectedProduct.brand].subtext}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#8e7355] font-black">{selectedProduct.brand}</span>
+                  )}
                   <h3 className="font-serif text-2xl text-zinc-950 font-black uppercase leading-tight">{selectedProduct.name}</h3>
                   
                   <div className="grid grid-cols-2 gap-3 text-xs font-mono pt-3 border-t border-zinc-100">
@@ -3116,7 +3344,18 @@ export default function App() {
                 <div className="grid grid-cols-2 gap-4 text-xs font-mono">
                   <div>
                     <span className="text-zinc-400 block uppercase text-[9px]">Asset Brand</span>
-                    <span className="text-zinc-800 font-bold block mt-1 uppercase">{checkoutItem.brand}</span>
+                    {BRAND_LOGOS[checkoutItem.brand] ? (
+                      <div className="flex flex-col items-start border-l-2 border-[#c5a880] pl-2 py-0.5 mt-1">
+                        <span className="text-[10px] font-serif font-black tracking-widest leading-none" style={{ color: BRAND_LOGOS[checkoutItem.brand].color }}>
+                          {BRAND_LOGOS[checkoutItem.brand].text}
+                        </span>
+                        <span className="text-[6.5px] font-mono uppercase text-zinc-400 tracking-wider">
+                          {BRAND_LOGOS[checkoutItem.brand].subtext}
+                        </span>
+                      </div>
+                    ) : (
+                      <span className="text-zinc-800 font-bold block mt-1 uppercase">{checkoutItem.brand}</span>
+                    )}
                   </div>
                   <div>
                     <span className="text-zinc-400 block uppercase text-[9px]">Asset Model</span>
@@ -3166,336 +3405,471 @@ export default function App() {
         </div>
       )}
 
-      {/* ----------------- PRIVATE PRIVACY COOKIE CONSENT BANNER ----------------- */}
-      <AnimatePresence>
-        {showCookieBanner && (
-          <motion.div 
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed bottom-6 right-6 left-6 md:left-auto md:max-w-md bg-white border border-zinc-300 shadow-2xl p-6 z-50 rounded-none relative"
-          >
-            <div className="absolute top-0 left-0 w-full h-[3px] bg-[#c5a880]"></div>
-            
-            <div className="space-y-4">
-              <div className="flex justify-between items-start gap-4">
-                <h5 className="font-serif text-sm font-black uppercase tracking-wider text-zinc-900 leading-tight">
-                  {showCookieSettings ? "At David M Robinson, Your Privacy Matters" : "At Market Hub, Your Privacy Matters"}
-                </h5>
-                <button 
-                  onClick={() => setShowCookieBanner(false)}
-                  className="text-zinc-400 hover:text-zinc-800 transition-colors p-1"
+
+      {/* ===================== FLOATING CHAT BOT ===================== */}
+      <div className="fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-3">
+        
+        {/* Chat Window */}
+        <AnimatePresence>
+          {isChatOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.95 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="w-80 sm:w-96 bg-white shadow-2xl border border-zinc-200 rounded-none overflow-hidden flex flex-col"
+              style={{ maxHeight: '520px' }}
+            >
+              {/* Chat Header */}
+              <div className="bg-zinc-950 px-4 py-3 flex items-center justify-between relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(#c5a880_1px,transparent_1px)] [background-size:16px_16px] opacity-[0.06] pointer-events-none" />
+                <div className="flex items-center gap-3 relative z-10">
+                  <div className="relative">
+                    <div className="w-8 h-8 rounded-full bg-[#c5a880]/20 border border-[#c5a880]/40 flex items-center justify-center">
+                      <Sparkles className="w-4 h-4 text-[#c5a880]" />
+                    </div>
+                    <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 rounded-full border border-zinc-950" />
+                  </div>
+                  <div>
+                    <span className="font-serif text-xs font-black uppercase tracking-wider text-white block">MarketHub Concierge</span>
+                    <span className="text-[9px] font-mono text-emerald-400">● Online · Replies instantly</span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsChatOpen(false)}
+                  className="relative z-10 p-1 text-zinc-400 hover:text-white transition-colors cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
-              <p className="text-xs font-serif text-zinc-600 leading-relaxed">
-                We use cookies to enhance your browsing experience. By clicking "Accept All Cookies", you agree to our use of cookies.
-              </p>
-
-              {/* Settings Expanded Panel */}
-              {showCookieSettings && (
-                <div className="border-t border-zinc-200 pt-4 mt-4 space-y-4 font-serif text-xs">
-                  <div className="space-y-2 pb-2.5 border-b border-zinc-100">
-                    <div className="flex justify-between items-center font-bold text-zinc-800">
-                      <span>Necessary Cookies</span>
-                      <span className="text-[9px] font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded uppercase">Required</span>
-                    </div>
-                    <p className="text-[11px] text-zinc-500 leading-relaxed">
-                      Necessary cookies enable core functionality such as page navigation and access to secure areas. The website cannot function properly without these cookies, and can only be disabled by changing your browser preferences.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 pb-2.5 border-b border-zinc-100">
-                    <div className="flex justify-between items-center font-bold text-zinc-800">
-                      <span>Statistics</span>
-                      <div className="flex gap-1.5 font-mono text-[9px]">
-                        <button 
-                          type="button"
-                          onClick={() => setCookieAnalytics(true)}
-                          className={`px-2.5 py-1 rounded transition-all cursor-pointer ${cookieAnalytics ? 'bg-zinc-900 text-white font-bold' : 'bg-zinc-100 text-zinc-400 hover:bg-zinc-200'}`}
-                        >
-                          On
-                        </button>
-                        <button 
-                          type="button"
-                          onClick={() => setCookieAnalytics(false)}
-                          className={`px-2.5 py-1 rounded transition-all cursor-pointer ${!cookieAnalytics ? 'bg-zinc-900 text-white font-bold' : 'bg-zinc-100 text-zinc-400 hover:bg-zinc-200'}`}
-                        >
-                          Off
-                        </button>
+              {/* Messages */}
+              <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-zinc-50" style={{ minHeight: '280px', maxHeight: '320px' }}>
+                {chatMessages.map((msg, i) => (
+                  <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} gap-2`}>
+                    {msg.role === 'bot' && (
+                      <div className="w-6 h-6 rounded-full bg-zinc-900 flex items-center justify-center shrink-0 mt-1">
+                        <Sparkles className="w-3 h-3 text-[#c5a880]" />
                       </div>
-                    </div>
-                    <p className="text-[11px] text-zinc-500 leading-relaxed">
-                      These cookies help us understand how visitors use our website so we can improve performance and your browsing experience.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center font-bold text-zinc-800">
-                      <span>Marketing</span>
-                      <div className="flex gap-1.5 font-mono text-[9px]">
-                        <button 
-                          type="button"
-                          onClick={() => setCookieMarketing(true)}
-                          className={`px-2.5 py-1 rounded transition-all cursor-pointer ${cookieMarketing ? 'bg-zinc-900 text-white font-bold' : 'bg-zinc-100 text-zinc-400 hover:bg-zinc-200'}`}
-                        >
-                          On
-                        </button>
-                        <button 
-                          type="button"
-                          onClick={() => setCookieMarketing(false)}
-                          className={`px-2.5 py-1 rounded transition-all cursor-pointer ${!cookieMarketing ? 'bg-zinc-900 text-white font-bold' : 'bg-zinc-100 text-zinc-400 hover:bg-zinc-200'}`}
-                        >
-                          Off
-                        </button>
+                    )}
+                    <div className={`max-w-[80%] space-y-1`}>
+                      <div className={`px-3 py-2 text-xs leading-relaxed rounded-none ${
+                        msg.role === 'user'
+                          ? 'bg-zinc-900 text-white font-mono'
+                          : 'bg-white text-zinc-800 border border-zinc-200 font-sans shadow-sm'
+                      }`}>
+                        {msg.text}
                       </div>
+                      <span className={`text-[9px] font-mono text-zinc-400 block ${msg.role === 'user' ? 'text-right' : 'text-left'}`}>{msg.time}</span>
                     </div>
-                    <p className="text-[11px] text-zinc-500 leading-relaxed">
-                      These cookies help us measure campaign effectiveness and deliver more relevant advertising and marketing content.
-                    </p>
                   </div>
-                </div>
-              )}
+                ))}
+                {isBotTyping && (
+                  <div className="flex justify-start gap-2">
+                    <div className="w-6 h-6 rounded-full bg-zinc-900 flex items-center justify-center shrink-0">
+                      <Sparkles className="w-3 h-3 text-[#c5a880]" />
+                    </div>
+                    <div className="bg-white border border-zinc-200 px-3 py-2 rounded-none shadow-sm flex gap-1 items-center">
+                      {[0,1,2].map(d => (
+                        <motion.div key={d} className="w-1.5 h-1.5 bg-zinc-400 rounded-full"
+                          animate={{ y: [0, -4, 0] }}
+                          transition={{ duration: 0.6, repeat: Infinity, delay: d * 0.15 }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
 
-              {/* Action buttons exactly matching the watch site */}
-              <div className="flex flex-col gap-2 pt-2 text-center">
-                <div className="flex gap-2">
-                  <button 
-                    onClick={() => handleSaveCookieConsent(true, true, true)}
-                    className="flex-1 bg-black hover:bg-zinc-800 text-white font-serif tracking-widest text-[10px] uppercase py-3.5 transition-all duration-300 font-bold cursor-pointer"
+              {/* Quick replies */}
+              <div className="px-4 py-2 bg-white border-t border-zinc-100 flex gap-2 overflow-x-auto">
+                {['How escrow works?', 'Authentication process', 'Contact support'].map((q, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { setChatInput(q); }}
+                    className="shrink-0 text-[9px] font-mono uppercase tracking-widest text-[#8e7355] border border-[#c5a880]/30 bg-[#c5a880]/5 px-2.5 py-1 hover:bg-[#c5a880]/15 transition-colors cursor-pointer whitespace-nowrap"
                   >
-                    Accept All Cookies
+                    {q}
                   </button>
-                  <button 
-                    onClick={() => handleSaveCookieConsent(false, false, false)}
-                    className="flex-1 border border-zinc-300 hover:bg-zinc-50 text-zinc-700 font-serif tracking-widest text-[10px] uppercase py-3.5 transition-all duration-300 font-bold cursor-pointer"
-                  >
-                    Reject All Cookies
-                  </button>
-                </div>
-                
-                <button 
-                  type="button"
-                  onClick={() => setShowCookieSettings(!showCookieSettings)}
-                  className="text-[10px] text-zinc-500 hover:text-black font-serif underline tracking-wide pt-1 transition-all cursor-pointer"
+                ))}
+              </div>
+
+              {/* Input */}
+              <form onSubmit={handleSendChat} className="px-4 py-3 bg-white border-t border-zinc-200 flex gap-2">
+                <input
+                  type="text"
+                  value={chatInput}
+                  onChange={e => setChatInput(e.target.value)}
+                  placeholder="Type your message..."
+                  className="flex-1 bg-zinc-50 border border-zinc-200 rounded-none px-3 py-2 text-xs text-zinc-900 focus:outline-none focus:border-zinc-800 font-sans placeholder-zinc-400"
+                />
+                <button
+                  type="submit"
+                  disabled={!chatInput.trim()}
+                  className="bg-zinc-950 hover:bg-zinc-800 text-white px-3 py-2 rounded-none font-serif text-[10px] uppercase tracking-widest font-bold disabled:opacity-40 cursor-pointer transition-all"
                 >
-                  {showCookieSettings ? "Hide Settings" : "Settings"}
+                  Send
                 </button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              </form>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* ----------------- MARKETHUB LUXURY FOOTER ----------------- */}
-      <footer className="bg-white border-t border-zinc-200 mt-28 py-16 text-zinc-800" id="markethub-footer">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+        {/* Chat Toggle Button */}
+        <motion.button
+          onClick={() => { setIsChatOpen(prev => !prev); setChatUnread(0); }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="relative bg-zinc-950 hover:bg-zinc-800 text-white px-5 py-3.5 rounded-none shadow-xl font-serif text-xs uppercase tracking-widest font-black flex items-center gap-2.5 cursor-pointer transition-all border border-zinc-800"
+          style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(197,168,128,0.1)' }}
+        >
+          <Sparkles className="w-3.5 h-3.5 text-[#c5a880]" />
+          Chat with Concierge
+          {chatUnread > 0 && !isChatOpen && (
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#c5a880] rounded-full flex items-center justify-center text-[9px] font-black text-zinc-950"
+            >
+              {chatUnread}
+            </motion.span>
+          )}
+        </motion.button>
+      </div>
+
+      <footer className="bg-zinc-950 border-t border-zinc-800 mt-12 text-zinc-300" id="markethub-footer">
+        {/* Gold top accent */}
+        <div className="h-[3px] bg-gradient-to-r from-[#8e7355] via-[#c5a880] to-[#8e7355]" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 py-12">
           
-          {/* Top Row: Newsletter Signup and Socials */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-zinc-200">
+          {/* Top Row: Brand + Newsletter Signup and Socials */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-10 border-b border-zinc-800">
             
-            {/* Newsletter Column */}
-            <div className="lg:col-span-7 space-y-6">
-              <h4 className="font-serif text-lg font-black tracking-widest text-zinc-950 uppercase">
-                SUBSCRIBE TO OUR EMAILS
-              </h4>
-              
-              <div className="space-y-4">
-                <p className="text-xs font-serif text-zinc-500 uppercase tracking-widest">
-                  I'd like to hear about...
-                </p>
-                
-                {/* Topic Pills Row */}
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {[
-                    { label: "EVERYTHING", icon: "⊞" },
-                    { label: "FRAGRANCES", icon: "🌹" },
-                    { label: "VERIFICATION", icon: "🔬" },
-                    { label: "ESCROW", icon: "🔐" }
-                  ].map((topic) => (
-                    <button
-                      key={topic.label}
-                      onClick={() => alert(`Preferences updated for ${topic.label} updates.`)}
-                      className="border border-zinc-200 hover:border-zinc-800 hover:bg-zinc-50 text-[9px] font-serif uppercase tracking-widest px-4 py-2.5 transition-all duration-300 font-bold flex items-center gap-1.5 cursor-pointer bg-white"
-                    >
-                      <span>{topic.icon}</span>
-                      <span>{topic.label}</span>
-                    </button>
-                  ))}
+            {/* Brand Column */}
+            <div className="lg:col-span-4 space-y-5">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <Sparkles className="w-4 h-4 text-[#c5a880]" />
+                  <span className="font-serif font-black tracking-[0.2em] text-lg text-white uppercase">MarketHub</span>
                 </div>
+                <span className="text-[9px] tracking-[0.4em] font-mono text-zinc-500 uppercase block">Geneva Registry • Est. 2026</span>
               </div>
-
-              {/* Email Form */}
-              <form 
-                onSubmit={(e) => { 
-                  e.preventDefault(); 
-                  alert("Subscription successful. You are now part of the MarketHub premium registry mailing list."); 
-                }} 
-                className="max-w-md pt-2"
+              <p className="text-xs text-zinc-400 font-sans leading-relaxed max-w-xs">
+                The world's most trusted luxury fragrance marketplace. Every listing verified by Swiss spectroscopy. Every payment protected by escrow.
+              </p>
+              {/* Social icons */}
+              <div className="flex items-center gap-3">
+                {[
+                  { 
+                    icon: (
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path d="M9 8H7v3h2v9h3v-9h3l.5-3H12V6c0-.88.39-1 1-1h2V2h-3c-2.9 0-4 1.63-4 4v2z" />
+                      </svg>
+                    ), 
+                    title: 'Facebook', 
+                    link: footerFacebookLink 
+                  },
+                  { 
+                    icon: (
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01" />
+                      </svg>
+                    ), 
+                    title: 'Instagram', 
+                    link: footerInstagramLink 
+                  },
+                  { 
+                    icon: (
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                      </svg>
+                    ), 
+                    title: 'Twitter / X', 
+                    link: footerTwitterLink 
+                  },
+                  { 
+                    icon: (
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.503-5.729-1.459L0 24zm6.59-4.846c1.666.988 3.523 1.51 5.42 1.51 5.51 0 9.993-4.483 9.997-9.995.002-2.67-1.037-5.18-2.927-7.072s-4.41-2.923-7.086-2.923c-5.526 0-10.01 4.484-10.014 9.997-.002 1.96.512 3.868 1.489 5.568L1.87 20.89l4.777-1.736z" />
+                      </svg>
+                    ), 
+                    title: 'WhatsApp', 
+                    link: `https://wa.me/${footerWhatsAppNumber.replace(/[\s+]/g, '')}` 
+                  },
+                ].map((s, i) => (
+                  <button
+                    key={i}
+                    onClick={() => window.open(s.link, '_blank')}
+                    title={s.title}
+                    className="w-8 h-8 rounded-full border border-zinc-700 flex items-center justify-center hover:border-[#c5a880] text-zinc-400 hover:text-[#c5a880] hover:scale-110 hover:shadow-[0_0_12px_rgba(197,168,128,0.3)] transition-all cursor-pointer"
+                  >
+                    {s.icon}
+                  </button>
+                ))}
+              </div>
+              {/* Newsletter */}
+              <form
+                onSubmit={(e) => { e.preventDefault(); alert("Subscribed! You're now part of the MarketHub premium mailing list."); }}
+                className="pt-1"
               >
-                <div className="relative border-b border-zinc-300 focus-within:border-zinc-800 transition-colors">
+                <p className="text-[9px] font-mono uppercase tracking-widest text-zinc-500 mb-2">Subscribe to Updates</p>
+                <div className="flex gap-0">
                   <input
                     type="email"
                     required
-                    placeholder="Email address"
-                    className="w-full bg-transparent py-3 pr-10 text-xs font-serif placeholder-zinc-400 focus:outline-none text-zinc-900"
+                    placeholder="your@email.com"
+                    className="flex-1 bg-zinc-900 border border-zinc-700 focus:border-[#c5a880] px-3 py-2 text-xs text-white focus:outline-none font-mono placeholder-zinc-600"
                   />
                   <button
                     type="submit"
-                    className="absolute right-0 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-900 text-sm transition-colors cursor-pointer font-bold"
-                    aria-label="Submit Email Address"
+                    className="bg-[#c5a880] hover:bg-[#b8976d] text-zinc-950 px-4 py-2 font-serif text-[9px] uppercase tracking-widest font-black cursor-pointer transition-colors"
                   >
                     →
                   </button>
                 </div>
               </form>
-
-              {/* Social Media Row */}
-              <div className="flex items-center gap-5 pt-4">
-                <button 
-                  onClick={() => alert("MarketHub on Facebook — Coming Soon!")}
-                  className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:border-[#c5a880] text-zinc-500 hover:text-zinc-950 transition-all cursor-pointer text-xs font-bold"
-                  title="Facebook"
-                >
-                  f
-                </button>
-                <button 
-                  onClick={() => alert("MarketHub on Instagram — @markethub.pk")}
-                  className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:border-[#c5a880] text-zinc-500 hover:text-zinc-950 transition-all cursor-pointer text-xs"
-                  title="Instagram"
-                >
-                  📷
-                </button>
-                <button 
-                  onClick={() => alert("MarketHub on WhatsApp — +92 300 000 0000")}
-                  className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:border-[#c5a880] text-zinc-500 hover:text-zinc-950 transition-all cursor-pointer text-xs"
-                  title="WhatsApp"
-                >
-                  💬
-                </button>
-                <button 
-                  onClick={() => alert("MarketHub on YouTube — Subscribe for fragrance reviews")}
-                  className="w-8 h-8 rounded-full border border-zinc-200 flex items-center justify-center hover:border-[#c5a880] text-zinc-500 hover:text-zinc-950 transition-all cursor-pointer text-xs"
-                  title="YouTube"
-                >
-                  ▶
-                </button>
-              </div>
-
             </div>
 
             {/* Spacer */}
-            <div className="hidden lg:block lg:col-span-5"></div>
+            <div className="hidden lg:block lg:col-span-1" />
+
+            {/* Links columns */}
+            <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="space-y-3">
+                <h5 className="text-[9px] font-mono uppercase tracking-widest text-[#c5a880] font-black">SHOP</h5>
+                <ul className="space-y-2">
+                  {[
+                    { label: 'All Fragrances', action: () => { setSearchQuery(''); setActiveTab('marketplace'); } },
+                    { label: 'Rare Vintage', action: () => { setSearchQuery('Creed'); setActiveTab('marketplace'); } },
+                    { label: 'Niche Collections', action: () => { setSearchQuery('Tom Ford'); setActiveTab('marketplace'); } },
+                    { label: 'New Arrivals', action: () => { setSearchQuery(''); setActiveTab('marketplace'); } },
+                    { label: 'Gift Vouchers', action: () => alert('Exploring Gift Sets & Luxury Vouchers.') },
+                  ].map((link, i) => (
+                    <li key={i}>
+                      <button
+                        onClick={link.action}
+                        className="text-[11px] font-serif text-zinc-400 hover:text-[#c5a880] transition-colors cursor-pointer uppercase tracking-wider text-left"
+                      >
+                        {link.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <h5 className="text-[9px] font-mono uppercase tracking-widest text-[#c5a880] font-black">SERVICES</h5>
+                <ul className="space-y-2">
+                  {[
+                    { label: 'AI Verification', action: () => setActiveTab('verify') },
+                    { label: 'Seller Onboarding', action: () => setActiveTab('seller') },
+                    { label: 'Escrow Protection', action: () => alert('Escrow protection terms and conditions.') },
+                    { label: 'Batch Auth', action: () => alert('Initiating private batch valuation request...') },
+                    { label: 'Buyer Protection', action: () => setActiveTab('buyer') },
+                  ].map((link, i) => (
+                    <li key={i}>
+                      <button
+                        onClick={link.action}
+                        className="text-[11px] font-serif text-zinc-400 hover:text-[#c5a880] transition-colors cursor-pointer uppercase tracking-wider text-left"
+                      >
+                        {link.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <h5 className="text-[9px] font-mono uppercase tracking-widest text-[#c5a880] font-black">ABOUT</h5>
+                <ul className="space-y-2">
+                  {[
+                    { label: 'Our Story', action: () => alert('MarketHub story — founded in Geneva, 2026.') },
+                    { label: 'Journal & Blog', action: () => alert('Opening MarketHub luxury blog...') },
+                    { label: 'Concierge Desk', action: () => alert('Concierge: WhatsApp +92 300 000 0000') },
+                    { label: 'Showrooms', action: () => alert('Karachi, Lahore & Islamabad showrooms.') },
+                    { label: 'Partners', action: () => alert('Geneva Registry Consortium Partners.') },
+                  ].map((link, i) => (
+                    <li key={i}>
+                      <button
+                        onClick={link.action}
+                        className="text-[11px] font-serif text-zinc-400 hover:text-[#c5a880] transition-colors cursor-pointer uppercase tracking-wider text-left"
+                      >
+                        {link.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="space-y-3">
+                <h5 className="text-[9px] font-mono uppercase tracking-widest text-[#c5a880] font-black">SUPPORT</h5>
+                <ul className="space-y-2">
+                  {[
+                    { label: `Contact Us`, action: () => alert(`Support: ${footerSupportEmail}`) },
+                    { label: 'Returns & Refunds', action: () => alert('14-day escrow cancellation policy.') },
+                    { label: 'Delivery Details', action: () => alert('TCS & Leopard Courier shipping options.') },
+                    { label: 'Privacy & Cookies', action: () => setShowCookieSettings(true) },
+                    { label: 'Help Center', action: () => alert('Opening MarketHub Help Center...') },
+                  ].map((link, i) => (
+                    <li key={i}>
+                      <button
+                        onClick={link.action}
+                        className="text-[11px] font-serif text-zinc-400 hover:text-[#c5a880] transition-colors cursor-pointer uppercase tracking-wider text-left"
+                      >
+                        {link.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
 
           </div>
 
-          {/* Middle Row: Links Columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-16">
-            
-            {/* SHOP COLUMN */}
-            <div className="space-y-4">
-              <h5 className="text-[11px] font-serif uppercase tracking-widest text-zinc-950 font-black">
-                SHOP
-              </h5>
-              <ul className="space-y-2.5 text-xs font-serif text-zinc-500 uppercase tracking-wider">
-                <li><button onClick={() => { setSearchQuery(''); setActiveTab('marketplace'); }} className="hover:text-zinc-900 transition-colors cursor-pointer">All Fragrances</button></li>
-                <li><button onClick={() => { setSearchQuery('Creed'); setActiveTab('marketplace'); }} className="hover:text-zinc-900 transition-colors cursor-pointer">Rare Vintage Editions</button></li>
-                <li><button onClick={() => { setSearchQuery('Tom Ford'); setActiveTab('marketplace'); }} className="hover:text-zinc-900 transition-colors cursor-pointer">Niche Collections</button></li>
-                <li><button onClick={() => { setSearchQuery('Xerjoff'); setActiveTab('marketplace'); }} className="hover:text-zinc-900 transition-colors cursor-pointer">Niche Houses</button></li>
-                <li><button onClick={() => alert("Exploring Gift Sets & Luxury Vouchers.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Gift Vouchers</button></li>
-                <li><button onClick={() => alert("Exploring Decant & Sample Collections.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Decants &amp; Samples</button></li>
-              </ul>
-            </div>
-
-            {/* SERVICES COLUMN */}
-            <div className="space-y-4">
-              <h5 className="text-[11px] font-serif uppercase tracking-widest text-zinc-950 font-black">
-                SERVICES
-              </h5>
-              <ul className="space-y-2.5 text-xs font-serif text-zinc-500 uppercase tracking-wider">
-                <li><button onClick={() => setActiveTab('verify')} className="hover:text-zinc-900 transition-colors cursor-pointer">AI Verification Portal</button></li>
-                <li><button onClick={() => setActiveTab('seller')} className="hover:text-zinc-900 transition-colors cursor-pointer">Seller Onboarding</button></li>
-                <li><button onClick={() => alert("Initiating private batch valuation request...")} className="hover:text-zinc-900 transition-colors cursor-pointer">Batch Authentication</button></li>
-                <li><button onClick={() => alert("Escrow protection terms and conditions.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Escrow Protection</button></li>
-                <li><button onClick={() => alert("Initiating professional fragrance valuation...")} className="hover:text-zinc-900 transition-colors cursor-pointer">Valuations</button></li>
-                <li><button onClick={() => alert("White-glove packaging & shipping service.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Premium Shipping</button></li>
-              </ul>
-            </div>
-
-            {/* ABOUT COLUMN */}
-            <div className="space-y-4">
-              <h5 className="text-[11px] font-serif uppercase tracking-widest text-zinc-950 font-black">
-                ABOUT
-              </h5>
-              <ul className="space-y-2.5 text-xs font-serif text-zinc-500 uppercase tracking-wider">
-                <li><button onClick={() => alert("MarketHub — Pakistan's premier luxury fragrance marketplace.")} className="hover:text-zinc-900 transition-colors cursor-pointer">MarketHub Story</button></li>
-                <li><button onClick={() => alert("Opening MarketHub fragrance blog & journal...")} className="hover:text-zinc-900 transition-colors cursor-pointer">Journal &amp; Blog</button></li>
-                <li><button onClick={() => alert("Brochure PDF catalog queued for download.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Brochure</button></li>
-                <li><button onClick={() => alert("Initiating luxury concierge desk — WhatsApp: +92 300 000 0000")} className="hover:text-zinc-900 transition-colors cursor-pointer">Concierge</button></li>
-                <li><button onClick={() => alert("Showrooms: Karachi Defence, Lahore Gulberg, Islamabad F-7.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Showrooms</button></li>
-                <li><button onClick={() => alert("Join MarketHub. Positions available in Karachi & Lahore.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Careers</button></li>
-              </ul>
-            </div>
-
-            {/* INFO COLUMN */}
-            <div className="space-y-4">
-              <h5 className="text-[11px] font-serif uppercase tracking-widest text-zinc-950 font-black">
-                INFO
-              </h5>
-              <ul className="space-y-2.5 text-xs font-serif text-zinc-500 uppercase tracking-wider">
-                <li><button onClick={() => alert("Support: support@markethub.pk | WhatsApp: +92 300 000 0000")} className="hover:text-zinc-900 transition-colors cursor-pointer">Contact Us</button></li>
-                <li><button onClick={() => alert("Showing billing & escrow payment details.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Orders &amp; Payment</button></li>
-                <li><button onClick={() => alert("14-day escrow cancellation policy. Full refund guaranteed.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Returns &amp; Refunds</button></li>
-                <li><button onClick={() => alert("TCS, Leopard & Pakistan Post — fully insured shipping.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Delivery Information</button></li>
-                <li><button onClick={() => alert("Pick up available at Karachi & Lahore vaults.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Click &amp; Collect</button></li>
-                <li><button onClick={() => alert("0% interest payment plans via Jazz Cash & EasyPaisa.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Interest Free</button></li>
-                <li><button onClick={() => alert("AI Authenticity assurance on every verified listing.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Authenticity Guarantee</button></li>
-                <li><button onClick={() => alert("MarketHub ethical sourcing & trade compliance policy.")} className="hover:text-zinc-900 transition-colors cursor-pointer">Ethical Sourcing</button></li>
-                <li><button onClick={() => setShowCookieSettings(true)} className="hover:text-zinc-900 transition-colors cursor-pointer">Privacy Policy</button></li>
-                <li><button onClick={() => alert("Viewing MarketHub Terms of Registry...")} className="hover:text-zinc-900 transition-colors cursor-pointer">Terms &amp; Conditions</button></li>
-              </ul>
-            </div>
-
-          </div>
-
-          {/* Bottom Row: Payment Badges & Legal Text */}
-          <div className="pt-8 border-t border-zinc-150 space-y-6">
-            
-            {/* Payment Icons — Pakistan Relevant */}
+          {/* Payment Badges */}
+          <div className="py-8 border-b border-zinc-800">
+            <p className="text-[9px] font-mono uppercase tracking-[0.2em] text-zinc-500 mb-4">Secure Cryptographic & Escrow Settlement Channels</p>
             <div className="flex flex-wrap items-center gap-3">
               {[
-                { name: "Jazz Cash", bg: "bg-red-600 text-white font-black" },
-                { name: "EasyPaisa", bg: "bg-emerald-600 text-white font-black" },
-                { name: "Visa", bg: "bg-blue-800 text-white font-bold" },
-                { name: "Mastercard", bg: "bg-amber-600 text-white font-bold" },
-                { name: "PayPal", bg: "bg-blue-600 text-white font-black" },
-                { name: "Bank Transfer", bg: "bg-zinc-800 text-white font-bold" },
-                { name: "HBL Pay", bg: "bg-green-800 text-white font-bold" },
-                { name: "Meezan", bg: "bg-teal-700 text-white font-bold" },
-              ].map((badge) => (
-                <span 
+                { 
+                  name: 'JazzCash', 
+                  icon: (
+                    <div className="flex items-center gap-1.5 font-sans font-black text-[9px] tracking-tighter text-[#ECA921]">
+                      <span className="w-2.5 h-2.5 bg-[#C8102E] rounded-full flex items-center justify-center text-[6px] text-white">J</span>
+                      <span>Jazz<span className="text-[#C8102E]">Cash</span></span>
+                    </div>
+                  ),
+                  bg: 'bg-black border-[#ECA921]/30 hover:border-[#ECA921]'
+                },
+                { 
+                  name: 'EasyPaisa', 
+                  icon: (
+                    <div className="flex items-center gap-1.5 font-sans font-extrabold text-[9px] text-[#00A859]">
+                      <span className="w-2.5 h-2.5 bg-[#00A859] rounded-full flex items-center justify-center text-[6px] text-white">e</span>
+                      <span>easypaisa</span>
+                    </div>
+                  ),
+                  bg: 'bg-white border-[#00A859]/30 hover:border-[#00A859]'
+                },
+                { 
+                  name: 'Visa', 
+                  icon: (
+                    <svg className="w-8 h-3 text-[#1A1F71] fill-current" viewBox="0 0 24 8">
+                      <path d="M3.7 7.9L5.8.1h1.7l-2 7.8H3.7zm7-7.8l-1.2 5.5-.2-.8c-.3-1.1-1.2-2.3-2.4-2.9L8.4 7.9h1.7L12.7.1h-2zm4.3 4.2c.1-.8.9-1.3 1.8-1.4.9-.1 1.7.3 1.8.8.1.5-.3 1-.8 1.1-.9.2-1.7-.1-2.1-.5zm4-2.8l-1.6 7.4h-1.6L21 1.5h1.6z" />
+                    </svg>
+                  ),
+                  bg: 'bg-[#1A1F71]/5 border-[#1A1F71]/30 hover:border-[#1A1F71]'
+                },
+                { 
+                  name: 'Mastercard', 
+                  icon: (
+                    <div className="flex items-center gap-1">
+                      <svg className="w-5 h-3.5" viewBox="0 0 24 16">
+                        <circle cx="8" cy="8" r="7" fill="#EB001B" opacity="0.9" />
+                        <circle cx="16" cy="8" r="7" fill="#F79E1B" opacity="0.9" />
+                      </svg>
+                      <span className="text-[7.5px] font-sans font-black tracking-normal text-zinc-900">mastercard</span>
+                    </div>
+                  ),
+                  bg: 'bg-white border-zinc-200 hover:border-[#F79E1B]'
+                },
+                { 
+                  name: 'PayPal', 
+                  icon: (
+                    <div className="flex items-center gap-1 font-sans font-black italic text-[9px] text-[#003087]">
+                      <span className="text-[#0079C1]">P</span><span>P</span>
+                      <span className="text-[7px] tracking-tighter not-italic text-zinc-600 font-semibold uppercase">PayPal</span>
+                    </div>
+                  ),
+                  bg: 'bg-white border-zinc-200 hover:border-[#003087]'
+                },
+                { 
+                  name: 'Bank Transfer', 
+                  icon: (
+                    <div className="flex items-center gap-1.5 text-zinc-200">
+                      <svg className="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                      </svg>
+                      <span className="font-mono text-[8px] uppercase tracking-wider text-zinc-400">IBAN Swift</span>
+                    </div>
+                  ),
+                  bg: 'bg-zinc-900 border-zinc-800 hover:border-zinc-500'
+                },
+                { 
+                  name: 'HBL Pay', 
+                  icon: (
+                    <div className="flex items-center gap-1 font-sans font-extrabold text-[9px] text-white">
+                      <span className="bg-[#006A4E] text-[6.5px] px-1.5 py-0.5 rounded font-black">HBL</span>
+                      <span className="text-[#006A4E] font-black text-[7.5px]">PAY</span>
+                    </div>
+                  ),
+                  bg: 'bg-white border-[#006A4E]/30 hover:border-[#006A4E]'
+                },
+                { 
+                  name: 'Meezan Bank', 
+                  icon: (
+                    <div className="flex items-center gap-1 font-sans text-[8.5px] font-black text-[#8C1D40]">
+                      <svg className="w-3.5 h-3.5 text-[#8C1D40] fill-current" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L12 18l5.3-8.8c.45.83.7 1.79.7 2.8 0 3.31-2.69 6-6 6z" />
+                      </svg>
+                      <span>Meezan</span>
+                    </div>
+                  ),
+                  bg: 'bg-white border-[#8C1D40]/30 hover:border-[#8C1D40]'
+                },
+              ].map(badge => (
+                <div 
                   key={badge.name} 
-                  className={`px-3 py-1.5 text-[9px] uppercase tracking-widest font-mono select-none rounded-none cursor-default ${badge.bg}`}
+                  className={`px-3 py-2 rounded-none border ${badge.bg} flex items-center justify-center select-none hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer shadow-xs min-h-[32px]`}
                 >
-                  {badge.name}
-                </span>
+                  {badge.icon}
+                </div>
               ))}
+              <span className="px-3 py-1.5 text-[9px] font-mono text-emerald-400 border border-emerald-800/40 bg-emerald-950/20 uppercase tracking-widest font-bold flex items-center gap-1.5 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                🔒 SSL 256-BIT ENCRYPTED
+              </span>
             </div>
+          </div>
 
-            {/* Legal Text — MarketHub */}
-            <p className="text-[10px] text-zinc-400 font-serif leading-relaxed text-left max-w-5xl">
-              MarketHub operates as a secure peer-to-peer luxury fragrance marketplace and escrow facilitator. All listings undergo AI-assisted Swiss Olfactory Verification Protocol before going live. Escrow funds are held securely and released only upon buyer confirmation of authenticity. MarketHub is not a financial institution or lender. Payment processing powered by Jazz Cash, EasyPaisa, and international card networks (Visa, Mastercard, PayPal). All prices in CHF are indicative; PKR equivalent shown at checkout. By using MarketHub you agree to our Terms &amp; Conditions and Privacy Policy.
-            </p>
-
-            {/* Final Copyright */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pt-2 text-[9px] font-mono uppercase tracking-widest text-zinc-400">
-              <span>© {new Date().getFullYear()} MarketHub. All Rights Reserved.</span>
-              <span className="text-[#8e7355] font-bold">Basel &amp; Geneva Secure Platform v3.5</span>
+          {/* Legal + Copyright */}
+          <div className="pt-6 space-y-3">
+            {isAdminAuthenticated ? (
+              <div className="space-y-1">
+                <label className="block text-[8px] font-mono text-zinc-400 font-bold uppercase">Legal Platform Text (Admin Edit)</label>
+                <textarea
+                  value={footerLegalText}
+                  onChange={(e) => setFooterLegalText(e.target.value)}
+                  rows={2}
+                  className="w-full bg-zinc-900 border border-zinc-700 p-2 text-[10px] text-white font-sans focus:outline-none rounded-none"
+                />
+              </div>
+            ) : (
+              <p className="text-[9px] text-zinc-600 font-sans leading-relaxed uppercase max-w-5xl">
+                {footerLegalText}
+              </p>
+            )}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pt-2 border-t border-zinc-800 text-[9px] font-mono uppercase tracking-widest text-zinc-600">
+              {isAdminAuthenticated ? (
+                <div className="flex gap-4 w-full">
+                  <div className="flex-1">
+                    <label className="block text-[8px] font-mono text-[#8e7355] font-bold uppercase mb-1">Copyright Notice (Admin Edit)</label>
+                    <input
+                      type="text"
+                      value={footerCopyright}
+                      onChange={(e) => setFooterCopyright(e.target.value)}
+                      className="bg-zinc-900 border border-zinc-700 px-2 py-1 text-[10px] text-white w-full font-sans rounded-none"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <span>{footerCopyright}</span>
+                  <span className="text-[#8e7355] font-bold">Basel &amp; Geneva Secure Platform v3.5</span>
+                </>
+              )}
             </div>
-
           </div>
 
         </div>
