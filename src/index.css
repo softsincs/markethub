@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cinzel", "Playfair Display", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-gold: #c5a880;
+  --color-gold-light: #e2d3be;
+  --color-gold-dark: #8e7355;
+  --color-swiss-red: #da291c;
+  --color-obsidian: #0b0908;
+  --color-obsidian-card: #151312;
+  --color-obsidian-border: #262321;
+  --color-cream: #f5f2f0;
+}
+
+@layer utilities {
+  .bg-noise {
+    background-image: radial-gradient(rgba(197, 168, 128, 0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+}

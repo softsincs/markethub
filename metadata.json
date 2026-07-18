@@ -1,0 +1,8 @@
+{
+  "name": "Market Hub",
+  "description": "A premium luxury fragrance marketplace and secure holding ledger featuring state-of-the-art optical-assisted AI verification, automated batch scoring, and escrow-lite security.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
